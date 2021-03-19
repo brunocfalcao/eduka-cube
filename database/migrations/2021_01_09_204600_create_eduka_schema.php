@@ -47,7 +47,7 @@ class CreateEdukaSchema extends Migration
                   ->comment('A natural description of the activity')
                   ->nullable();
 
-            $table->json('parameters')
+            $table->longText('parameters')
                   ->nullable();
 
             $table->unsignedBigInteger('loggable_id')
