@@ -55,6 +55,8 @@ class CreateEdukaSchema extends Migration
             $table->longText('stripped_text_reply')
                   ->nullable();
 
+            $table->timestamps();
+
             $table->engine = 'InnoDB';
         });
 
@@ -103,8 +105,9 @@ class CreateEdukaSchema extends Migration
 
             $table->foreign('causer_id')->references('id')->on('users');
 
-            $table->engine = 'InnoDB';
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
 
         Schema::create('subscribers', function (Blueprint $table) {
@@ -116,8 +119,9 @@ class CreateEdukaSchema extends Migration
             $table->string('email')
                   ->unique();
 
-            $table->engine = 'InnoDB';
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
 
         Schema::table('users', function (Blueprint $table) {
@@ -152,8 +156,9 @@ class CreateEdukaSchema extends Migration
             $table->boolean('is_enabled')
                   ->default(false);
 
-            $table->engine = 'InnoDB';
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
 
         Schema::create('videos', function (Blueprint $table) {
@@ -200,8 +205,9 @@ class CreateEdukaSchema extends Migration
                   ->comment('Defines if a video is enabled (can be visible, and/or clickable) for the users, if the video is between the published and archived dates')
                   ->default(false);
 
-            $table->engine = 'InnoDB';
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
 
         Schema::create('favorites', function (Blueprint $table) {
@@ -215,8 +221,9 @@ class CreateEdukaSchema extends Migration
 
             $table->softDeletes();
 
-            $table->engine = 'InnoDB';
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
 
         Schema::create('watch_later', function (Blueprint $table) {
@@ -230,8 +237,9 @@ class CreateEdukaSchema extends Migration
 
             $table->softDeletes();
 
-            $table->engine = 'InnoDB';
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
 
         Schema::create('marked_as_seen', function (Blueprint $table) {
@@ -245,8 +253,9 @@ class CreateEdukaSchema extends Migration
 
             $table->softDeletes();
 
-            $table->engine = 'InnoDB';
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
     }
 
