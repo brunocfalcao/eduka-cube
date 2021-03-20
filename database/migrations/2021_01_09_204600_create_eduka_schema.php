@@ -13,6 +13,51 @@ class CreateEdukaSchema extends Migration
      */
     public function up()
     {
+        Schema::create('emails', function (Blueprint $table) {
+            $table->id();
+
+            $table->longText('subject')
+                  ->nullable();
+
+            $table->longText('from_email')
+                  ->nullable();
+
+            $table->longText('from_full')
+                  ->nullable();
+
+            $table->longText('from_name')
+                  ->nullable();
+
+            $table->longText('date')
+                  ->nullable();
+
+            $table->longText('original_recipient')
+                  ->nullable();
+
+            $table->longText('reply_to')
+                  ->nullable();
+
+            $table->longText('mailbox_hash')
+                  ->nullable();
+
+            $table->longText('tag')
+                  ->nullable();
+
+            $table->longText('message_id')
+                  ->nullable();
+
+            $table->longText('text_body')
+                  ->nullable();
+
+            $table->longText('html_body')
+                  ->nullable();
+
+            $table->longText('stripped_text_reply')
+                  ->nullable();
+
+            $table->engine = 'InnoDB';
+        });
+
         Schema::create('course', function (Blueprint $table) {
             $table->id();
 
