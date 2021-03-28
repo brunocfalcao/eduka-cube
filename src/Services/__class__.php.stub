@@ -1,0 +1,24 @@
+<?php
+
+namespace Eduka\Cube\Services;
+
+class <myclass>
+{
+    public static function __callStatic($method, $args)
+    {
+        return <class>Service::new()->{$method}(...$args);
+    }
+}
+
+class <class>Service
+{
+    public function __construct()
+    {
+        //
+    }
+
+    public static function new(...$args)
+    {
+        return new self(...$args);
+    }
+}
