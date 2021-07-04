@@ -62,7 +62,6 @@ class EdukaCubeServiceProvider extends ServiceProvider
         Chapter::observe(ChapterObserver::class);
         User::observe(UserObserver::class);
         Subscriber::observe(SubscriberObserver::class);
-        Course::observe(CourseObserver::class);
         ApplicationLog::observe(ApplicationLogObserver::class);
     }
 

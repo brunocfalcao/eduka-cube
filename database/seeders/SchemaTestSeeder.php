@@ -61,10 +61,12 @@ class SchemaTestSeeder extends Seeder
         $admin->password = bcrypt('honda');
         $admin->save();
 
+        /*
         Course::create([
             'name' => 'Nova Advanced UI',
             'admin_email' => 'bruno.falcao@live.com',
         ]);
+        */
     }
 
     private function pickAvailableSubscriber()

@@ -13,6 +13,7 @@ class CreateEdukaSchema extends Migration
      */
     public function up()
     {
+      /*
         Schema::create('course', function (Blueprint $table) {
             $table->id();
 
@@ -32,6 +33,7 @@ class CreateEdukaSchema extends Migration
 
             $table->engine = 'InnoDB';
         });
+        */
 
         Schema::create('application_log', function (Blueprint $table) {
             $table->id();
