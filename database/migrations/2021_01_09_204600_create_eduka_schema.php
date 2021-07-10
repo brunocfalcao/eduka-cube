@@ -16,9 +16,6 @@ class CreateEdukaSchema extends Migration
         Schema::create('course', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name')
-                  ->comment('Your awesome course name');
-
             $table->boolean('is_active')
                   ->default(false);
 

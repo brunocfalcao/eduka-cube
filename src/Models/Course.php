@@ -16,6 +16,10 @@ class Course extends EdukaModel implements HasMedia
 
     public $timestamps = false;
 
+    protected $appends = [
+        'name'
+    ];
+
     protected $casts = [
         'launched_at' => 'datetime',
         'is_active'   => 'boolean',
@@ -35,7 +39,12 @@ class Course extends EdukaModel implements HasMedia
 
     public static function launched()
     {
-        return course()->is_active && course()->launched_at < now();
+        return course()->is_active && course()->launched_at != null && course()->launched_at < now();
+    }
+
+    public function getNameAttribute()
+    {
+        return env('APP_NAME');
     }
 
     public static function getMetaTags()

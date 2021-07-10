@@ -2,6 +2,7 @@
 
 namespace Eduka\Cube\Observers;
 
+use Eduka\Abstracts\EdukaException;
 use Eduka\Cube\Models\Course;
 
 class CourseObserver
@@ -37,6 +38,17 @@ class CourseObserver
     public function updated(Course $course)
     {
         //
+    }
+
+    /**
+     * Handle the Course "deleted" event.
+     *
+     * @param  \Eduka\Models\Course  $course
+     * @return void
+     */
+    public function deleting(Course $course)
+    {
+        throw new EdukaException('A course cannot be deleted');
     }
 
     /**

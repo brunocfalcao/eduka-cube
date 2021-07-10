@@ -5,11 +5,13 @@ namespace Eduka\Cube;
 use Eduka\Cube\Commands\FreshSeed;
 use Eduka\Cube\Models\ApplicationLog;
 use Eduka\Cube\Models\Chapter;
+use Eduka\Cube\Models\Course;
 use Eduka\Cube\Models\Subscriber;
 use Eduka\Cube\Models\User;
 use Eduka\Cube\Models\Video;
 use Eduka\Cube\Observers\ApplicationLogObserver;
 use Eduka\Cube\Observers\ChapterObserver;
+use Eduka\Cube\Observers\CourseObserver;
 use Eduka\Cube\Observers\SubscriberObserver;
 use Eduka\Cube\Observers\UserObserver;
 use Eduka\Cube\Observers\VideoObserver;
@@ -60,6 +62,7 @@ class EdukaCubeServiceProvider extends ServiceProvider
         Chapter::observe(ChapterObserver::class);
         User::observe(UserObserver::class);
         Subscriber::observe(SubscriberObserver::class);
+        Course::observe(CourseObserver::class);
         ApplicationLog::observe(ApplicationLogObserver::class);
     }
 
