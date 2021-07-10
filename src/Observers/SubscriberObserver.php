@@ -2,10 +2,8 @@
 
 namespace Eduka\Cube\Observers;
 
-use App\Mail\MailTest;
 use Eduka\Cube\Models\Subscriber;
 use Eduka\Cube\Services\ApplicationLog;
-use Illuminate\Support\Facades\Mail;
 
 class SubscriberObserver
 {
@@ -50,9 +48,6 @@ class SubscriberObserver
      */
     public function created(Subscriber $subscriber)
     {
-        Mail::to($subscriber->email)
-            ->send(new MailTest());
-
         // Save on application log.
         ApplicationLog::parameters(['operation' => 'subscribe'])
                       ->model($subscriber)

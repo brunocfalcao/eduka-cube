@@ -11,14 +11,14 @@ class FreshSeed extends EdukaCommand
      *
      * @var string
      */
-    protected $signature = 'eduka-cube:fresh-seed';
+    protected $signature = 'eduka:fresh-seed {--with-test-data : Seed testing data}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Refreshes database and seeds a test data package for development purposes';
+    protected $description = 'Installs the Eduka database and optionally populates testing data';
 
     /**
      * Create a new command instance.
@@ -37,32 +37,26 @@ class FreshSeed extends EdukaCommand
      */
     public function handle()
     {
-        $this->info('
-                    _       _
-             ___  _| | _ _ | |__ ___
-            / ._>/ . || | || / /<_> |
-            \___.\___|`___||_\_\<___|
+        $this->paragraph('=> Installing Eduka schema...');
 
-        ');
-
-        $this->paragraph('-= Freshing and seeding Eduka database =-', false);
-
-        $this->paragraph('=> Freshing database ...');
         $this->call('migrate:fresh', [
             '--force' => 1,
             '--quiet' => 1,
         ]);
-        $this->paragraph('=> Done', false);
 
-        if (app()->environment() != 'production') {
+        $this->paragraph('=> Seeding database with initial required data ...');
+        $this->call('db:seed', [
+            '--class' => 'Eduka\Database\Seeders\SchemaInitializeSeeder',
+            '--quiet' => 1,
+        ]);
+
+        if ($this->option('with-test-data') && app()->environment() != 'production') {
             $this->paragraph('=> Seeding database with testing data ...');
             $this->call('db:seed', [
                 '--class' => 'Eduka\Database\Seeders\SchemaTestSeeder',
                 '--quiet' => 1,
             ]);
         }
-
-        $this->paragraph('-= All done! Database refreshed! =-');
 
         return 0;
     }

@@ -3,7 +3,6 @@
 namespace Eduka\Database\Seeders;
 
 use Carbon\CarbonImmutable;
-use Eduka\Cube\Models\Course;
 use Eduka\Cube\Models\Subscriber;
 use Eduka\Cube\Models\User;
 use Illuminate\Database\Seeder;
@@ -22,7 +21,7 @@ class SchemaTestSeeder extends Seeder
          * duration period. For instance, to simulate subscribers creation.
          */
         $lifeDuration = 3; // months
-        $linkProbability = 30; // %
+        $linkProbability = 30; // % meaning subscriber and user are connected
 
         $lifespan = CarbonImmutable::now()->subMonths(3);
         $seconds = $lifespan->diffInSeconds(now());
@@ -52,21 +51,6 @@ class SchemaTestSeeder extends Seeder
                 $subscriber->saveQuietly();
             }
         });
-
-        // Admin user.
-        $admin = new User();
-        $admin->name = 'Bruno Falcao';
-        $admin->email_verified_at = now();
-        $admin->email = 'bruno.falcao@live.com';
-        $admin->password = bcrypt('honda');
-        $admin->save();
-
-        /*
-        Course::create([
-            'name' => 'Nova Advanced UI',
-            'admin_email' => 'bruno.falcao@live.com',
-        ]);
-        */
     }
 
     private function pickAvailableSubscriber()

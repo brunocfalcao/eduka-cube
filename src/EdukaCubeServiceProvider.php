@@ -5,13 +5,11 @@ namespace Eduka\Cube;
 use Eduka\Cube\Commands\FreshSeed;
 use Eduka\Cube\Models\ApplicationLog;
 use Eduka\Cube\Models\Chapter;
-use Eduka\Cube\Models\Course;
 use Eduka\Cube\Models\Subscriber;
 use Eduka\Cube\Models\User;
 use Eduka\Cube\Models\Video;
 use Eduka\Cube\Observers\ApplicationLogObserver;
 use Eduka\Cube\Observers\ChapterObserver;
-use Eduka\Cube\Observers\CourseObserver;
 use Eduka\Cube\Observers\SubscriberObserver;
 use Eduka\Cube\Observers\UserObserver;
 use Eduka\Cube\Observers\VideoObserver;
@@ -72,10 +70,10 @@ class EdukaCubeServiceProvider extends ServiceProvider
 
     protected function registerCommands(): void
     {
-        $this->app->bind('command.eduka-cube:fresh-seed', FreshSeed::class);
+        $this->app->bind('command.eduka:fresh-seed', FreshSeed::class);
 
         $this->commands([
-            'command.eduka-cube:fresh-seed',
+            'command.eduka:fresh-seed',
         ]);
     }
 }

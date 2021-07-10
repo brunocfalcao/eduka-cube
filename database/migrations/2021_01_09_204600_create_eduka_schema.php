@@ -13,15 +13,14 @@ class CreateEdukaSchema extends Migration
      */
     public function up()
     {
-      /*
         Schema::create('course', function (Blueprint $table) {
             $table->id();
 
             $table->string('name')
                   ->comment('Your awesome course name');
 
-            $table->string('admin_email')
-                  ->comment('The admin email used to login on the admin panel');
+            $table->boolean('is_active')
+                  ->default(false);
 
             $table->longText('meta')
                   ->comment('The HTML meta attributes')
@@ -33,7 +32,6 @@ class CreateEdukaSchema extends Migration
 
             $table->engine = 'InnoDB';
         });
-        */
 
         Schema::create('application_log', function (Blueprint $table) {
             $table->id();
