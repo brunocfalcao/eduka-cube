@@ -17,7 +17,7 @@ class Course extends EdukaModel implements HasMedia
     public $timestamps = false;
 
     protected $appends = [
-        'name'
+        'name',
     ];
 
     protected $casts = [
