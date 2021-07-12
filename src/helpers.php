@@ -1,6 +1,7 @@
 <?php
 
 use Eduka\Cube\Models\Course;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Returns the Course instance.
@@ -9,5 +10,11 @@ use Eduka\Cube\Models\Course;
  */
 function course()
 {
-    return (new Course())->first();
+    if (Schema::hasTable('course')) {
+        return (new Course())->firstOr(function () {
+            return null;
+        });
+    };
+
+    return null;
 }
