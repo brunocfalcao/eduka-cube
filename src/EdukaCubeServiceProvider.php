@@ -29,18 +29,10 @@ class EdukaCubeServiceProvider extends ServiceProvider
         $this->registerPolicies();
         $this->registerCommands();
         $this->activateFakes();
-        $this->publishResources();
     }
 
     public function register()
     {
-    }
-
-    protected function publishResources()
-    {
-        $this->publishes([
-            __DIR__.'/../resources/overrides/' => base_path('/'),
-        ]);
     }
 
     protected function activateFakes()
