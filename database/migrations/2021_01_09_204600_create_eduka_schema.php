@@ -19,8 +19,12 @@ class CreateEdukaSchema extends Migration
             $table->boolean('is_active')
                   ->default(false);
 
-            $table->longText('meta')
-                  ->comment('The HTML meta attributes')
+            $table->longText('meta_tags')
+                  ->comment('The HTML meta attributes that are used for social integration (twitter and facebook)')
+                  ->nullable();
+
+            $table->string('meta_image')
+                  ->comment('Course social image')
                   ->nullable();
 
             $table->dateTimeTz('launched_at')

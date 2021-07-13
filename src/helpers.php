@@ -12,9 +12,8 @@ function course()
 {
     if (Schema::hasTable('course')) {
         return (new Course())->firstOr(function () {
-            return null;
-        });
-    };
 
-    return null;
+        });
+    }
+
 }

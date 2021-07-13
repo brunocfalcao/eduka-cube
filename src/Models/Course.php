@@ -23,7 +23,7 @@ class Course extends EdukaModel implements HasMedia
     protected $casts = [
         'launched_at' => 'datetime',
         'is_active'   => 'boolean',
-        'meta'        => 'array',
+        'meta_tags'        => 'array',
     ];
 
     public function registerMediaConversions(Media $media = null): void

@@ -12,7 +12,7 @@ class SchemaInitializeSeeder extends Seeder
     {
         // Create a Course stub.
         Course::create([
-            'meta' => [
+            'meta_tags' => [
                 'twitter:site' => '@brunocfalcao',
                 'twitter:description' => 'add-your-course-description',
                 'twitter:creator' => '@brunocfalcao',
