@@ -23,4 +23,9 @@ class Domain extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    protected static function newFactory(): Factory
+    {
+        return YourFactoryClass::new();
+    }
 }
