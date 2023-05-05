@@ -1,19 +1,10 @@
 {
-<<<<<<< HEAD
-    "name": "brunocfalcao/eduka-cube",
-    "description": "Eduka Cube",
-    "keywords": [
-        "brunocfalcao"
-    ],
-    "homepage": "https://github.com/brunocfalcao/eduka-cube",
-=======
     "name": "brunocfalcao/course-mastering-nova",
     "description": "Mastering Nova - Laravel Nova official course",
     "keywords": [
         "brunocfalcao"
     ],
     "homepage": "https://github.com/brunocfalcao/course-mastering-nova",
->>>>>>> d38a046 (Add factories)
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -25,16 +16,6 @@
     ],
     "require": {
         "php": "^8.0",
-<<<<<<< HEAD
-        "brunocfalcao/eduka-abstracts": "dev-master",
-        "brunocfalcao/eduka-helpers": "dev-master",
-        "brunocfalcao/course-mastering-nova": "dev-master",
-        "illuminate/contracts": "^10.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Eduka\\Cube\\": "src/"
-=======
         "brunocfalcao/eduka-nereus": "dev-master",
         "owenvoke/blade-fontawesome": "^2.1",
         "andreiio/blade-iconoir": "^2.0"
@@ -44,23 +25,11 @@
             "MasteringNova\\": "src/",
             "MasteringNova\\Database\\Factories\\": "database/factories/",
             "MasteringNova\\Database\\Seeders\\": "database/seeders/"
->>>>>>> d38a046 (Add factories)
         }
     },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-<<<<<<< HEAD
-        "sort-eduka-cubes": true
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Eduka\\Cube\\CubeServiceProvider"
-            ]
-        }
-=======
         "sort-packages": true
->>>>>>> d38a046 (Add factories)
     }
 }

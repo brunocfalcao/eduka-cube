@@ -3,7 +3,6 @@
 namespace MasteringNova;
 
 use Eduka\Abstracts\Classes\EdukaServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory as EloquentFactory;
 use MasteringNova\Commands\ETLData;
 
 class MasteringNovaServiceProvider extends EdukaServiceProvider
@@ -14,23 +13,12 @@ class MasteringNovaServiceProvider extends EdukaServiceProvider
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-        $this->registerEloquentFactoriesFrom(__DIR__.'/database/factories');
-
         parent::boot();
     }
 
     public function register()
     {
         parent::register();
-    }
-
-    /**
-     * Register factories.
-     */
-    protected function registerEloquentFactoriesFrom(string $path)
-    {
-        // @TODO check, not working
-        $this->app->make(EloquentFactory::class)->load($path);
     }
 
     protected function registerCommands()
