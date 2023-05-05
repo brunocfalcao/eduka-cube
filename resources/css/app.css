@@ -1,0 +1,252 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@layer components {
+
+    .debug {
+        @apply outline
+               outline-red-500
+               outline-1
+    }
+
+    .debug-all * {
+        @apply outline
+               outline-red-500
+               outline-1
+    }
+
+    .link-primary {
+        @apply text-white
+               transition
+               duration-150
+               border-b
+               border-b-transparent
+               hover:cursor-pointer
+               hover:border-aquacyan-500
+               hover:text-aquacyan-500
+    }
+
+    .link-primary.selected {
+        @apply border-b
+               hover:cursor-pointer
+               border-aquacyan-500
+               text-aquacyan-500
+    }
+
+    a {
+        @apply hover:cursor-pointer;
+    }
+
+    .badge-vermilion {
+        @apply bg-vermilion
+               flex
+               items-center
+               px-3
+               py-2
+               rounded-md
+               gap-2
+               text-sm
+    }
+
+    .badge-vermilion span {
+        @apply text-white
+    }
+
+    .badge-vermilion > svg {
+        @apply text-white
+               h-5
+               w-5
+    }
+
+    .flex-stop-wrap-at-sm {
+        @apply flex
+               flex-wrap
+               sm:flex-nowrap
+    }
+
+    .flex-stop-wrap-at-md {
+        @apply flex
+               flex-wrap
+               md:flex-nowrap
+    }
+
+    .flex-stop-wrap-at-lg {
+        @apply flex
+               flex-wrap
+               lg:flex-nowrap
+    }
+
+    .flex-stop-wrap-at-xl {
+        @apply flex
+               flex-wrap
+               xl:flex-nowrap
+    }
+
+    .flex-stop-wrap-at-2xl {
+        @apply flex
+               flex-wrap
+               2xl:flex-nowrap
+    }
+
+    nav {
+        @apply container
+               mx-auto
+    }
+
+    /** The default section container. Responsive, centered and with the
+     *  right top margin (responsive-ready). */
+    section.section-default {
+        @apply container
+               mx-auto
+               py-6
+               xl:py-20
+               px-6
+               sm:px-0
+    }
+
+    /**
+     * Section container title, and subtitle, with the right vertical
+     * spacing, responsive ready.
+     */
+    .section-title {
+        @apply space-y-3
+               mb-12
+    }
+
+    .section-title p:first-child {
+        @apply text-5xl
+               text-white
+               text-center
+    }
+
+    .section-title p:not(first-child) {
+        @apply text-2xl
+               text-bombay-800
+               text-center
+               leading-tight
+    }
+
+    /**
+     * Features slider components, and sections.
+     */
+    .features-hero {
+        @apply space-y-4
+    }
+
+    /* Blue header, 1st line */
+    .features-hero p:nth-child(1) {
+        @apply text-aquacyan-500
+               text-sm
+               lg:text-xl
+    }
+
+    /* Main caption, 2nd line */
+    .features-hero p:nth-child(2) {
+        @apply text-bombay-100
+               text-2xl
+               lg:text-5xl
+    }
+
+    /* Baseline, 3rd line */
+    .features-hero p:nth-child(3) {
+        @apply text-bombay-500
+               text-sm
+               lg:text-base
+    }
+
+    .slider-link-inactive {
+        @apply pb-3
+               border-b-2
+               border-b-bombay-900
+               text-center
+               transition-colors
+               hover:cursor-pointer
+    }
+
+    .slider-link-active {
+        @apply pb-3
+               border-b-2
+               border-b-aquacyan-500
+               transition-colors
+               text-center
+    }
+
+    .features-slider-indicators {
+        @apply grid
+               grid-cols-3
+    }
+
+    .features-slider-indicators button {
+        @apply text-sm
+               text-white
+               xl:text-base
+    }
+
+    /**
+     * The default testimonial link is grayed out, with a gray border.
+     * Structure:
+     * <a> (link that will apply the hover effects, etc)
+     *   <img> (rounded testimonial image)
+     *   <p> (testimony member name)
+     */
+    a.testimonial-link {
+        @apply flex
+               items-center
+               gap-2
+    }
+
+    /* Default testimonial link - It's grayscaled. */
+    a.testimonial-link > img {
+        -webkit-filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+        filter: grayscale(100%);
+        transition: all 0.5s ease;
+
+        @apply border-2
+               border-bombay-500
+               p-1
+    }
+
+    a.testimonial-link > p {
+        @apply border-transparent
+               border-2
+    }
+
+    /* When we hover over the testimonial links, we remove the grayscale
+     from the image */
+    a.testimonial-link:hover > img {
+        -webkit-filter: grayscale(0%);
+        -moz-filter: grayscale(0%);
+        filter: grayscale(0%);
+
+        @apply cursor-pointer
+               transition-colors
+               border-aquacyan-500
+    }
+
+    a.testimonial-link:hover > p {
+        @apply border-b-2
+               border-b-aquacyan-500
+               transition-colors
+    }
+
+    /* A testimonial that is selected, like the :hover effect */
+    a.testimonial-link.selected > img {
+        -webkit-filter: grayscale(0%);
+        -moz-filter: grayscale(0%);
+        filter: grayscale(0%);
+
+        @apply cursor-pointer
+               transition-colors
+               border-aquacyan-500
+    }
+
+    a.testimonial-link.selected > p {
+        @apply border-b-2
+               border-b-aquacyan-500
+               transition-colors
+    }
+}

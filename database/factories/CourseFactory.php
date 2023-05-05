@@ -2,13 +2,13 @@
 
 namespace MasteringNova\Database\Factories;
 
-use Eduka\Cube\Models\Chapter;
 use Eduka\Cube\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ChapterFactory extends Factory
+class CourseFactory extends Factory
 {
-    protected $model = Chapter::class;
+    protected $model = Course::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,23 +17,11 @@ class ChapterFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->realTextBetween(30, 100),
-            'details' => $this->faker->realTextBetween(150,250),
-//            'index' => @todo handle in incremental fashion
+            'name' => 'Mastering Nova',
+            'admin_name' => 'Bruno',
+            'admin_email' => 'bruno@masteringnova.com',
+            'twitter_handle' => 'brunocfalcao',
+            'provider_namespace' => 'MasteringNova\\MasteringNovaServiceProvider',
         ];
-    }
-
-    /**
-     * Select course id for given chapter. Uses chapter's name to determine the chapter.
-     */
-    public function forCourse(string $name): Factory
-    {
-        $id = Course::where('name', $name)->first()->id;
-
-        return $this->state(function (array $attributes) use ($id) {
-            return [
-                'course_id' => $id
-            ];
-        });
     }
 }

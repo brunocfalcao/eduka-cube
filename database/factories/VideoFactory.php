@@ -2,12 +2,13 @@
 
 namespace MasteringNova\Database\Factories;
 
-use Eduka\Cube\Models\Course;
+use Eduka\Cube\Models\Video;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CourseFactory extends Factory
+class VideoFactory extends Factory
 {
-    protected $model = Course::class;
+    protected $model = Video::class;
+
     /**
      * Define the model's default state.
      *
@@ -16,11 +17,14 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'Mastering Nova',
-            'admin_name' => 'Bruno',
-            'admin_email' => 'bruno@masteringnova.com',
-            'twitter_handle' => 'brunocfalcao',
-            'provider_namespace' => 'MasteringNova\\MasteringNovaServiceProvider',
+            'name' => $this->faker->realTextBetween(20, 100),
+            'details' => $this->faker->realTextBetween(150, 250),
+            'vimeo_id' => $this->faker->numberBetween(1000000, 2000000),
+            'duration' => $this->faker->numberBetween(5, 30),
+            'uuid' => $this->faker->uuid(),
+            'is_visible' => $this->faker->boolean(),
+            'is_free' => $this->faker->boolean(),
+            'is_active' => $this->faker->boolean(),
         ];
     }
 }

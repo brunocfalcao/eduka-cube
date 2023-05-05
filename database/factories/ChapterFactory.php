@@ -2,13 +2,13 @@
 
 namespace MasteringNova\Database\Factories;
 
+use Eduka\Cube\Models\Chapter;
 use Eduka\Cube\Models\Course;
-use Eduka\Cube\Models\Series;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SeriesFactory extends Factory
+class ChapterFactory extends Factory
 {
-    protected $model = Series::class;
+    protected $model = Chapter::class;
 
     /**
      * Define the model's default state.
@@ -20,6 +20,8 @@ class SeriesFactory extends Factory
         return [
             'name' => $this->faker->realTextBetween(30, 100),
             'details' => $this->faker->realTextBetween(150, 250),
+            'course_id' => Course::factory()->create(), // default behaviour
+            //            'index' => @todo handle in incremental fashion
         ];
     }
 
