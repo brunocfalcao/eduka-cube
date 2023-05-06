@@ -39,6 +39,7 @@ use Eduka\Cube\Policies\TagPolicy;
 use Eduka\Cube\Policies\UserPolicy;
 use Eduka\Cube\Policies\VideoPolicy;
 use Eduka\Cube\Policies\VisitPolicy;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Gate;
 
 class CubeServiceProvider extends EdukaServiceProvider
