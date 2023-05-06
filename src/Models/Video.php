@@ -5,6 +5,8 @@ namespace Eduka\Cube\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use MasteringNova\Database\Factories\VideoFactory;
 
 class Video extends Model
 {
@@ -44,5 +46,10 @@ class Video extends Model
     public function usersCompleted()
     {
         return $this->belongsToMany(User::class, 'videos_completed');
+    }
+
+    protected static function newFactory(): Factory
+    {
+        return VideoFactory::new();
     }
 }

@@ -2,12 +2,16 @@
 
 namespace Eduka\Cube\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use MasteringNova\Database\Factories\SeriesFactory;
 
 class Series extends Model
 {
     use SoftDeletes;
+    use HasFactory;
 
     protected $guarded = [];
 
@@ -19,5 +23,10 @@ class Series extends Model
     public function videos()
     {
         return $this->belongsToMany(Video::class);
+    }
+
+    protected static function newFactory(): Factory
+    {
+        return SeriesFactory::new();
     }
 }
