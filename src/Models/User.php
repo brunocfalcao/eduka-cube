@@ -2,14 +2,17 @@
 
 namespace Eduka\Cube\Models;
 
-use Eduka\Analytics\Models\Visit;
+use Eduka\Cube\Models\Visit;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use MasteringNova\Database\Factories\UserFactory;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, HasFactory;
 
     protected $guarded = [];
 
@@ -41,5 +44,13 @@ class User extends Authenticatable
     public function videosCompleted()
     {
         return $this->belongsToMany(Video::class, 'videos_completed');
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     */
+    protected static function newFactory(): Factory
+    {
+        return UserFactory::new();
     }
 }
