@@ -4,10 +4,13 @@ namespace Eduka\Cube\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Subscriber extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Notifiable;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'email', 'course_id'
+    ];
 }
