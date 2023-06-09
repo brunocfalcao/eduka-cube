@@ -1,6 +1,6 @@
 <?php
 
-namespace Eduka\Cube\Events\Domains;
+namespace Eduka\Cube\Events\Subscribers;
 
 use Eduka\Cube\Models\Course;
 use Eduka\Cube\Models\Subscriber;
@@ -22,5 +22,7 @@ class SubscriberCreated
     {
         $this->subscriber = $subscriber;
         $this->course = $course;
+
+        logger('info',['subscriber.created.event' => $this->subscriber->email]);
     }
 }
