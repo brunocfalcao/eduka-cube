@@ -9,10 +9,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use MasteringNova\Database\Factories\UserFactory;
+use LemonSqueezy\Laravel\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, HasFactory;
+    use Notifiable, SoftDeletes, HasFactory, Billable;
 
     protected $guarded = [];
 

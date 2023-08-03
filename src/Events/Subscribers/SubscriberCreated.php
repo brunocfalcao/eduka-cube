@@ -22,7 +22,5 @@ class SubscriberCreated
     {
         $this->subscriber = $subscriber;
         $this->course = $course;
-
-        logger('info',['subscriber.created.event' => $this->subscriber->email]);
     }
 }

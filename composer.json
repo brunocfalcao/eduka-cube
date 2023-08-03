@@ -18,8 +18,8 @@
         "php": "^8.0",
         "brunocfalcao/eduka-abstracts": "dev-master",
         "brunocfalcao/eduka-helpers": "dev-master",
-        "brunocfalcao/course-mastering-nova": "dev-master",
-        "illuminate/contracts": "^10.0"
+        "illuminate/contracts": "^10.0",
+        "lemonsqueezy/laravel": "^0.2.1"
     },
     "autoload": {
         "psr-4": {

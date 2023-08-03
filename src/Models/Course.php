@@ -47,4 +47,9 @@ class Course extends Model
     {
         return CourseFactory::new();
     }
+
+    public function paymentProviderProductId() : string
+    {
+        return $this->payment_provider_product_id;
+    }
 }
