@@ -22,6 +22,7 @@
             <!-- Green rounded spheres background -->
             <div class="absolute -z-1 w-full bg-hero h-screen inset-0 bg-cover"></div>
 
+
             <!-- ## nav desktop/mobile common styles (TODO: Make it sticky and transparent) -->
             <nav>
                 <div class="px-6 pt-6">
