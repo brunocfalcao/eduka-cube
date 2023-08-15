@@ -67,4 +67,9 @@ class Course extends Model
 
         return (int) ($this->course_price * 100);
     }
+
+    public function purchasePowerParityIsEnabled() : bool
+    {
+        return $this->enable_purchase_power_parity;
+    }
 }

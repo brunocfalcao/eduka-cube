@@ -50,6 +50,11 @@ class Coupon extends Model
             '%COUNTRY_NAME' => $countryName,
         ];
 
-        return strtr($template, $substiationMap);
+        $str = strtr($template, $substiationMap);
+
+        $cleanedString = preg_replace('/[^a-zA-Z0-9\s]/', ' ', $str);
+        $cleanedString = preg_replace('/\s+/', '', $cleanedString);
+
+        return strtoupper($cleanedString);
     }
 }
