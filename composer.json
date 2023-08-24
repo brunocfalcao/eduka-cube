@@ -37,5 +37,8 @@
                 "Eduka\\Cube\\CubeServiceProvider"
             ]
         }
-    }
+    },
+
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

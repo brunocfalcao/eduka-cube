@@ -41,6 +41,11 @@ class Course extends Model
         return $this->hasMany(Visit::class);
     }
 
+    public function chapters()
+    {
+        return $this->hasMany(Chapter::class);
+    }
+
     /**
      * Create a new factory instance for the model.
      */

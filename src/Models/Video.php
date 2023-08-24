@@ -52,4 +52,25 @@ class Video extends Model
     {
         return VideoFactory::new();
     }
+
+    public function scopeIsVisible($query)
+    {
+        return $query->where('is_visible',true);
+    }
+
+    // returns '#' if it's not active
+    public function url()
+    {
+        if(! $this->is_active) {
+            return '#';
+        }
+
+        if(! auth()->check() && !$this->is_free) {
+            return route('purchase.view');
+        }
+
+        return '#route-should-be-slash-videos-slash' . $this->id;
+        // note: this url doesn't exist yet
+        // return route('video.view', $this->id);
+    }
 }
