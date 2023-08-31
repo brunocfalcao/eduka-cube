@@ -2,18 +2,17 @@
 
 namespace Eduka\Cube\Models;
 
-use Eduka\Cube\Models\Visit;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use MasteringNova\Database\Factories\UserFactory;
 use LemonSqueezy\Laravel\Billable;
+use MasteringNova\Database\Factories\UserFactory;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, HasFactory, Billable;
+    use Billable, HasFactory, Notifiable, SoftDeletes;
 
     protected $guarded = [];
 

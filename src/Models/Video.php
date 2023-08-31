@@ -2,16 +2,16 @@
 
 namespace Eduka\Cube\Models;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use MasteringNova\Database\Factories\VideoFactory;
 
 class Video extends Model
 {
-    use SoftDeletes;
     use HasFactory;
+    use SoftDeletes;
 
     protected $guarded = [];
 
@@ -48,29 +48,29 @@ class Video extends Model
         return $this->belongsToMany(User::class, 'videos_completed');
     }
 
-    protected static function newFactory(): Factory
-    {
-        return VideoFactory::new();
-    }
-
     public function scopeIsVisible($query)
     {
-        return $query->where('is_visible',true);
+        return $query->where('is_visible', true);
     }
 
     // returns '#' if it's not active
     public function url()
     {
-        if(! $this->is_active) {
+        if (! $this->is_active) {
             return '#';
         }
 
-        if(! auth()->check() && !$this->is_free) {
+        if (! auth()->check() && ! $this->is_free) {
             return route('purchase.view');
         }
 
-        return '#route-should-be-slash-videos-slash' . $this->id;
+        return '#route-should-be-slash-videos-slash'.$this->id;
         // note: this url doesn't exist yet
         // return route('video.view', $this->id);
+    }
+
+    protected static function newFactory(): Factory
+    {
+        return VideoFactory::new();
     }
 }

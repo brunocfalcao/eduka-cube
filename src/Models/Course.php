@@ -5,19 +5,19 @@ namespace Eduka\Cube\Models;
 use Eduka\Analytics\Models\Visit;
 use Eduka\Services\Concerns\CourseFeatures;
 use Exception;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use MasteringNova\Database\Factories\CourseFactory;
 
 class Course extends Model
 {
-    use Notifiable;
     use CourseFeatures;
-    use SoftDeletes;
     use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
 
     protected $guarded = [];
 
@@ -46,35 +46,35 @@ class Course extends Model
         return $this->hasMany(Chapter::class);
     }
 
-    /**
-     * Create a new factory instance for the model.
-     */
-    protected static function newFactory(): Factory
-    {
-        return CourseFactory::new();
-    }
-
-    public function paymentProviderProductId() : string
+    public function paymentProviderProductId(): string
     {
         return $this->payment_provider_product_id;
     }
 
-    public function paymentProviderStoreId() : string
+    public function paymentProviderStoreId(): string
     {
         return $this->payment_provider_store_id;
     }
 
-    public function priceInCents() : int
+    public function priceInCents(): int
     {
-        if(! $this->course_price) {
+        if (! $this->course_price) {
             throw new Exception('product price not set');
         }
 
         return (int) ($this->course_price * 100);
     }
 
-    public function purchasePowerParityIsEnabled() : bool
+    public function purchasePowerParityIsEnabled(): bool
     {
         return $this->enable_purchase_power_parity;
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     */
+    protected static function newFactory(): Factory
+    {
+        return CourseFactory::new();
     }
 }

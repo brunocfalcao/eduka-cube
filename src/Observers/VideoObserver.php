@@ -10,7 +10,7 @@ class VideoObserver
     public function saving(Video $video)
     {
         // Default column computations in case they came null/empty.
-        if(empty($video->uuid)){
+        if (empty($video->uuid)) {
             $video->uuid = (string) Str::uuid();
         }
     }

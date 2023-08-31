@@ -10,7 +10,7 @@ use MasteringNova\Database\Factories\TagFactory;
 
 class Tag extends Model
 {
-    use SoftDeletes, HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 
