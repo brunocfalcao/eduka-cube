@@ -9,7 +9,7 @@
         <!-- local webpage styles -->
         <style type="text/css">
             .bg-hero {
-                background-image: url('{{  Vite::asset('resources/assets/images/background.svg') }}');
+                background-image: url('{{  asset('resources/assets/images/background.svg') }}');
             }
         </style>
     </head>
@@ -29,7 +29,7 @@
                     <!-- nav visible in desktop devices -->
                     <nav class="hidden md:flex justify-between items-center">
                         <a href="#" class="flex gap-4">
-                            <img class="h-8 w-auto" src="{{  Vite::asset('resources/assets/images/logo.png') }}" />
+                            <img class="h-8 w-auto" src="{{  asset('resources/assets/images/logo.png') }}" />
                             <p class="text-2xl font-bold text-white">Mastering Nova</p>
                         </a>
                         <div>
@@ -44,7 +44,7 @@
                     <!-- nav visible in desktop devices -->
                     <nav class="flex md:hidden justify-between items-center">
                         <a href="#" class="flex gap-4">
-                            <img class="h-8 w-auto" src="{{  Vite::asset('resources/assets/images/logo.png') }}" />
+                            <img class="h-8 w-auto" src="{{  asset('resources/assets/images/logo.png') }}" />
                             <p class="text-2xl font-bold text-white">Mastering Nova</p>
                         </a>
                         <!-- Hamburger menu group (thumbnail + content) -->
@@ -133,7 +133,7 @@
                     </div>
                     <!-- Hero right section (image) -->
                     <div class="w-full xl:w-1/2">
-                        <img class="rounded-xl" src="{{  Vite::asset('resources/assets/images/hero.png') }}" />
+                        <img class="rounded-xl" src="{{  asset('resources/assets/images/hero.png') }}" />
                     </div>
                 </div>
             </section>
@@ -201,19 +201,19 @@
                     <!-- Links for each slide -->
                     <div class="pt-10 flex items-center justify-center gap-16">
                         <a href="#!" class="testimonial-link selected" id="testimonial-indicator-1" aria-current="true" aria-label="Slide 1">
-                            <img class="h-16 rounded-full w-auto mx-auto" src="{{  Vite::asset('resources/assets/images/crynobone.jpg') }}" />
+                            <img class="h-16 rounded-full w-auto mx-auto" src="{{  asset('resources/assets/images/crynobone.jpg') }}" />
                             <p class="text-bombay-100">Mohamed Said</p>
                         </a>
                         <a href="#!" class="testimonial-link" id="testimonial-indicator-2" aria-current="false" aria-label="Slide 2">
-                            <img class="h-16 rounded-full w-auto mx-auto" src="{{  Vite::asset('resources/assets/images/taylor-otwell.jpg') }}" />
+                            <img class="h-16 rounded-full w-auto mx-auto" src="{{  asset('resources/assets/images/taylor-otwell.jpg') }}" />
                             <p class="text-bombay-100">Taylor Otwell</p>
                         </a>
                         <a href="#!" class="testimonial-link" id="testimonial-indicator-3" aria-current="false" aria-label="Slide 3">
-                            <img class="h-16 rounded-full w-auto mx-auto" src="{{  Vite::asset('resources/assets/images/david-hemphill.jpg') }}" />
+                            <img class="h-16 rounded-full w-auto mx-auto" src="{{  asset('resources/assets/images/david-hemphill.jpg') }}" />
                             <p class="text-bombay-100">David Hemphill</p>
                         </a>
                         <a href="#!" class="testimonial-link" id="testimonial-indicator-4" aria-current="false" aria-label="Slide 4">
-                            <img class="h-16 rounded-full w-auto mx-auto" src="{{  Vite::asset('resources/assets/images/nuno-maduro.jpg') }}">
+                            <img class="h-16 rounded-full w-auto mx-auto" src="{{  asset('resources/assets/images/nuno-maduro.jpg') }}">
                             <p class="text-bombay-100">Nuno Maduro</p>
                         </a>
                     </div>

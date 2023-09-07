@@ -15,9 +15,9 @@ class Series extends Model
 
     protected $guarded = [];
 
-    public function course()
+    public function courses()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Course::class,'course_id');
     }
 
     public function videos()

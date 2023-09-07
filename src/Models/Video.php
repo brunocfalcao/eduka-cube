@@ -69,8 +69,6 @@ class Video extends Model
             return route('purchase.view');
         }
 
-        return '#route-should-be-slash-videos-slash' . $this->id;
-        // note: this url doesn't exist yet
-        // return route('video.view', $this->id);
+        return route('video.watch', $this->id);
     }
 }
