@@ -8,9 +8,9 @@ use Illuminate\Notifications\Notifiable;
 
 class Subscriber extends Model
 {
-    use SoftDeletes, Notifiable;
+    use Notifiable, SoftDeletes;
 
     protected $fillable = [
-        'email', 'course_id'
+        'email', 'course_id',
     ];
 }

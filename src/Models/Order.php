@@ -9,15 +9,14 @@ use Illuminate\Notifications\Notifiable;
 
 class Order extends Model
 {
+    use HasFactory;
     use Notifiable;
     use SoftDeletes;
-    use HasFactory;
 
     protected $guarded = [];
 
     protected $casts = [
     ];
-
 
     /**
      * Create a new factory instance for the model.
