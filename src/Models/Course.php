@@ -28,7 +28,7 @@ class Course extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'course_user');
     }
 
     public function domains()
@@ -58,7 +58,7 @@ class Course extends Model
 
     public function priceInCents(): int
     {
-        if (! $this->course_price) {
+        if (!$this->course_price) {
             throw new Exception('product price not set');
         }
 

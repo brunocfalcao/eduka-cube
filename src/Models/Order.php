@@ -15,15 +15,16 @@ class Order extends Model
 
     protected $guarded = [];
 
-    protected $casts = [
-    ];
+    protected $casts = [];
 
-    /**
-     * Create a new factory instance for the model.
-     */
-    // protected static function newFactory(): Factory
-    // {
-    //     return CourseFactory::new();
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 
 }
