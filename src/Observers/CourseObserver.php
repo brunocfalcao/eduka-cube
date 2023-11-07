@@ -16,7 +16,7 @@ class CourseObserver
     {
         // Call "CourseSaved" notification event if allowed.
         allow_if(
-            config('eduka.system.stop_notifications') !== true,
+            config('eduka.stop_notifications') !== true,
             function () use ($course) {
                 CourseSaved::dispatch($course);
             }

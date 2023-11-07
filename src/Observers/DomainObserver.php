@@ -16,7 +16,7 @@ class DomainObserver
     {
         // Call "DomainSaved" notification event if allowed.
         allow_if(
-            config('eduka.system.stop_notifications') !== true,
+            config('eduka.stop_notifications') !== true,
             function () use ($domain) {
                 DomainSaved::dispatch($domain);
             }
