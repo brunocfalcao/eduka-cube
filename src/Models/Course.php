@@ -2,7 +2,6 @@
 
 namespace Eduka\Cube\Models;
 
-use Eduka\Analytics\Models\Visit;
 use Eduka\Services\Concerns\CourseFeatures;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;
