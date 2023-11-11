@@ -70,4 +70,12 @@ class Video extends Model
     {
         return VideoFactory::new();
     }
+
+    public function vimeoMetadata() : array
+    {
+        return [
+            'name' => $this->name,
+            'description' => $this->meta_description,
+        ];
+    }
 }
