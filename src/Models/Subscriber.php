@@ -13,4 +13,9 @@ class Subscriber extends Model
     protected $fillable = [
         'email', 'course_id',
     ];
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

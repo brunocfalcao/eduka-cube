@@ -2,6 +2,7 @@
 
 namespace Eduka\Cube\Observers;
 
+use Eduka\Cube\Events\Subscribers\SubscriberCreated;
 use Eduka\Cube\Models\Subscriber;
 
 class SubscriberObserver
@@ -18,7 +19,7 @@ class SubscriberObserver
 
     public function created(Subscriber $subscriber)
     {
-        //
+        event(new SubscriberCreated($subscriber));
     }
 
     public function updated(Subscriber $subscriber)
