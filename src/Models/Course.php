@@ -45,9 +45,9 @@ class Course extends Model
         return $this->hasMany(Chapter::class);
     }
 
-    public function paymentProviderProductId(): string
+    public function paymentProviderVariantId(): string
     {
-        return $this->payment_provider_product_id;
+        return $this->payment_provider_variant_id;
     }
 
     public function paymentProviderStoreId(): string
