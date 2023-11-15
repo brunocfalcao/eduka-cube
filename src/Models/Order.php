@@ -15,7 +15,10 @@ class Order extends Model
 
     protected $guarded = [];
 
-    protected $casts = [];
+    protected $casts = [
+        // @aryan: You can use casts to automatically cast to/from json.
+        'response_body' => 'array',
+    ];
 
     public function user()
     {
