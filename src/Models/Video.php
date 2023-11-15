@@ -78,4 +78,9 @@ class Video extends Model
             'description' => $this->meta_description,
         ];
     }
+
+    public function videoStorage()
+    {
+        return $this->hasOne(VideoStorage::class,'video_id');
+    }
 }
