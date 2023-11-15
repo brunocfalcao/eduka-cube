@@ -66,12 +66,7 @@ class Video extends Model
         return route('video.watch', $this->id);
     }
 
-    protected static function newFactory(): Factory
-    {
-        return VideoFactory::new();
-    }
-
-    public function vimeoMetadata() : array
+    public function vimeoMetadata(): array
     {
         return [
             'name' => $this->name,
@@ -81,6 +76,11 @@ class Video extends Model
 
     public function videoStorage()
     {
-        return $this->hasOne(VideoStorage::class,'video_id');
+        return $this->hasOne(VideoStorage::class, 'video_id');
+    }
+
+    protected static function newFactory(): Factory
+    {
+        return VideoFactory::new();
     }
 }
