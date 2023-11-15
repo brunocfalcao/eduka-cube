@@ -2,7 +2,6 @@
 
 namespace Eduka\Cube\Events\Subscribers;
 
-use Eduka\Cube\Models\Course;
 use Eduka\Cube\Models\Subscriber;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -17,11 +16,8 @@ class SubscriberCreated
 
     public Subscriber $subscriber;
 
-    public Course $course;
-
-    public function __construct(Subscriber $subscriber, Course $course)
+    public function __construct(Subscriber $subscriber)
     {
         $this->subscriber = $subscriber;
-        $this->course = $course;
     }
 }

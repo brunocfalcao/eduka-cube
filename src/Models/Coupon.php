@@ -29,7 +29,7 @@ class Coupon extends Model
 
     public function course()
     {
-        return $this->belongsTo(Course::class,'course_id');
+        return $this->belongsTo(Course::class, 'course_id');
     }
 
     public function getLemonSqueezyCouponId()
@@ -46,7 +46,7 @@ class Coupon extends Model
     {
         $template = $this->coupon_code_template;
 
-        if (!$template) {
+        if (! $template) {
             $template = self::DEFUALT_NEW_COUPON_CREATION_TEMPLATE;
         }
 

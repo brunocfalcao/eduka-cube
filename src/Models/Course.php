@@ -2,7 +2,6 @@
 
 namespace Eduka\Cube\Models;
 
-use Eduka\Analytics\Models\Visit;
 use Eduka\Services\Concerns\CourseFeatures;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -46,9 +45,9 @@ class Course extends Model
         return $this->hasMany(Chapter::class);
     }
 
-    public function paymentProviderProductId(): string
+    public function paymentProviderVariantId(): string
     {
-        return $this->payment_provider_product_id;
+        return $this->payment_provider_variant_id;
     }
 
     public function paymentProviderStoreId(): string
@@ -58,7 +57,7 @@ class Course extends Model
 
     public function priceInCents(): int
     {
-        if (!$this->course_price) {
+        if (! $this->course_price) {
             throw new Exception('product price not set');
         }
 
