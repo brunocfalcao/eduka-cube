@@ -40,19 +40,14 @@ class Course extends Model
         return $this->hasMany(Visit::class);
     }
 
+    public function variants()
+    {
+        return $this->hasMany(Variant::class);
+    }
+
     public function chapters()
     {
         return $this->hasMany(Chapter::class);
-    }
-
-    public function paymentProviderVariantId(): string
-    {
-        return $this->payment_provider_variant_id;
-    }
-
-    public function paymentProviderStoreId(): string
-    {
-        return $this->payment_provider_store_id;
     }
 
     public function priceInCents(): int
@@ -64,9 +59,33 @@ class Course extends Model
         return (int) ($this->course_price * 100);
     }
 
-    public function purchasePowerParityIsEnabled(): bool
+    /**
+     * Returns a variant given an id. If null, returns the default
+     * variant instance. UUID because that's what comes normally from
+     * a webpage input field.
+     */
+    public function getVariantOrDefault(string $variantUuid = null)
     {
-        return $this->enable_purchase_power_parity;
+        if (! $variantUuid) {
+            return $this->getDefaultVariant();
+        }
+
+        return $this->variants->firstWhere('uuid', $variantUuid);
+    }
+
+    public function paymentProviderStoreId()
+    {
+        return $this->lemonsqueezy_store_id;
+    }
+
+    public function getDefaultVariant()
+    {
+        return $this->variants->firstWhere('is_default', true);
+    }
+
+    public function isPPPEnabled(): bool
+    {
+        return $this->enable_purchase_power_parity == true;
     }
 
     /**
