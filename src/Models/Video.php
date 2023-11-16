@@ -30,22 +30,26 @@ class Video extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)
+                    ->withTimestamps();
     }
 
     public function series()
     {
-        return $this->belongsToMany(Series::class);
+        return $this->belongsToMany(Series::class)
+                    ->withTimestamps();
     }
 
     public function chapters()
     {
-        return $this->belongsToMany(Chapter::class);
+        return $this->belongsToMany(Chapter::class)
+                    ->withTimestamps();
     }
 
     public function usersCompleted()
     {
-        return $this->belongsToMany(User::class, 'videos_completed');
+        return $this->belongsToMany(User::class, 'videos_completed')
+                    ->withTimestamps();
     }
 
     public function scopeIsVisible($query)

@@ -27,7 +27,8 @@ class Course extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'course_user');
+        return $this->belongsToMany(User::class, 'course_user')
+                    ->withTimestamps();
     }
 
     public function domains()
