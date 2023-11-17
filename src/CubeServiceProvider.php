@@ -13,6 +13,7 @@ use Eduka\Cube\Models\Series;
 use Eduka\Cube\Models\Subscriber;
 use Eduka\Cube\Models\Tag;
 use Eduka\Cube\Models\User;
+use Eduka\Cube\Models\Variant;
 use Eduka\Cube\Models\Video;
 use Eduka\Cube\Models\Visit;
 use Eduka\Cube\Observers\ChapterObserver;
@@ -25,6 +26,7 @@ use Eduka\Cube\Observers\SeriesObserver;
 use Eduka\Cube\Observers\SubscriberObserver;
 use Eduka\Cube\Observers\TagObserver;
 use Eduka\Cube\Observers\UserObserver;
+use Eduka\Cube\Observers\VariantObserver;
 use Eduka\Cube\Observers\VideoObserver;
 use Eduka\Cube\Observers\VisitObserver;
 use Eduka\Cube\Policies\ChapterPolicy;
@@ -37,6 +39,7 @@ use Eduka\Cube\Policies\SeriesPolicy;
 use Eduka\Cube\Policies\SubscriberPolicy;
 use Eduka\Cube\Policies\TagPolicy;
 use Eduka\Cube\Policies\UserPolicy;
+use Eduka\Cube\Policies\VariantPolicy;
 use Eduka\Cube\Policies\VideoPolicy;
 use Eduka\Cube\Policies\VisitPolicy;
 use Illuminate\Support\Facades\Gate;
@@ -53,7 +56,6 @@ class CubeServiceProvider extends EdukaServiceProvider
 
     public function register()
     {
-
     }
 
     protected function registerObservers()
@@ -69,6 +71,7 @@ class CubeServiceProvider extends EdukaServiceProvider
         Series::observe(SeriesObserver::class);
         Chapter::observe(ChapterObserver::class);
         Tag::observe(TagObserver::class);
+        Variant::observe(VariantObserver::class);
         Link::observe(LinkObserver::class);
         Subscriber::observe(SubscriberObserver::class);
     }
@@ -86,6 +89,7 @@ class CubeServiceProvider extends EdukaServiceProvider
         Gate::policy(Series::class, SeriesPolicy::class);
         Gate::policy(Chapter::class, ChapterPolicy::class);
         Gate::policy(Tag::class, TagPolicy::class);
+        Gate::policy(Variant::class, VariantPolicy::class);
         Gate::policy(Link::class, LinkPolicy::class);
         Gate::policy(Subscriber::class, SubscriberPolicy::class);
     }

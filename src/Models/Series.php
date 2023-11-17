@@ -22,7 +22,8 @@ class Series extends Model
 
     public function videos()
     {
-        return $this->belongsToMany(Video::class);
+        return $this->belongsToMany(Video::class)
+                    ->withTimestamps();
     }
 
     protected static function newFactory(): Factory

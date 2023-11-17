@@ -33,7 +33,8 @@ class User extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class);
+        return $this->belongsToMany(Course::class)
+                    ->withTimestamps();
     }
 
     public function visits()
@@ -43,7 +44,8 @@ class User extends Authenticatable
 
     public function videosCompleted()
     {
-        return $this->belongsToMany(Video::class, 'videos_completed');
+        return $this->belongsToMany(Video::class, 'videos_completed')
+                    ->withTimestamps();
     }
 
     /**
