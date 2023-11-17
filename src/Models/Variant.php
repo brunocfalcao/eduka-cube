@@ -23,6 +23,6 @@ class Variant extends Model
 
     public function priceOverrideInCents()
     {
-        return (int) $this->price_override * 100;
+        return (int) $this->lemonsqueezy_price_override * 100;
     }
 }
