@@ -19,9 +19,9 @@ class Video extends Model
     protected $casts = [
         // 'vimeo_id'   => 'integer',
         'is_visible' => 'boolean',
-        'is_active'  => 'boolean',
-        'is_free'    => 'boolean',
-        'duration'   => 'integer',
+        'is_active' => 'boolean',
+        'is_free' => 'boolean',
+        'duration' => 'integer',
     ];
 
     public function links()
@@ -49,7 +49,7 @@ class Video extends Model
 
     public function course()
     {
-        return $this->belongsToThrough(Course::class,Chapter::class);
+        return $this->belongsToThrough(Course::class, Chapter::class);
     }
 
     public function usersCompleted()
