@@ -12,15 +12,16 @@ class Video extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use \Znck\Eloquent\Traits\BelongsToThrough;
 
     protected $guarded = [];
 
     protected $casts = [
-        'vimeo_id' => 'integer',
+        // 'vimeo_id'   => 'integer',
         'is_visible' => 'boolean',
-        'is_active' => 'boolean',
-        'is_free' => 'boolean',
-        'duration' => 'integer',
+        'is_active'  => 'boolean',
+        'is_free'    => 'boolean',
+        'duration'   => 'integer',
     ];
 
     public function links()
@@ -41,6 +42,11 @@ class Video extends Model
     public function chapters()
     {
         return $this->belongsToMany(Chapter::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsToThrough(Course::class,Chapter::class);
     }
 
     public function usersCompleted()

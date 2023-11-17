@@ -20,7 +20,8 @@
         "brunocfalcao/eduka-helpers": "dev-master",
         "illuminate/contracts": "^10.0",
         "lemonsqueezy/laravel": "^0.2.1",
-        "staudenmeir/eloquent-has-many-deep": "^1.7"
+        "staudenmeir/eloquent-has-many-deep": "^1.7",
+        "staudenmeir/belongs-to-through":"^2.5"
     },
     "autoload": {
         "psr-4": {
