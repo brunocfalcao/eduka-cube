@@ -3,6 +3,7 @@
 namespace Eduka\Cube;
 
 use Eduka\Abstracts\Classes\EdukaServiceProvider;
+use Eduka\Cube\Commands\CreateCoupons;
 use Eduka\Cube\Models\Chapter;
 use Eduka\Cube\Models\Course;
 use Eduka\Cube\Models\Domain;
@@ -50,12 +51,20 @@ class CubeServiceProvider extends EdukaServiceProvider
     {
         $this->registerObservers();
         $this->registerPolicies();
+        $this->registerCommands();
 
         parent::boot();
     }
 
     public function register()
     {
+    }
+
+    protected function registerCommands()
+    {
+        $this->commands([
+            CreateCoupons::class,
+        ]);
     }
 
     protected function registerObservers()
