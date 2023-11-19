@@ -36,11 +36,6 @@ class Course extends Model
         return $this->hasMany(Domain::class);
     }
 
-    public function visits()
-    {
-        return $this->hasMany(Visit::class);
-    }
-
     public function variants()
     {
         return $this->hasMany(Variant::class);
