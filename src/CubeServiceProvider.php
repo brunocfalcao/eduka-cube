@@ -72,7 +72,6 @@ class CubeServiceProvider extends EdukaServiceProvider
         User::observe(UserObserver::class);
         Course::observe(CourseObserver::class);
         Domain::observe(DomainObserver::class);
-        Visit::observe(VisitObserver::class);
         Group::observe(GroupObserver::class);
         Series::observe(SeriesObserver::class);
         Invoice::observe(InvoiceObserver::class);
@@ -90,7 +89,6 @@ class CubeServiceProvider extends EdukaServiceProvider
         Gate::policy(User::class, UserPolicy::class);
         Gate::policy(Course::class, CoursePolicy::class);
         Gate::policy(Domain::class, DomainPolicy::class);
-        Gate::policy(Visit::class, VisitPolicy::class);
         Gate::policy(Group::class, GroupPolicy::class);
         Gate::policy(Series::class, SeriesPolicy::class);
         Gate::policy(Invoice::class, InvoicePolicy::class);
