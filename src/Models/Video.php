@@ -43,13 +43,22 @@ class Video extends Model
 
     public function chapters()
     {
-        return $this->belongsToMany(Chapter::class)
-                    ->withTimestamps();
+        return $this->belongsToMany(Chapter::class, 'chapter_video', 'video_id', 'chapter_id')
+            ->withTimestamps();
     }
 
     public function course()
     {
-        return $this->belongsToThrough(Course::class, Chapter::class);
+        return $this->belongsToThrough(
+            Course::class,
+            [Chapter::class, ChapterVideo::class],
+            null,
+            '',
+            [
+                ChapterVideo::class => 'id',
+                Chapter::class => 'chapter_id',
+            ]
+        );
     }
 
     public function usersCompleted()

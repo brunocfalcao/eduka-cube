@@ -17,6 +17,8 @@ class Course extends Model
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
+    use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
+
 
     protected $guarded = [];
 
@@ -44,6 +46,21 @@ class Course extends Model
     public function chapters()
     {
         return $this->hasMany(Chapter::class);
+    }
+
+    public function videos()
+    {
+        return $this->hasManyThrough(Video::class, Chapter::class);
+    }
+
+    public function courseVideos()
+    {
+        return $this->hasManyDeepFromRelations($this->chapterVideos(), (new ChapterVideo())->videos());
+    }
+
+    public function chapterVideos()
+    {
+        return $this->hasManyThrough(ChapterVideo::class, Chapter::class);
     }
 
     public function priceInCents(): int
