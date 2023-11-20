@@ -17,7 +17,6 @@ class Video extends Model
     protected $guarded = [];
 
     protected $casts = [
-        // 'vimeo_id'   => 'integer',
         'is_visible' => 'boolean',
         'is_active' => 'boolean',
         'is_free' => 'boolean',

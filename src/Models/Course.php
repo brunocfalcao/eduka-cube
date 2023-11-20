@@ -30,7 +30,7 @@ class Course extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'course_user')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     public function domains()
@@ -48,12 +48,12 @@ class Course extends Model
         return $this->hasMany(Chapter::class);
     }
 
-    public function videos()
-    {
-        return $this->hasManyThrough(Video::class, Chapter::class);
-    }
+    // public function videos()
+    // {
+    //     return $this->hasManyThrough(Video::class, Chapter::class);
+    // }
 
-    public function courseVideos()
+    public function videos()
     {
         return $this->hasManyDeepFromRelations($this->chapterVideos(), (new ChapterVideo())->videos());
     }
@@ -65,7 +65,7 @@ class Course extends Model
 
     public function priceInCents(): int
     {
-        if (! $this->course_price) {
+        if (!$this->course_price) {
             throw new Exception('product price not set');
         }
 
@@ -79,7 +79,7 @@ class Course extends Model
      */
     public function getVariantOrDefault(string $variantUuid = null)
     {
-        if (! $variantUuid) {
+        if (!$variantUuid) {
             return $this->getDefaultVariant();
         }
 
