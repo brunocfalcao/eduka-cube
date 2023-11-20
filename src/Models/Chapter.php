@@ -21,7 +21,7 @@ class Chapter extends Model
 
     public function videos()
     {
-        return $this->belongsToMany(Video::class,'chapter_id', 'video_id')
+        return $this->belongsToMany(Video::class, 'chapter_id', 'video_id')
                     ->withTimestamps();
     }
 

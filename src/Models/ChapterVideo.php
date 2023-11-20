@@ -13,6 +13,6 @@ class ChapterVideo extends Model
 
     public function videos()
     {
-        return $this->hasMany(Video::class,'id','video_id');
+        return $this->hasMany(Video::class, 'id', 'video_id');
     }
 }
