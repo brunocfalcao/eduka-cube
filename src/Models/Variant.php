@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Variant extends Model
 {
     use HasFactory, SoftDeletes;
+    use \Znck\Eloquent\Traits\BelongsToThrough;
 
     protected $guarded = [];
 
@@ -19,6 +20,16 @@ class Variant extends Model
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function videos()
+    {
+        return $this->hasManyDeepFromRelations($this->chapterVideos(), (new ChapterVariant())->variants());
+    }
+
+    public function chapterVariants()
+    {
+        return $this->hasManyThrough(ChapterVariant::class, Chapter::class);
     }
 
     public function priceOverrideInCents()

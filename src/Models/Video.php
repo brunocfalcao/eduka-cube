@@ -31,30 +31,50 @@ class Video extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class)
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     public function series()
     {
         return $this->belongsToMany(Series::class)
-                    ->withTimestamps();
-    }
-
-    public function chapters()
-    {
-        return $this->belongsToMany(Chapter::class, 'chapter_video', 'video_id', 'chapter_id')
             ->withTimestamps();
     }
 
-    public function course()
+    public function chapter()
+    {
+        return $this->belongsTo(Chapter::class, 'chapter_id')
+            ->withTimestamps();
+    }
+
+    // public function chapters()
+    // {
+    //     return $this->belongsToMany(Chapter::class, 'chapter_video', 'video_id', 'chapter_id')
+    //         ->withTimestamps();
+    // }
+
+    // public function course()
+    // {
+    //     return $this->belongsToThrough(
+    //         Course::class,
+    //         [Chapter::class, ChapterVideo::class],
+    //         null,
+    //         '',
+    //         [
+    //             ChapterVideo::class => 'id',
+    //             Chapter::class => 'chapter_id',
+    //         ]
+    //     );
+    // }
+
+    public function variant()
     {
         return $this->belongsToThrough(
-            Course::class,
-            [Chapter::class, ChapterVideo::class],
+            Variant::class,
+            [ ChapterVariant::class, Chapter::class],
             null,
             '',
             [
-                ChapterVideo::class => 'id',
+                ChapterVariant::class => 'id',
                 Chapter::class => 'chapter_id',
             ]
         );
@@ -63,7 +83,7 @@ class Video extends Model
     public function usersCompleted()
     {
         return $this->belongsToMany(User::class, 'videos_completed')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     public function scopeIsVisible($query)
@@ -73,11 +93,11 @@ class Video extends Model
 
     public function url(): string
     {
-        if (! $this->is_active) {
+        if (!$this->is_active) {
             return '#';
         }
 
-        if (! auth()->check() && ! $this->is_free) {
+        if (!auth()->check() && !$this->is_free) {
             return route('purchase.view');
         }
 

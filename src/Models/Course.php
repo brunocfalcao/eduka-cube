@@ -19,7 +19,6 @@ class Course extends Model
     use SoftDeletes;
     use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
-
     protected $guarded = [];
 
     protected $casts = [
@@ -41,26 +40,6 @@ class Course extends Model
     public function variants()
     {
         return $this->hasMany(Variant::class);
-    }
-
-    public function chapters()
-    {
-        return $this->hasMany(Chapter::class);
-    }
-
-    // public function videos()
-    // {
-    //     return $this->hasManyThrough(Video::class, Chapter::class);
-    // }
-
-    public function videos()
-    {
-        return $this->hasManyDeepFromRelations($this->chapterVideos(), (new ChapterVideo())->videos());
-    }
-
-    public function chapterVideos()
-    {
-        return $this->hasManyThrough(ChapterVideo::class, Chapter::class);
     }
 
     public function priceInCents(): int
@@ -99,6 +78,11 @@ class Course extends Model
     public function isPPPEnabled(): bool
     {
         return $this->enable_purchase_power_parity == true;
+    }
+
+    public function getBucketName() : string
+    {
+        return $this->canonical;
     }
 
     /**
