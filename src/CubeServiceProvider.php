@@ -16,7 +16,6 @@ use Eduka\Cube\Models\Tag;
 use Eduka\Cube\Models\User;
 use Eduka\Cube\Models\Variant;
 use Eduka\Cube\Models\Video;
-use Eduka\Cube\Models\Visit;
 use Eduka\Cube\Observers\ChapterObserver;
 use Eduka\Cube\Observers\CourseObserver;
 use Eduka\Cube\Observers\DomainObserver;
@@ -29,7 +28,6 @@ use Eduka\Cube\Observers\TagObserver;
 use Eduka\Cube\Observers\UserObserver;
 use Eduka\Cube\Observers\VariantObserver;
 use Eduka\Cube\Observers\VideoObserver;
-use Eduka\Cube\Observers\VisitObserver;
 use Eduka\Cube\Policies\ChapterPolicy;
 use Eduka\Cube\Policies\CoursePolicy;
 use Eduka\Cube\Policies\DomainPolicy;
@@ -42,7 +40,6 @@ use Eduka\Cube\Policies\TagPolicy;
 use Eduka\Cube\Policies\UserPolicy;
 use Eduka\Cube\Policies\VariantPolicy;
 use Eduka\Cube\Policies\VideoPolicy;
-use Eduka\Cube\Policies\VisitPolicy;
 use Illuminate\Support\Facades\Gate;
 
 class CubeServiceProvider extends EdukaServiceProvider

@@ -44,7 +44,7 @@ class Course extends Model
 
     public function priceInCents(): int
     {
-        if (!$this->course_price) {
+        if (! $this->course_price) {
             throw new Exception('product price not set');
         }
 
@@ -58,7 +58,7 @@ class Course extends Model
      */
     public function getVariantOrDefault(string $variantUuid = null)
     {
-        if (!$variantUuid) {
+        if (! $variantUuid) {
             return $this->getDefaultVariant();
         }
 

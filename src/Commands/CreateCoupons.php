@@ -22,8 +22,8 @@ class CreateCoupons extends Command
         $courseId = $this->option('course-id');
 
         // ensure course exists
-        if(! Course::find($courseId)) {
-            $this->error("Course not found");
+        if (! Course::find($courseId)) {
+            $this->error('Course not found');
 
             return 1;
         }
@@ -47,7 +47,6 @@ class CreateCoupons extends Command
 
         Coupon::insert($data);
 
-        $this->info("Coupons created");
+        $this->info('Coupons created');
     }
-
 }
