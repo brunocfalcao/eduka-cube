@@ -38,7 +38,7 @@ class Variant extends Model
         return $this->course->canonical;
     }
 
-    public function getBucketName(): string|null
+    public function getBucketName(): ?string
     {
         return $this->backblaze_bucket_name;
     }

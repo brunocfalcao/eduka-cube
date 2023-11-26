@@ -17,6 +17,7 @@ class GetVariantFromVideo
                 return $chapter->variant;
             }
             $chapter = $chapter->load('variant');
+
             return $chapter->variant;
         }
 

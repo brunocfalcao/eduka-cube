@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Storage;
 class VimeoUploaderValidator
 {
     private function __construct(
-        private Video|null $video,
-        private VideoStorage|null $storage,
-        private Variant|null $variant,
-        private Course|null $course,
+        private ?Video $video,
+        private ?VideoStorage $storage,
+        private ?Variant $variant,
+        private ?Course $course,
     ) {
     }
 
@@ -34,16 +34,16 @@ class VimeoUploaderValidator
                                     ->with([
                                         'course' => function ($course) {
                                             $course->select('id', 'name');
-                                        }
+                                        },
                                     ]);
-                            }
+                            },
                         ]);
                 },
             ])
             ->where('id', $id)
             ->first();
 
-        if (!$video) {
+        if (! $video) {
             return new VimeoUploaderValidator(null, null, null, null);
         }
 
@@ -54,14 +54,14 @@ class VimeoUploaderValidator
 
     public function ensureDataExistsInDatabase(): self
     {
-        if (!$this->video || !$this->storage || !$this->variant || !$this->course) {
+        if (! $this->video || ! $this->storage || ! $this->variant || ! $this->course) {
             throw new Exception('Revelant resources does not exists');
         }
 
         return $this;
     }
 
-    public function refreshVariant() : self
+    public function refreshVariant(): self
     {
         $this->variant->fresh();
 
@@ -70,7 +70,7 @@ class VimeoUploaderValidator
 
     public function ensureVideoExistsOnDisk(): self
     {
-        if (!$this->videoExistsOnDisk()) {
+        if (! $this->videoExistsOnDisk()) {
             throw new Exception('Video does not exist on disk');
         }
 
@@ -102,7 +102,6 @@ class VimeoUploaderValidator
         return $this->storage;
     }
 
-
     public function getVideo(): Video
     {
         return $this->video;
@@ -113,7 +112,7 @@ class VimeoUploaderValidator
         return $this->video->name;
     }
 
-    public function getVimeoProjectId(): string|null
+    public function getVimeoProjectId(): ?string
     {
         return $this->variant->vimeo_project_id;
     }

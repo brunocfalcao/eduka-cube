@@ -15,11 +15,11 @@ class FindVideoStorageForBackblazeUpload
                         $chapter->with([
                             'variant' => function ($variant) {
                                 $variant->with('course');
-                            }
+                            },
                         ]);
-                    }
+                    },
                 ]);
-            }
+            },
         ])->find($videoStorageId);
     }
 }

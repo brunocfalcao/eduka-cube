@@ -6,7 +6,7 @@ use Eduka\Cube\Models\Variant;
 
 class UpdateVariantBucket
 {
-    public static function update(Variant $variant, string $bucketName) : Variant
+    public static function update(Variant $variant, string $bucketName): Variant
     {
         $variant->update(['backblaze_bucket_name' => $bucketName]);
 

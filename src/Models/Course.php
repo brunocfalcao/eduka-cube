@@ -79,7 +79,7 @@ class Course extends Model
         return $this->enable_purchase_power_parity == true;
     }
 
-    public function getBucketName() : string
+    public function getBucketName(): string
     {
         return $this->canonical;
     }

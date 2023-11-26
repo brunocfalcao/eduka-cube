@@ -26,5 +26,4 @@ class SaveVimeoId
             'vimeo_id' => $vimeoId,
         ]);
     }
-
 }
