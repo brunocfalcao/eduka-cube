@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Variant extends Model
 {
     use HasFactory, SoftDeletes;
-    use \Znck\Eloquent\Traits\BelongsToThrough;
 
     protected $guarded = [];
 
@@ -22,18 +21,25 @@ class Variant extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function videos()
+    public function chapters()
     {
-        return $this->hasManyDeepFromRelations($this->chapterVideos(), (new ChapterVariant())->variants());
-    }
-
-    public function chapterVariants()
-    {
-        return $this->hasManyThrough(ChapterVariant::class, Chapter::class);
+        return $this->belongsToMany(Chapter::class, 'chapter_variant')
+            ->withPivot('index')
+            ->withTimestamps();
     }
 
     public function priceOverrideInCents()
     {
         return (int) $this->lemonsqueezy_price_override * 100;
+    }
+
+    public function createBucketNameUsing(): string
+    {
+        return $this->course->canonical;
+    }
+
+    public function getBucketName(): string|null
+    {
+        return $this->backblaze_bucket_name;
     }
 }

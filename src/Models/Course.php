@@ -17,7 +17,6 @@ class Course extends Model
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
-    use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
     protected $guarded = [];
 

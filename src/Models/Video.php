@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use MasteringNova\Database\Factories\VideoFactory;
+use Illuminate\Support\Str;
 
 class Video extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    use \Znck\Eloquent\Traits\BelongsToThrough;
 
     protected $guarded = [];
 
@@ -42,42 +42,7 @@ class Video extends Model
 
     public function chapter()
     {
-        return $this->belongsTo(Chapter::class, 'chapter_id')
-            ->withTimestamps();
-    }
-
-    // public function chapters()
-    // {
-    //     return $this->belongsToMany(Chapter::class, 'chapter_video', 'video_id', 'chapter_id')
-    //         ->withTimestamps();
-    // }
-
-    // public function course()
-    // {
-    //     return $this->belongsToThrough(
-    //         Course::class,
-    //         [Chapter::class, ChapterVideo::class],
-    //         null,
-    //         '',
-    //         [
-    //             ChapterVideo::class => 'id',
-    //             Chapter::class => 'chapter_id',
-    //         ]
-    //     );
-    // }
-
-    public function variant()
-    {
-        return $this->belongsToThrough(
-            Variant::class,
-            [ ChapterVariant::class, Chapter::class],
-            null,
-            '',
-            [
-                ChapterVariant::class => 'id',
-                Chapter::class => 'chapter_id',
-            ]
-        );
+        return $this->belongsTo(Chapter::class, 'chapter_id');
     }
 
     public function usersCompleted()
@@ -106,15 +71,33 @@ class Video extends Model
 
     public function vimeoMetadata(): array
     {
+        $domains = [];
+
+        if($this->meta_canonical_url) {
+            $parsedUrl = parse_url($this->meta_canonical_url);
+            $domain = Str::of($parsedUrl['host'] ?? '')->trim('www.')->toString();
+            $domains = [$domain];
+        }
+
         return [
             'name' => $this->name,
-            'description' => $this->meta_description,
+            'description' => $this->details,
+            'embed.title.name' => 'show',
+            'hide_from_vimeo' => true,
+            'privacy.view' => 'unlisted',
+            'privacy.embed' => 'whitelist',
+            'embed_domains' => $domains
         ];
     }
 
     public function videoStorage()
     {
         return $this->hasOne(VideoStorage::class, 'video_id');
+    }
+
+    public function hasVimeoId() : bool
+    {
+        return $this->vimeo_id !== "" && ! is_null($this->vimeo_id);
     }
 
     protected static function newFactory(): Factory

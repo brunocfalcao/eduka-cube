@@ -14,14 +14,21 @@ class Chapter extends Model
 
     protected $guarded = [];
 
-    public function course()
+    public function variant()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Variant::class);
+    }
+
+    public function variants()
+    {
+        return $this->belongsToMany(Variant::class, 'chapter_variant')
+            ->withPivot('index')
+            ->withTimestamps();
     }
 
     public function videos()
     {
-        return $this->hasMany(Video::class,'chapter_id');
+        return $this->hasMany(Video::class, 'chapter_id');
     }
 
     /**

@@ -19,18 +19,26 @@ class VimeoUploaderValidator
     ) {
     }
 
-    public static function findUsingVideoId(int $id): self
+    public static function findUsingVideoId(int $id, int $variantId): self
     {
-        $video = Video::select('id', 'name', 'meta_description', 'vimeo_id', 'chapter_id')
+        $video = Video::query()
             ->with([
                 'videoStorage',
-                'variant' => function ($variant) {
-                    $variant
-                        ->select('chapter_variant.variant_id', 'chapter_variant.chapter_id', 'variants.course_id', 'variants.vimeo_project_id')
-                        ->with(['course' => function ($course) {
-                            $course->select('id', 'name');
-                        }]);
-                }
+                'chapter' => function ($chapter) use ($variantId) {
+                    $chapter
+                        ->select('id', 'variant_id')
+                        ->with([
+                            'variants' => function ($variantsQuery) use ($variantId) {
+                                $variantsQuery
+                                    ->where('chapter_variant.variant_id', $variantId)
+                                    ->with([
+                                        'course' => function ($course) {
+                                            $course->select('id', 'name');
+                                        }
+                                    ]);
+                            }
+                        ]);
+                },
             ])
             ->where('id', $id)
             ->first();
@@ -39,7 +47,9 @@ class VimeoUploaderValidator
             return new VimeoUploaderValidator(null, null, null, null);
         }
 
-        return new VimeoUploaderValidator($video, $video->videoStorage, $video->variant, $video->variant->course);
+        $variant = $video->chapter->variants->first();
+
+        return new VimeoUploaderValidator($video, $video->videoStorage, $variant, $variant->course);
     }
 
     public function ensureDataExistsInDatabase(): self
@@ -47,6 +57,13 @@ class VimeoUploaderValidator
         if (!$this->video || !$this->storage || !$this->variant || !$this->course) {
             throw new Exception('Revelant resources does not exists');
         }
+
+        return $this;
+    }
+
+    public function refreshVariant() : self
+    {
+        $this->variant->fresh();
 
         return $this;
     }
