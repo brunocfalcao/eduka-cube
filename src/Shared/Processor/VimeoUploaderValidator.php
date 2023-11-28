@@ -49,7 +49,6 @@ class VimeoUploaderValidator
     }
 
     /**
-     *
      * @return self
      */
     public function refreshCourse(): self
@@ -61,7 +60,7 @@ class VimeoUploaderValidator
 
     public function ensureVideoExistsOnDisk(): self
     {
-        if (!$this->videoExistsOnDisk()) {
+        if (! $this->videoExistsOnDisk()) {
             throw new Exception('Video does not exist on disk');
         }
 
@@ -80,7 +79,7 @@ class VimeoUploaderValidator
 
     public function getCourseName(): string
     {
-        return $this->course->name;
+        return $this->getCourse()->name;
     }
 
     public function getCourse(): Course
@@ -103,7 +102,7 @@ class VimeoUploaderValidator
         return $this->video->name;
     }
 
-    public function getVimeoProjectId(): string|null
+    public function getVimeoProjectId(): ?string
     {
         return $this->course->vimeo_project_id;
     }

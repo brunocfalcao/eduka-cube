@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use Eduka\Cube\Events\Variants\VariantCreated;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class CreateVimeoProject
 {
@@ -21,6 +19,6 @@ class CreateVimeoProject
      */
     public function handle(VariantCreated $event): void
     {
-        
+
     }
 }

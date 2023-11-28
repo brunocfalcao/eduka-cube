@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use MasteringNova\Database\Factories\VideoFactory;
 use Illuminate\Support\Str;
+use MasteringNova\Database\Factories\VideoFactory;
 
 class Video extends Model
 {
@@ -63,11 +63,11 @@ class Video extends Model
 
     public function url(): string
     {
-        if (!$this->is_active) {
+        if (! $this->is_active) {
             return '#';
         }
 
-        if (!auth()->check() && !$this->is_free) {
+        if (! auth()->check() && ! $this->is_free) {
             return route('purchase.view');
         }
 
@@ -78,7 +78,7 @@ class Video extends Model
     {
         $domains = [];
 
-        if($this->meta_canonical_url) {
+        if ($this->meta_canonical_url) {
             $parsedUrl = parse_url($this->meta_canonical_url);
             $domain = Str::of($parsedUrl['host'] ?? '')->trim('www.')->toString();
             $domains = [$domain];
@@ -91,7 +91,7 @@ class Video extends Model
             'hide_from_vimeo' => true,
             'privacy.view' => 'unlisted',
             'privacy.embed' => 'whitelist',
-            'embed_domains' => $domains
+            'embed_domains' => $domains,
         ];
     }
 
@@ -100,9 +100,9 @@ class Video extends Model
         return $this->hasOne(VideoStorage::class, 'video_id');
     }
 
-    public function hasVimeoId() : bool
+    public function hasVimeoId(): bool
     {
-        return $this->vimeo_id !== "" && ! is_null($this->vimeo_id);
+        return $this->vimeo_id !== '' && ! is_null($this->vimeo_id);
     }
 
     protected static function newFactory(): Factory
