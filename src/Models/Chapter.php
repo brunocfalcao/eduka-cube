@@ -19,12 +19,12 @@ class Chapter extends Model
         return $this->belongsTo(Variant::class);
     }
 
-    public function variants()
-    {
-        return $this->belongsToMany(Variant::class, 'chapter_variant')
-            ->withPivot('index')
-            ->withTimestamps();
-    }
+    // public function variants()
+    // {
+    //     return $this->belongsToMany(Variant::class, 'chapter_variant')
+    //         ->withPivot('index')
+    //         ->withTimestamps();
+    // }
 
     public function videos()
     {

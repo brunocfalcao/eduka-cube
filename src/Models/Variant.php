@@ -21,9 +21,9 @@ class Variant extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function chapters()
+    public function videos()
     {
-        return $this->belongsToMany(Chapter::class, 'chapter_variant')
+        return $this->belongsToMany(Video::class,'variant_video')
             ->withPivot('index')
             ->withTimestamps();
     }
@@ -31,15 +31,5 @@ class Variant extends Model
     public function priceOverrideInCents()
     {
         return (int) $this->lemonsqueezy_price_override * 100;
-    }
-
-    public function createBucketNameUsing(): string
-    {
-        return $this->course->canonical;
-    }
-
-    public function getBucketName(): string|null
-    {
-        return $this->backblaze_bucket_name;
     }
 }

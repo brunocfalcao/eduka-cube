@@ -3,7 +3,6 @@
 namespace Eduka\Cube\Shared\Processor;
 
 use Eduka\Cube\Models\Course;
-use Eduka\Cube\Models\Variant;
 use Eduka\Cube\Models\Video;
 use Eduka\Cube\Models\VideoStorage;
 use Exception;
@@ -14,56 +13,48 @@ class VimeoUploaderValidator
     private function __construct(
         private Video|null $video,
         private VideoStorage|null $storage,
-        private Variant|null $variant,
         private Course|null $course,
     ) {
     }
 
-    public static function findUsingVideoId(int $id, int $variantId): self
+    public static function findUsingVideoId(int $id, int $courseId): self
     {
         $video = Video::query()
             ->with([
                 'videoStorage',
-                'chapter' => function ($chapter) use ($variantId) {
-                    $chapter
-                        ->select('id', 'variant_id')
-                        ->with([
-                            'variants' => function ($variantsQuery) use ($variantId) {
-                                $variantsQuery
-                                    ->where('chapter_variant.variant_id', $variantId)
-                                    ->with([
-                                        'course' => function ($course) {
-                                            $course->select('id', 'name');
-                                        }
-                                    ]);
-                            }
-                        ]);
-                },
             ])
             ->where('id', $id)
             ->first();
 
         if (!$video) {
-            return new VimeoUploaderValidator(null, null, null, null);
+            return new VimeoUploaderValidator(null, null, null);
         }
 
-        $variant = $video->chapter->variants->first();
+        $course = Course::find($courseId);
 
-        return new VimeoUploaderValidator($video, $video->videoStorage, $variant, $variant->course);
+        if (!$course) {
+            return new VimeoUploaderValidator(null, null, null);
+        }
+
+        return new VimeoUploaderValidator($video, $video->videoStorage, $course);
     }
 
     public function ensureDataExistsInDatabase(): self
     {
-        if (!$this->video || !$this->storage || !$this->variant || !$this->course) {
+        if (!$this->video || !$this->storage || !$this->course) {
             throw new Exception('Revelant resources does not exists');
         }
 
         return $this;
     }
 
-    public function refreshVariant() : self
+    /**
+     *
+     * @return self
+     */
+    public function refreshCourse(): self
     {
-        $this->variant->fresh();
+        $this->course->fresh();
 
         return $this;
     }
@@ -92,16 +83,15 @@ class VimeoUploaderValidator
         return $this->course->name;
     }
 
-    public function getVariant(): Variant
+    public function getCourse(): Course
     {
-        return $this->variant;
+        return $this->course;
     }
 
     public function getVideoStorage(): VideoStorage
     {
         return $this->storage;
     }
-
 
     public function getVideo(): Video
     {
@@ -115,7 +105,7 @@ class VimeoUploaderValidator
 
     public function getVimeoProjectId(): string|null
     {
-        return $this->variant->vimeo_project_id;
+        return $this->course->vimeo_project_id;
     }
 
     public function getVideoFilePathFromDisk(): string

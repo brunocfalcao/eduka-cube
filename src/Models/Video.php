@@ -45,6 +45,11 @@ class Video extends Model
         return $this->belongsTo(Chapter::class, 'chapter_id');
     }
 
+    public function variants()
+    {
+        return $this->belongsToMany(Variant::class,'variant_video');
+    }
+
     public function usersCompleted()
     {
         return $this->belongsToMany(User::class, 'videos_completed')
