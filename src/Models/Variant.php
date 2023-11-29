@@ -23,7 +23,7 @@ class Variant extends Model
 
     public function videos()
     {
-        return $this->belongsToMany(Video::class,'variant_video')
+        return $this->belongsToMany(Video::class, 'variant_video')
             ->withPivot('index')
             ->withTimestamps();
     }

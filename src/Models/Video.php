@@ -47,7 +47,7 @@ class Video extends Model
 
     public function variants()
     {
-        return $this->belongsToMany(Variant::class,'variant_video');
+        return $this->belongsToMany(Variant::class, 'variant_video');
     }
 
     public function usersCompleted()

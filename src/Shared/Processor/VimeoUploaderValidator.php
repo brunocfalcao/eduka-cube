@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Storage;
 class VimeoUploaderValidator
 {
     private function __construct(
-        private Video|null $video,
-        private VideoStorage|null $storage,
-        private Course|null $course,
+        private ?Video $video,
+        private ?VideoStorage $storage,
+        private ?Course $course,
     ) {
     }
 
@@ -26,13 +26,13 @@ class VimeoUploaderValidator
             ->where('id', $id)
             ->first();
 
-        if (!$video) {
+        if (! $video) {
             return new VimeoUploaderValidator(null, null, null);
         }
 
         $course = Course::find($courseId);
 
-        if (!$course) {
+        if (! $course) {
             return new VimeoUploaderValidator(null, null, null);
         }
 
@@ -41,16 +41,13 @@ class VimeoUploaderValidator
 
     public function ensureDataExistsInDatabase(): self
     {
-        if (!$this->video || !$this->storage || !$this->course) {
+        if (! $this->video || ! $this->storage || ! $this->course) {
             throw new Exception('Revelant resources does not exists');
         }
 
         return $this;
     }
 
-    /**
-     * @return self
-     */
     public function refreshCourse(): self
     {
         $this->course->fresh();
