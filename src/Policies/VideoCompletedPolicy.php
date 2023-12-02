@@ -2,8 +2,8 @@
 
 namespace Eduka\Cube\Policies;
 
-use Eduka\Cube\Models\VideoCompleted;
 use Eduka\Cube\Models\User;
+use Eduka\Cube\Models\VideoCompleted;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class VideoCompletedPolicy
