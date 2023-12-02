@@ -2,11 +2,11 @@
 
 namespace Eduka\Cube\Policies;
 
-use Eduka\Cube\Models\Group;
+use Eduka\Cube\Models\Order;
 use Eduka\Cube\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class GroupPolicy
+class OrderPolicy
 {
     use HandlesAuthorization;
 
@@ -15,7 +15,7 @@ class GroupPolicy
         return true;
     }
 
-    public function view(User $user, Group $group)
+    public function view(User $user, Order $order)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class GroupPolicy
         return true;
     }
 
-    public function update(User $user, Group $group)
+    public function update(User $user, Order $order)
     {
         return true;
     }
 
-    public function delete(User $user, Group $group)
+    public function delete(User $user, Order $order)
     {
         return true;
     }
 
-    public function restore(User $user, Group $group)
+    public function restore(User $user, Order $order)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Group $group)
+    public function forceDelete(User $user, Order $order)
     {
         return true;
     }

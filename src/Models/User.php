@@ -3,7 +3,6 @@
 namespace Eduka\Cube\Models;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +11,7 @@ use MasteringNova\Database\Factories\UserFactory;
 
 class User extends Authenticatable
 {
-    use Billable, HasFactory, Notifiable, SoftDeletes;
+    use Billable, Notifiable, SoftDeletes;
 
     protected $guarded = [];
 
@@ -31,20 +30,15 @@ class User extends Authenticatable
         return $query->where('old_id', $id);
     }
 
-    public function courses()
+    public function orders()
     {
-        return $this->belongsToMany(Course::class)
+        return $this->belongsToMany(Order::class)
                     ->withTimestamps();
-    }
-
-    public function visits()
-    {
-        return $this->hasMany(Visit::class);
     }
 
     public function videosCompleted()
     {
-        return $this->belongsToMany(Video::class, 'videos_completed');
+        return $this->belongsToMany(VideoCompleted::class);
     }
 
     /**

@@ -10,9 +10,4 @@ class VariantObserver
     {
         //
     }
-
-    public function created(Variant $variant)
-    {
-
-    }
 }

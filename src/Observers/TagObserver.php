@@ -10,34 +10,4 @@ class TagObserver
     {
         //
     }
-
-    public function saved(Tag $tag)
-    {
-        //
-    }
-
-    public function created(Tag $tag)
-    {
-        //
-    }
-
-    public function updated(Tag $tag)
-    {
-        //
-    }
-
-    public function deleted(Tag $tag)
-    {
-        //
-    }
-
-    public function restored(Tag $tag)
-    {
-        //
-    }
-
-    public function forceDeleted(Tag $tag)
-    {
-        //
-    }
 }

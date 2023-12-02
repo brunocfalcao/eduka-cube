@@ -14,34 +14,4 @@ class VideoObserver
             $video->uuid = (string) Str::uuid();
         }
     }
-
-    public function saved(Video $video)
-    {
-        //
-    }
-
-    public function created(Video $video)
-    {
-        //
-    }
-
-    public function updated(Video $video)
-    {
-        //
-    }
-
-    public function deleted(Video $video)
-    {
-        //
-    }
-
-    public function restored(Video $video)
-    {
-        //
-    }
-
-    public function forceDeleted(Video $video)
-    {
-        //
-    }
 }

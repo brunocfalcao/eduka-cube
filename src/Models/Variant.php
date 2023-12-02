@@ -2,13 +2,12 @@
 
 namespace Eduka\Cube\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Variant extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
 
     protected $guarded = [];
 
@@ -23,9 +22,9 @@ class Variant extends Model
 
     public function videos()
     {
-        return $this->belongsToMany(Video::class, 'variant_video')
-            ->withPivot('index')
-            ->withTimestamps();
+        return $this->belongsToMany(Video::class)
+                    ->withPivot('index')
+                    ->withTimestamps();
     }
 
     public function priceOverrideInCents()

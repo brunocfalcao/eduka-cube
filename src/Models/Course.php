@@ -4,8 +4,6 @@ namespace Eduka\Cube\Models;
 
 use Eduka\Services\Concerns\CourseFeatures;
 use Exception;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -13,10 +11,7 @@ use MasteringNova\Database\Factories\CourseFactory;
 
 class Course extends Model
 {
-    use CourseFeatures;
-    use HasFactory;
-    use Notifiable;
-    use SoftDeletes;
+    use CourseFeatures, Notifiable, SoftDeletes;
 
     protected $guarded = [];
 
@@ -24,12 +19,6 @@ class Course extends Model
         'is_decommissioned' => 'boolean',
         'launched_at' => 'datetime',
     ];
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'course_user')
-            ->withTimestamps();
-    }
 
     public function domains()
     {
@@ -41,7 +30,12 @@ class Course extends Model
         return $this->hasMany(Variant::class);
     }
 
-    public function priceInCents(): int
+    public function coupons()
+    {
+        return $this->hasMany(Coupon::class);
+    }
+
+    public function priceInCents()
     {
         if (! $this->course_price) {
             throw new Exception('product price not set');
@@ -50,11 +44,6 @@ class Course extends Model
         return (int) ($this->course_price * 100);
     }
 
-    /**
-     * Returns a variant given an id. If null, returns the default
-     * variant instance. UUID because that's what comes normally from
-     * a webpage input field.
-     */
     public function getVariantOrDefault(string $variantUuid = null)
     {
         if (! $variantUuid) {
@@ -74,28 +63,22 @@ class Course extends Model
         return $this->variants->firstWhere('is_default', true);
     }
 
-    public function isPPPEnabled(): bool
+    public function isPPPEnabled()
     {
         return $this->enable_purchase_power_parity == true;
     }
 
-    /**
-     * @return string|null
-     */
-    public function createBucketNameUsing(): string
+    public function createBucketNameUsing()
     {
         return $this->canonical;
     }
 
-    public function getBucketName(): ?string
+    public function getBucketName()
     {
         return $this->backblaze_bucket_name;
     }
 
-    /**
-     * Create a new factory instance for the model.
-     */
-    protected static function newFactory(): Factory
+    protected static function newFactory()
     {
         return CourseFactory::new();
     }

@@ -3,7 +3,6 @@
 namespace Eduka\Cube\Models;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -11,7 +10,6 @@ use MasteringNova\Database\Factories\VideoFactory;
 
 class Video extends Model
 {
-    use HasFactory;
     use SoftDeletes;
 
     protected $guarded = [];
@@ -31,29 +29,30 @@ class Video extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class)
-            ->withTimestamps();
+                    ->withTimestamps();
     }
 
     public function series()
     {
         return $this->belongsToMany(Series::class)
-            ->withTimestamps();
+                    ->withTimestamps();
     }
 
-    public function chapter()
+    public function chapters()
     {
-        return $this->belongsTo(Chapter::class, 'chapter_id');
+        return $this->belongsToMany(Chapter::class);
     }
 
     public function variants()
     {
-        return $this->belongsToMany(Variant::class, 'variant_video');
+        return $this->belongsToMany(Variant::class)
+                    ->withTimestamps();
     }
 
     public function usersCompleted()
     {
-        return $this->belongsToMany(User::class, 'videos_completed')
-            ->withTimestamps();
+        return $this->belongsToMany(User::class)
+                    ->withTimestamps();
     }
 
     public function scopeIsVisible($query)

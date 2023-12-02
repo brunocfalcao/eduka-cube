@@ -2,34 +2,25 @@
 
 namespace Eduka\Cube\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Coupon extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
 
-    public const DEFUALT_NEW_COUPON_CREATION_TEMPLATE = 'ILOVE%COUNTRY_NAME';
+    public const DEFAULT_NEW_COUPON_CREATION_TEMPLATE = 'ILOVE%COUNTRY_NAME';
 
     protected $guarded = [];
 
     protected $casts = [
-        'discount_amount' => 'decimal:2',
+        'discount_amount' => 'decimal',
         'is_flat_discount' => 'boolean',
     ];
 
-    // /**
-    //  * Create a new factory instance for the model.
-    //  */
-    // protected static function newFactory(): Factory
-    // {
-    //     return ChapterFactory::new();
-    // }
-
     public function course()
     {
-        return $this->belongsTo(Course::class, 'course_id');
+        return $this->belongsTo(Course::class);
     }
 
     public function getLemonSqueezyCouponId()
@@ -37,7 +28,7 @@ class Coupon extends Model
         return $this->remote_reference_id;
     }
 
-    public function hasRemoteReference(): bool
+    public function hasRemoteReference()
     {
         return $this->remote_reference_id !== null && $this->remote_reference_id !== '';
     }
@@ -47,7 +38,7 @@ class Coupon extends Model
         $template = $this->coupon_code_template;
 
         if (! $template) {
-            $template = self::DEFUALT_NEW_COUPON_CREATION_TEMPLATE;
+            $template = self::DEFAULT_NEW_COUPON_CREATION_TEMPLATE;
         }
 
         $substiationMap = [
