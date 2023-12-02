@@ -2,12 +2,10 @@
 
 namespace Eduka\Cube\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Eduka\Cube\Abstracts\EdukaModel;
 
-class VideoStorage extends Model
+class VideoStorage extends EdukaModel
 {
-    protected $guarded = [];
-
     protected $table = 'video_storages';
 
     public function video()

@@ -2,14 +2,12 @@
 
 namespace Eduka\Cube\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Eduka\Cube\Abstracts\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Variant extends Model
+class Variant extends EdukaModel
 {
     use SoftDeletes;
-
-    protected $guarded = [];
 
     protected $casts = [
         'is_default' => 'boolean',

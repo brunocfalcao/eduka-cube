@@ -2,15 +2,13 @@
 
 namespace Eduka\Cube\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Eduka\Cube\Abstracts\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class Subscriber extends Model
+class Subscriber extends EdukaModel
 {
     use Notifiable, SoftDeletes;
-
-    protected $guarded = [];
 
     public function course()
     {

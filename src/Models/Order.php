@@ -2,15 +2,13 @@
 
 namespace Eduka\Cube\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Eduka\Cube\Abstracts\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class Order extends Model
+class Order extends EdukaModel
 {
     use Notifiable, SoftDeletes;
-
-    protected $guarded = [];
 
     protected $casts = [
         'response_body' => 'array',

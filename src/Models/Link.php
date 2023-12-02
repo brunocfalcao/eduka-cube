@@ -2,14 +2,12 @@
 
 namespace Eduka\Cube\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Eduka\Cube\Abstracts\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Link extends Model
+class Link extends EdukaModel
 {
     use SoftDeletes;
-
-    protected $guarded = [];
 
     public function video()
     {

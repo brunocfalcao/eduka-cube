@@ -2,18 +2,16 @@
 
 namespace Eduka\Cube\Models;
 
+use Eduka\Cube\Abstracts\EdukaModel;
 use Eduka\Services\Concerns\CourseFeatures;
 use Exception;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use MasteringNova\Database\Factories\CourseFactory;
 
-class Course extends Model
+class Course extends EdukaModel
 {
     use CourseFeatures, Notifiable, SoftDeletes;
-
-    protected $guarded = [];
 
     protected $casts = [
         'is_decommissioned' => 'boolean',

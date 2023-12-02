@@ -2,17 +2,15 @@
 
 namespace Eduka\Cube\Models;
 
+use Eduka\Cube\Abstracts\EdukaModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use MasteringNova\Database\Factories\VideoFactory;
 
-class Video extends Model
+class Video extends EdukaModel
 {
     use SoftDeletes;
-
-    protected $guarded = [];
 
     protected $casts = [
         'is_visible' => 'boolean',

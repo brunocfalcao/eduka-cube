@@ -2,16 +2,14 @@
 
 namespace Eduka\Cube\Models;
 
+use Eduka\Cube\Abstracts\EdukaModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use MasteringNova\Database\Factories\SeriesFactory;
 
-class Series extends Model
+class Series extends EdukaModel
 {
     use SoftDeletes;
-
-    protected $guarded = [];
 
     public function courses()
     {

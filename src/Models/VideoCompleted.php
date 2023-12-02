@@ -2,16 +2,14 @@
 
 namespace Eduka\Cube\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Eduka\Cube\Abstracts\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class VideoCompleted extends Model
+class VideoCompleted extends EdukaModel
 {
     use SoftDeletes;
 
     protected $table = 'videos_completed';
-
-    protected $guarded = [];
 
     public function video()
     {

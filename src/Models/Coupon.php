@@ -2,16 +2,14 @@
 
 namespace Eduka\Cube\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Eduka\Cube\Abstracts\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Coupon extends Model
+class Coupon extends EdukaModel
 {
     use SoftDeletes;
 
     public const DEFAULT_NEW_COUPON_CREATION_TEMPLATE = 'ILOVE%COUNTRY_NAME';
-
-    protected $guarded = [];
 
     protected $casts = [
         'discount_amount' => 'decimal',
