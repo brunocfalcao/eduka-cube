@@ -13,7 +13,7 @@ class ChapterObserver
     {
         $this->validate($chapter, [
             'name' => ['required', 'string', 'min:1', 'max:255'],
-            'description' => ['nullable']
+            'description' => ['nullable'],
         ]);
     }
 }

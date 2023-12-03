@@ -12,7 +12,7 @@ class VideoStorageObserver
             'video_id' => ['required', 'exists:videos,id'],
             'vimeo_id' => ['nullable', 'string', 'min:1', 'max:255'],
             'backblaze_id' => ['nullable', 'string', 'min:1', 'max:255'],
-            'path_on_disk' => ['nullable', 'string', 'min:1', 'max:255']
+            'path_on_disk' => ['nullable', 'string', 'min:1', 'max:255'],
         ]);
     }
 }

@@ -19,7 +19,7 @@ class UserScope implements Scope
         // No user or running in console? Exit.
         if (! $user ||
             app()->runningInConsole()) {
-                return $builder;
+            return $builder;
         }
 
         // Get course, no matter what variant he belongs to.

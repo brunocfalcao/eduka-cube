@@ -22,7 +22,7 @@ class UserObserver
             'email' => ['required', 'string', 'min:1', 'max:255'],
             'password' => ['nullable', 'string', 'min:1', 'max:255'],
             'remember_token' => ['nullable', 'string', 'min:1', 'max:100'],
-            'uuid' => ['required', 'string', 'min:1', 'max:36']
+            'uuid' => ['required', 'string', 'min:1', 'max:36'],
         ]);
     }
 }

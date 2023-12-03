@@ -13,7 +13,7 @@ class TagObserver
     {
         $this->validate($tag, [
             'name' => ['required', 'string', 'min:1', 'max:255'],
-            'description' => ['nullable']
+            'description' => ['nullable'],
         ]);
     }
 }

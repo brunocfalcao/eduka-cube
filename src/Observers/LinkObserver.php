@@ -14,7 +14,7 @@ class LinkObserver
         $this->validate($link, [
             'name' => ['required', 'string', 'min:1', 'max:255'],
             'url' => ['required', 'string', 'min:1', 'max:255'],
-            'video_id' => ['required', 'exists:videos,id']
+            'video_id' => ['required', 'exists:videos,id'],
         ]);
     }
 }

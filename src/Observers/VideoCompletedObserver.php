@@ -10,7 +10,7 @@ class VideoCompletedObserver
     {
         $this->validate($videoCompleted, [
             'video_id' => ['required', 'exists:videos,id'],
-            'user_id' => ['required', 'exists:users,id']
+            'user_id' => ['required', 'exists:users,id'],
         ]);
     }
 }

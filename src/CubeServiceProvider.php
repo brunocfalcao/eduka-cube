@@ -4,48 +4,6 @@ namespace Eduka\Cube;
 
 use Eduka\Abstracts\Classes\EdukaServiceProvider;
 use Eduka\Cube\Commands\CreateCoupons;
-use Eduka\Cube\Models\Chapter;
-use Eduka\Cube\Models\Coupon;
-use Eduka\Cube\Models\Course;
-use Eduka\Cube\Models\Domain;
-use Eduka\Cube\Models\Link;
-use Eduka\Cube\Models\Order;
-use Eduka\Cube\Models\Series;
-use Eduka\Cube\Models\Subscriber;
-use Eduka\Cube\Models\Tag;
-use Eduka\Cube\Models\User;
-use Eduka\Cube\Models\Variant;
-use Eduka\Cube\Models\Video;
-use Eduka\Cube\Models\VideoCompleted;
-use Eduka\Cube\Models\VideoStorage;
-use Eduka\Cube\Observers\ChapterObserver;
-use Eduka\Cube\Observers\CouponObserver;
-use Eduka\Cube\Observers\CourseObserver;
-use Eduka\Cube\Observers\DomainObserver;
-use Eduka\Cube\Observers\LinkObserver;
-use Eduka\Cube\Observers\OrderObserver;
-use Eduka\Cube\Observers\SeriesObserver;
-use Eduka\Cube\Observers\SubscriberObserver;
-use Eduka\Cube\Observers\TagObserver;
-use Eduka\Cube\Observers\UserObserver;
-use Eduka\Cube\Observers\VariantObserver;
-use Eduka\Cube\Observers\VideoCompletedObserver;
-use Eduka\Cube\Observers\VideoObserver;
-use Eduka\Cube\Observers\VideoStorageObserver;
-use Eduka\Cube\Policies\ChapterPolicy;
-use Eduka\Cube\Policies\CouponPolicy;
-use Eduka\Cube\Policies\CoursePolicy;
-use Eduka\Cube\Policies\DomainPolicy;
-use Eduka\Cube\Policies\LinkPolicy;
-use Eduka\Cube\Policies\OrderPolicy;
-use Eduka\Cube\Policies\SeriesPolicy;
-use Eduka\Cube\Policies\SubscriberPolicy;
-use Eduka\Cube\Policies\TagPolicy;
-use Eduka\Cube\Policies\UserPolicy;
-use Eduka\Cube\Policies\VariantPolicy;
-use Eduka\Cube\Policies\VideoCompletedPolicy;
-use Eduka\Cube\Policies\VideoPolicy;
-use Eduka\Cube\Policies\VideoStoragePolicy;
 use Eduka\Nereus\Facades\Nereus;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Support\Facades\Event;
@@ -60,7 +18,7 @@ class CubeServiceProvider extends EdukaServiceProvider
 
         // Global scopes are loaded except if on frontend.
 
-        if (!Nereus::course()) {
+        if (! Nereus::course()) {
             Event::listen(Authenticated::class, function ($event) {
                 $this->registerGlobalScopes();
             });

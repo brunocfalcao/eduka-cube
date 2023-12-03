@@ -16,7 +16,7 @@ class CouponObserver
             'description' => ['required'],
             'discount_amount' => ['required', 'integer', 'min:0', 'max:100'],
             'discount_percentage' => ['required_without:discount_amount', 'required', 'integer', 'min:0', 'max:100'],
-            'course_id' => ['required', 'exists:courses,id']
+            'course_id' => ['required', 'exists:courses,id'],
         ]);
     }
 }

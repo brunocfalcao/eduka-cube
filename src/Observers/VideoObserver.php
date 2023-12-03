@@ -27,7 +27,7 @@ class VideoObserver
             'is_free' => ['required', 'boolean'],
             'meta_title' => ['nullable', 'string', 'min:1', 'max:255'],
             'meta_description' => ['nullable', 'string', 'min:1', 'max:255'],
-            'meta_canonical_url' => ['nullable', 'string', 'min:1', 'max:255']
+            'meta_canonical_url' => ['nullable', 'string', 'min:1', 'max:255'],
         ]);
     }
 }
