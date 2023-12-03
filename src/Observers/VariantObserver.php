@@ -17,8 +17,7 @@ class VariantObserver
             'course_id' => ['required', 'exists:courses,id'],
             'description' => ['nullable'],
             'lemon_squeezy_variant_id' => ['nullable', 'string', 'min:1', 'max:255'],
-            'lemon_squeezy_price_override' => ['nullable', 'numeric'],
-            'is_default' => ['required', 'boolean']
+            'lemon_squeezy_price_override' => ['nullable', 'numeric']
         ]);
     }
 }

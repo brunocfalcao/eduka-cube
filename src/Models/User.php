@@ -28,6 +28,12 @@ class User extends Authenticatable
         return $query->where('old_id', $id);
     }
 
+    public function variants()
+    {
+        return $this->belongsToMany(Variant::class)
+                    ->withTimestamps();
+    }
+
     public function orders()
     {
         return $this->belongsToMany(Order::class)

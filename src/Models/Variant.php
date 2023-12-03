@@ -13,6 +13,12 @@ class Variant extends EdukaModel
         'is_default' => 'boolean',
     ];
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+                    ->withTimestamps();
+    }
+
     public function course()
     {
         return $this->belongsTo(Course::class);
