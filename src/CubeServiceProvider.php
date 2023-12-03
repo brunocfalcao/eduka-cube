@@ -54,14 +54,12 @@ class CubeServiceProvider extends EdukaServiceProvider
 {
     public function boot()
     {
-        if (! app()->runningInConsole()) {
-            $this->registerPolicies();
-            $this->registerObservers();
+        $this->registerPolicies();
+        $this->registerObservers();
 
-            Event::listen(Authenticated::class, function ($event) {
-                $this->registerGlobalScopes();
-            });
-        }
+        Event::listen(Authenticated::class, function ($event) {
+            $this->registerGlobalScopes();
+        });
 
         $this->registerCommands();
 

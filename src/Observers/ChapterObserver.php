@@ -12,7 +12,8 @@ class ChapterObserver
     public function saving(Chapter $chapter)
     {
         $this->validate($chapter, [
-            'name' => 'required',
+            'name' => ['required', 'string', 'min:1', 'max:255'],
+            'description' => ['nullable']
         ]);
     }
 }
