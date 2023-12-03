@@ -14,6 +14,8 @@ class CouponObserver
         $this->validate($coupon, [
             'code' => 'required',
             'description' => 'required',
+            'discount_amount' => 'numeric|max:100',
+            'discount_percentage' => 'required_without:discount_amount|numeric|max:100',
         ]);
     }
 }

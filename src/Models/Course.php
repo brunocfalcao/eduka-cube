@@ -52,7 +52,7 @@ class Course extends EdukaModel
 
     public function paymentProviderStoreId()
     {
-        return $this->lemonsqueezy_store_id;
+        return $this->lemon_squeezy_store_id;
     }
 
     public function getDefaultVariant()

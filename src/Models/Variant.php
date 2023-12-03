@@ -27,6 +27,6 @@ class Variant extends EdukaModel
 
     public function priceOverrideInCents()
     {
-        return (int) $this->lemonsqueezy_price_override * 100;
+        return (int) $this->lemon_squeezy_price_override * 100;
     }
 }
