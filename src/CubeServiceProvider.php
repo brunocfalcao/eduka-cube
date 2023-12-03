@@ -2,6 +2,8 @@
 
 namespace Eduka\Cube;
 
+use Illuminate\Auth\Events\Authenticated;
+use Illuminate\Support\Facades\Event;
 use Eduka\Abstracts\Classes\EdukaServiceProvider;
 use Eduka\Cube\Commands\CreateCoupons;
 use Eduka\Cube\Models\Chapter;
@@ -52,8 +54,15 @@ class CubeServiceProvider extends EdukaServiceProvider
 {
     public function boot()
     {
-        $this->registerObservers();
-        $this->registerPolicies();
+        if (! app()->runningInConsole()) {
+            $this->registerPolicies();
+            $this->registerObservers();
+
+            Event::listen(Authenticated::class, function ($event) {
+                $this->registerGlobalScopes();
+            });
+        }
+
         $this->registerCommands();
 
         parent::boot();
@@ -61,6 +70,7 @@ class CubeServiceProvider extends EdukaServiceProvider
 
     public function register()
     {
+        //
     }
 
     protected function registerCommands()
@@ -70,39 +80,68 @@ class CubeServiceProvider extends EdukaServiceProvider
         ]);
     }
 
-    protected function registerObservers()
-    {
-        Chapter::observe(ChapterObserver::class);
-        Coupon::observe(CouponObserver::class);
-        Course::observe(CourseObserver::class);
-        Domain::observe(DomainObserver::class);
-        Link::observe(LinkObserver::class);
-        Order::observe(OrderObserver::class);
-        Series::observe(SeriesObserver::class);
-        Subscriber::observe(SubscriberObserver::class);
-        Tag::observe(TagObserver::class);
-        User::observe(UserObserver::class);
-        Variant::observe(VariantObserver::class);
-        VideoCompleted::observe(VideoCompletedObserver::class);
-        Video::observe(VideoObserver::class);
-        VideoStorage::observe(VideoStorageObserver::class);
-    }
-
     protected function registerPolicies()
     {
-        Gate::policy(Chapter::class, ChapterPolicy::class);
-        Gate::policy(Coupon::class, CouponPolicy::class);
-        Gate::policy(Course::class, CoursePolicy::class);
-        Gate::policy(Domain::class, DomainPolicy::class);
-        Gate::policy(Link::class, LinkPolicy::class);
-        Gate::policy(Order::class, OrderPolicy::class);
-        Gate::policy(Series::class, SeriesPolicy::class);
-        Gate::policy(Subscriber::class, SubscriberPolicy::class);
-        Gate::policy(Tag::class, TagPolicy::class);
-        Gate::policy(User::class, UserPolicy::class);
-        Gate::policy(Variant::class, VariantPolicy::class);
-        Gate::policy(VideoCompleted::class, VideoCompletedPolicy::class);
-        Gate::policy(Video::class, VideoPolicy::class);
-        Gate::policy(VideoStorage::class, VideoStoragePolicy::class);
+        $modelPaths = glob(__DIR__.'/Models/*.php');
+        $modelClasses = array_map(function ($path) {
+            return basename($path, '.php');
+        }, $modelPaths);
+
+        foreach ($modelClasses as $model) {
+            $modelClass = "\\Eduka\\Cube\\Models\\{$model}";
+            $policyClass = "\\Eduka\\Cube\\Policies\\{$model}Policy";
+
+            try {
+                if (class_exists($modelClass) && class_exists($policyClass)) {
+                    $modelClassObject = new $modelClass;
+                    $policyClassObject = new $policyClass;
+
+                    Gate::policy(get_class($modelClassObject), get_class($policyClassObject));
+                }
+            } catch (\Exception $ex) {
+                info('Policy Registration Error: '.$ex->getMessage());
+            }
+        }
+    }
+
+    protected function registerGlobalScopes()
+    {
+        $modelPaths = glob(__DIR__.'/Models/*.php');
+        $modelClasses = array_map(function ($path) {
+            return basename($path, '.php');
+        }, $modelPaths);
+
+        foreach ($modelClasses as $model) {
+            $modelClass = "\\Eduka\\Cube\\Models\\{$model}";
+            $scopeClass = "\\Eduka\\Cube\\Scopes\\{$model}Scope";
+
+            try {
+                if (class_exists($modelClass) && class_exists($scopeClass)) {
+                    $modelClass::addGlobalScope(new $scopeClass);
+                }
+            } catch (\Exception $ex) {
+            }
+        }
+    }
+
+    protected function registerObservers()
+    {
+        $modelPaths = glob(__DIR__.'/Models/*.php');
+        $modelClasses = array_map(function ($path) {
+            return basename($path, '.php');
+        }, $modelPaths);
+
+        foreach ($modelClasses as $model) {
+            $modelClass = "\\Eduka\\Cube\\Models\\{$model}";
+            $observerClass = "\\Eduka\\Cube\\Observers\\{$model}Observer";
+
+            try {
+                if (class_exists($modelClass) && class_exists($observerClass)) {
+                    $modelClass::observe($observerClass);
+                }
+            } catch (\Exception $ex) {
+                info('Observer Registration Error: '.$ex->getMessage());
+            }
+        }
     }
 }
