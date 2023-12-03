@@ -6,8 +6,12 @@ use Eduka\Cube\Models\Order;
 
 class OrderObserver
 {
-    public function saving(Order $course)
+    use CanValidateObserverAttributes;
+
+    public function saving(Order $order)
     {
-        //
+        $this->validate($order, [
+            'variant_id' => 'required',
+        ]);
     }
 }

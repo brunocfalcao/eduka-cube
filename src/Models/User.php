@@ -2,12 +2,10 @@
 
 namespace Eduka\Cube\Models;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use LemonSqueezy\Laravel\Billable;
-use MasteringNova\Database\Factories\UserFactory;
 
 class User extends Authenticatable
 {
@@ -39,13 +37,5 @@ class User extends Authenticatable
     public function videosCompleted()
     {
         return $this->belongsToMany(VideoCompleted::class);
-    }
-
-    /**
-     * Create a new factory instance for the model.
-     */
-    protected static function newFactory(): Factory
-    {
-        return UserFactory::new();
     }
 }

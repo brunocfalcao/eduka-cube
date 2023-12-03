@@ -7,7 +7,6 @@ use Eduka\Services\Concerns\CourseFeatures;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use MasteringNova\Database\Factories\CourseFactory;
 
 class Course extends EdukaModel
 {
@@ -74,10 +73,5 @@ class Course extends EdukaModel
     public function getBucketName()
     {
         return $this->backblaze_bucket_name;
-    }
-
-    protected static function newFactory()
-    {
-        return CourseFactory::new();
     }
 }

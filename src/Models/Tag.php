@@ -3,9 +3,7 @@
 namespace Eduka\Cube\Models;
 
 use Eduka\Cube\Abstracts\EdukaModel;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use MasteringNova\Database\Factories\TagFactory;
 
 class Tag extends EdukaModel
 {
@@ -20,10 +18,5 @@ class Tag extends EdukaModel
     {
         return $this->belongsToMany(Video::class)
                     ->withTimestamps();
-    }
-
-    protected static function newFactory(): Factory
-    {
-        return TagFactory::new();
     }
 }

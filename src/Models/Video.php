@@ -3,10 +3,8 @@
 namespace Eduka\Cube\Models;
 
 use Eduka\Cube\Abstracts\EdukaModel;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
-use MasteringNova\Database\Factories\VideoFactory;
 
 class Video extends EdukaModel
 {
@@ -100,10 +98,5 @@ class Video extends EdukaModel
     public function hasVimeoId(): bool
     {
         return $this->vimeo_id !== '' && ! is_null($this->vimeo_id);
-    }
-
-    protected static function newFactory(): Factory
-    {
-        return VideoFactory::new();
     }
 }

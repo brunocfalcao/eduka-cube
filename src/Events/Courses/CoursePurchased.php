@@ -13,6 +13,7 @@ class CoursePurchased
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public Course $course;
+
     public User $user;
 
     public function __construct(Course $course, User $user)
