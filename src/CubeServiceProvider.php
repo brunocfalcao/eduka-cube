@@ -2,8 +2,6 @@
 
 namespace Eduka\Cube;
 
-use Illuminate\Auth\Events\Authenticated;
-use Illuminate\Support\Facades\Event;
 use Eduka\Abstracts\Classes\EdukaServiceProvider;
 use Eduka\Cube\Commands\CreateCoupons;
 use Eduka\Cube\Models\Chapter;
@@ -48,6 +46,9 @@ use Eduka\Cube\Policies\VariantPolicy;
 use Eduka\Cube\Policies\VideoCompletedPolicy;
 use Eduka\Cube\Policies\VideoPolicy;
 use Eduka\Cube\Policies\VideoStoragePolicy;
+use Eduka\Nereus\Facades\Nereus;
+use Illuminate\Auth\Events\Authenticated;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 
 class CubeServiceProvider extends EdukaServiceProvider
