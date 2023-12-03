@@ -13,7 +13,7 @@ class CourseObserver
     {
         $this->validate($course, [
             'name' => 'required',
-            'canonical' => 'required|unique',
+            'canonical' => 'required|unique:courses',
             'admin_name' => 'required',
             'admin_email' => 'required',
             'provider_namespace' => 'required',
