@@ -12,10 +12,11 @@ class CouponObserver
     public function saving(Coupon $coupon)
     {
         $this->validate($coupon, [
-            'code' => 'required',
-            'description' => 'required',
-            'discount_amount' => 'numeric|max:100',
-            'discount_percentage' => 'required_without:discount_amount|numeric|max:100',
+            'code' => ['required', 'string', 'min:1', 'max:255'],
+            'description' => ['required'],
+            'discount_amount' => ['required', 'integer', 'min:0', 'max:100'],
+            'discount_percentage' => ['required_without:discount_amount', 'required', 'integer', 'min:0', 'max:100'],
+            'course_id' => ['required', 'exists:courses,id']
         ]);
     }
 }

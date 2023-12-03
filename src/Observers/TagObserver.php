@@ -12,7 +12,8 @@ class TagObserver
     public function saving(Tag $tag)
     {
         $this->validate($tag, [
-            'name' => 'required',
+            'name' => ['required', 'string', 'min:1', 'max:255'],
+            'description' => ['nullable']
         ]);
     }
 }
