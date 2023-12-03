@@ -1,6 +1,6 @@
 <?php
 
-namespace Eduka\Cube\Events\Subscribers;
+namespace Eduka\Cube\Events\Courses;
 
 use Eduka\Cube\Models\Course;
 use Eduka\Cube\Models\User;

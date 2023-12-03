@@ -1,6 +1,6 @@
 <?php
 
-namespace Eduka\Cube\Events\Subscribers;
+namespace Eduka\Cube\Events\Users;
 
 use Eduka\Cube\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;

@@ -2,6 +2,7 @@
 
 namespace Eduka\Cube\Observers;
 
+use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Eduka\Cube\Models\Order;
 
 class OrderObserver
