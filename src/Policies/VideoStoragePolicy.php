@@ -15,7 +15,7 @@ class VideoStoragePolicy
         return true;
     }
 
-    public function view(User $user, VideoStorage $videoStorage)
+    public function view(User $user, VideoStorage $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class VideoStoragePolicy
         return true;
     }
 
-    public function update(User $user, VideoStorage $videoStorage)
+    public function update(User $user, VideoStorage $model)
     {
         return true;
     }
 
-    public function delete(User $user, VideoStorage $videoStorage)
+    public function delete(User $user, VideoStorage $model)
     {
         return true;
     }
 
-    public function restore(User $user, VideoStorage $videoStorage)
+    public function restore(User $user, VideoStorage $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, VideoStorage $videoStorage)
+    public function forceDelete(User $user, VideoStorage $model)
     {
         return true;
     }

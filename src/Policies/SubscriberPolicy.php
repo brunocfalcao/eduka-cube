@@ -15,7 +15,7 @@ class SubscriberPolicy
         return true;
     }
 
-    public function view(User $user, Subscriber $subscriber)
+    public function view(User $user, Subscriber $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class SubscriberPolicy
         return true;
     }
 
-    public function update(User $user, Subscriber $subscriber)
+    public function update(User $user, Subscriber $model)
     {
         return true;
     }
 
-    public function delete(User $user, Subscriber $subscriber)
+    public function delete(User $user, Subscriber $model)
     {
         return true;
     }
 
-    public function restore(User $user, Subscriber $subscriber)
+    public function restore(User $user, Subscriber $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Subscriber $subscriber)
+    public function forceDelete(User $user, Subscriber $model)
     {
         return true;
     }

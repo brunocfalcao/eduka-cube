@@ -15,7 +15,7 @@ class CouponPolicy
         return true;
     }
 
-    public function view(User $user, Coupon $coupon)
+    public function view(User $user, Coupon $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class CouponPolicy
         return true;
     }
 
-    public function update(User $user, Coupon $coupon)
+    public function update(User $user, Coupon $model)
     {
         return true;
     }
 
-    public function delete(User $user, Coupon $coupon)
+    public function delete(User $user, Coupon $model)
     {
         return true;
     }
 
-    public function restore(User $user, Coupon $coupon)
+    public function restore(User $user, Coupon $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Coupon $coupon)
+    public function forceDelete(User $user, Coupon $model)
     {
         return true;
     }

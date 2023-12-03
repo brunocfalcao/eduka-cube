@@ -15,7 +15,7 @@ class OrderPolicy
         return true;
     }
 
-    public function view(User $user, Order $order)
+    public function view(User $user, Order $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class OrderPolicy
         return true;
     }
 
-    public function update(User $user, Order $order)
+    public function update(User $user, Order $model)
     {
         return true;
     }
 
-    public function delete(User $user, Order $order)
+    public function delete(User $user, Order $model)
     {
         return true;
     }
 
-    public function restore(User $user, Order $order)
+    public function restore(User $user, Order $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Order $order)
+    public function forceDelete(User $user, Order $model)
     {
         return true;
     }

@@ -15,7 +15,7 @@ class SeriesPolicy
         return true;
     }
 
-    public function view(User $user, Series $series)
+    public function view(User $user, Series $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class SeriesPolicy
         return true;
     }
 
-    public function update(User $user, Series $series)
+    public function update(User $user, Series $model)
     {
         return true;
     }
 
-    public function delete(User $user, Series $series)
+    public function delete(User $user, Series $model)
     {
         return true;
     }
 
-    public function restore(User $user, Series $series)
+    public function restore(User $user, Series $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Series $series)
+    public function forceDelete(User $user, Series $model)
     {
         return true;
     }

@@ -15,7 +15,7 @@ class TagPolicy
         return true;
     }
 
-    public function view(User $user, Tag $tag)
+    public function view(User $user, Tag $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class TagPolicy
         return true;
     }
 
-    public function update(User $user, Tag $tag)
+    public function update(User $user, Tag $model)
     {
         return true;
     }
 
-    public function delete(User $user, Tag $tag)
+    public function delete(User $user, Tag $model)
     {
         return true;
     }
 
-    public function restore(User $user, Tag $tag)
+    public function restore(User $user, Tag $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Tag $tag)
+    public function forceDelete(User $user, Tag $model)
     {
         return true;
     }

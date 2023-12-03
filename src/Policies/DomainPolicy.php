@@ -15,7 +15,7 @@ class DomainPolicy
         return true;
     }
 
-    public function view(User $user, Domain $domain)
+    public function view(User $user, Domain $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class DomainPolicy
         return true;
     }
 
-    public function update(User $user, Domain $domain)
+    public function update(User $user, Domain $model)
     {
         return true;
     }
 
-    public function delete(User $user, Domain $domain)
+    public function delete(User $user, Domain $model)
     {
         return true;
     }
 
-    public function restore(User $user, Domain $domain)
+    public function restore(User $user, Domain $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Domain $domain)
+    public function forceDelete(User $user, Domain $model)
     {
         return true;
     }

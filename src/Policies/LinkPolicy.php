@@ -15,7 +15,7 @@ class LinkPolicy
         return true;
     }
 
-    public function view(User $user, Link $link)
+    public function view(User $user, Link $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class LinkPolicy
         return true;
     }
 
-    public function update(User $user, Link $link)
+    public function update(User $user, Link $model)
     {
         return true;
     }
 
-    public function delete(User $user, Link $link)
+    public function delete(User $user, Link $model)
     {
         return true;
     }
 
-    public function restore(User $user, Link $link)
+    public function restore(User $user, Link $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Link $link)
+    public function forceDelete(User $user, Link $model)
     {
         return true;
     }

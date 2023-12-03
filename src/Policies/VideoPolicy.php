@@ -15,7 +15,7 @@ class VideoPolicy
         return true;
     }
 
-    public function view(User $user, Video $video)
+    public function view(User $user, Video $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class VideoPolicy
         return true;
     }
 
-    public function update(User $user, Video $video)
+    public function update(User $user, Video $model)
     {
         return true;
     }
 
-    public function delete(User $user, Video $video)
+    public function delete(User $user, Video $model)
     {
         return true;
     }
 
-    public function restore(User $user, Video $video)
+    public function restore(User $user, Video $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Video $video)
+    public function forceDelete(User $user, Video $model)
     {
         return true;
     }

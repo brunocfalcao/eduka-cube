@@ -15,7 +15,7 @@ class VideoCompletedPolicy
         return true;
     }
 
-    public function view(User $user, VideoCompleted $videoCompleted)
+    public function view(User $user, VideoCompleted $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class VideoCompletedPolicy
         return true;
     }
 
-    public function update(User $user, VideoCompleted $videoCompleted)
+    public function update(User $user, VideoCompleted $model)
     {
         return true;
     }
 
-    public function delete(User $user, VideoCompleted $videoCompleted)
+    public function delete(User $user, VideoCompleted $model)
     {
         return true;
     }
 
-    public function restore(User $user, VideoCompleted $videoCompleted)
+    public function restore(User $user, VideoCompleted $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, VideoCompleted $videoCompleted)
+    public function forceDelete(User $user, VideoCompleted $model)
     {
         return true;
     }

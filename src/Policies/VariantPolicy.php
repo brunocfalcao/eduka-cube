@@ -15,7 +15,7 @@ class VariantPolicy
         return true;
     }
 
-    public function view(User $user, Variant $tag)
+    public function view(User $user, Variant $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class VariantPolicy
         return true;
     }
 
-    public function update(User $user, Variant $tag)
+    public function update(User $user, Variant $model)
     {
         return true;
     }
 
-    public function delete(User $user, Variant $tag)
+    public function delete(User $user, Variant $model)
     {
         return true;
     }
 
-    public function restore(User $user, Variant $tag)
+    public function restore(User $user, Variant $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Variant $tag)
+    public function forceDelete(User $user, Variant $model)
     {
         return true;
     }

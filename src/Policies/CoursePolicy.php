@@ -15,7 +15,7 @@ class CoursePolicy
         return true;
     }
 
-    public function view(User $user, Course $course)
+    public function view(User $user, Course $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class CoursePolicy
         return true;
     }
 
-    public function update(User $user, Course $course)
+    public function update(User $user, Course $model)
     {
         return true;
     }
 
-    public function delete(User $user, Course $course)
+    public function delete(User $user, Course $model)
     {
         return true;
     }
 
-    public function restore(User $user, Course $course)
+    public function restore(User $user, Course $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Course $course)
+    public function forceDelete(User $user, Course $model)
     {
         return true;
     }

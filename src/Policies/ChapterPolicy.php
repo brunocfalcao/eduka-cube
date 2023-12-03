@@ -15,7 +15,7 @@ class ChapterPolicy
         return true;
     }
 
-    public function view(User $user, Chapter $chapter)
+    public function view(User $user, Chapter $model)
     {
         return true;
     }
@@ -25,22 +25,22 @@ class ChapterPolicy
         return true;
     }
 
-    public function update(User $user, Chapter $chapter)
+    public function update(User $user, Chapter $model)
     {
         return true;
     }
 
-    public function delete(User $user, Chapter $chapter)
+    public function delete(User $user, Chapter $model)
     {
         return true;
     }
 
-    public function restore(User $user, Chapter $chapter)
+    public function restore(User $user, Chapter $model)
     {
         return true;
     }
 
-    public function forceDelete(User $user, Chapter $chapter)
+    public function forceDelete(User $user, Chapter $model)
     {
         return true;
     }
