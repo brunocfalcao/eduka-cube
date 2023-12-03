@@ -57,9 +57,13 @@ class CubeServiceProvider extends EdukaServiceProvider
         $this->registerPolicies();
         $this->registerObservers();
 
-        Event::listen(Authenticated::class, function ($event) {
-            $this->registerGlobalScopes();
-        });
+        // Global scopes are loaded except if on frontend.
+
+        if (!Nereus::course()) {
+            Event::listen(Authenticated::class, function ($event) {
+                $this->registerGlobalScopes();
+            });
+        }
 
         $this->registerCommands();
 
