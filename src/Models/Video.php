@@ -22,6 +22,11 @@ class Video extends EdukaModel
         return $this->hasMany(Link::class);
     }
 
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class)
@@ -92,7 +97,7 @@ class Video extends EdukaModel
 
     public function videoStorage()
     {
-        return $this->hasOne(VideoStorage::class, 'video_id');
+        return $this->hasOne(VideoStorage::class);
     }
 
     public function hasVimeoId(): bool

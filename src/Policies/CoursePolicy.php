@@ -32,7 +32,7 @@ class CoursePolicy
 
     public function delete(User $user, Course $model)
     {
-        return true;
+        return $model->canBeDeleted();
     }
 
     public function restore(User $user, Course $model)
@@ -42,6 +42,11 @@ class CoursePolicy
 
     public function forceDelete(User $user, Course $model)
     {
-        return true;
+        return $model->trashed();
+    }
+
+    public function replicate(User $user, Course $model)
+    {
+        return false;
     }
 }

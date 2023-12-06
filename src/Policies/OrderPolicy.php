@@ -32,7 +32,7 @@ class OrderPolicy
 
     public function delete(User $user, Order $model)
     {
-        return true;
+        return $model->canBeDeleted();
     }
 
     public function restore(User $user, Order $model)
@@ -42,6 +42,11 @@ class OrderPolicy
 
     public function forceDelete(User $user, Order $model)
     {
-        return true;
+        return $model->trashed();
+    }
+
+    public function replicate(User $user, Order $model)
+    {
+        return false;
     }
 }

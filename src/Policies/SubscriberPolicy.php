@@ -32,7 +32,7 @@ class SubscriberPolicy
 
     public function delete(User $user, Subscriber $model)
     {
-        return true;
+        return $model->canBeDeleted();
     }
 
     public function restore(User $user, Subscriber $model)
@@ -42,6 +42,11 @@ class SubscriberPolicy
 
     public function forceDelete(User $user, Subscriber $model)
     {
-        return true;
+        return $model->trashed();
+    }
+
+    public function replicate(User $user, Subscriber $model)
+    {
+        return false;
     }
 }

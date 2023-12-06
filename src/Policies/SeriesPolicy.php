@@ -32,7 +32,7 @@ class SeriesPolicy
 
     public function delete(User $user, Series $model)
     {
-        return true;
+        return $model->canBeDeleted();
     }
 
     public function restore(User $user, Series $model)
@@ -42,6 +42,11 @@ class SeriesPolicy
 
     public function forceDelete(User $user, Series $model)
     {
-        return true;
+        return $model->trashed();
+    }
+
+    public function replicate(User $user, Series $model)
+    {
+        return false;
     }
 }

@@ -32,7 +32,7 @@ class DomainPolicy
 
     public function delete(User $user, Domain $model)
     {
-        return true;
+        return $model->canBeDeleted();
     }
 
     public function restore(User $user, Domain $model)
@@ -42,6 +42,11 @@ class DomainPolicy
 
     public function forceDelete(User $user, Domain $model)
     {
-        return true;
+        return $model->trashed();
+    }
+
+    public function replicate(User $user, Domain $model)
+    {
+        return false;
     }
 }

@@ -32,7 +32,7 @@ class VideoStoragePolicy
 
     public function delete(User $user, VideoStorage $model)
     {
-        return true;
+        return $model->canBeDeleted();
     }
 
     public function restore(User $user, VideoStorage $model)
@@ -42,6 +42,11 @@ class VideoStoragePolicy
 
     public function forceDelete(User $user, VideoStorage $model)
     {
-        return true;
+        return $model->trashed();
+    }
+
+    public function replicate(User $user, VideoStorage $model)
+    {
+        return false;
     }
 }

@@ -24,11 +24,9 @@ class Variant extends EdukaModel
         return $this->belongsTo(Course::class);
     }
 
-    public function videos()
+    public function chapters()
     {
-        return $this->belongsToMany(Video::class)
-                    ->withPivot('index')
-                    ->withTimestamps();
+        return $this->belongsToMany(Chapter::class);
     }
 
     public function priceOverrideInCents()

@@ -32,7 +32,7 @@ class TagPolicy
 
     public function delete(User $user, Tag $model)
     {
-        return true;
+        return $model->canBeDeleted();
     }
 
     public function restore(User $user, Tag $model)
@@ -42,6 +42,11 @@ class TagPolicy
 
     public function forceDelete(User $user, Tag $model)
     {
-        return true;
+        return $model->trashed();
+    }
+
+    public function replicate(User $user, Tag $model)
+    {
+        return false;
     }
 }

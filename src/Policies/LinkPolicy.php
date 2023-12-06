@@ -32,7 +32,7 @@ class LinkPolicy
 
     public function delete(User $user, Link $model)
     {
-        return true;
+        return $model->canBeDeleted();
     }
 
     public function restore(User $user, Link $model)
@@ -42,6 +42,11 @@ class LinkPolicy
 
     public function forceDelete(User $user, Link $model)
     {
-        return true;
+        return $model->trashed();
+    }
+
+    public function replicate(User $user, Link $model)
+    {
+        return false;
     }
 }

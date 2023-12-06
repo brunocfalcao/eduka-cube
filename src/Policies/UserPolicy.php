@@ -31,7 +31,7 @@ class UserPolicy
 
     public function delete(User $user, User $model)
     {
-        return true;
+        return $model->canBeDeleted();
     }
 
     public function restore(User $user, User $model)
@@ -41,6 +41,11 @@ class UserPolicy
 
     public function forceDelete(User $user, User $model)
     {
-        return true;
+        return $model->trashed();
+    }
+
+    public function replicate(User $user, User $model)
+    {
+        return false;
     }
 }

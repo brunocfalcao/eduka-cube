@@ -32,16 +32,21 @@ class ChapterPolicy
 
     public function delete(User $user, Chapter $model)
     {
-        return true;
+        return $model->canBeDeleted();
     }
 
     public function restore(User $user, Chapter $model)
     {
-        return true;
+        return $model->trashed();
     }
 
     public function forceDelete(User $user, Chapter $model)
     {
-        return true;
+        return $model->trashed();
+    }
+
+    public function replicate(User $user, Chapter $model)
+    {
+        return false;
     }
 }

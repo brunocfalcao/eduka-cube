@@ -32,7 +32,7 @@ class CouponPolicy
 
     public function delete(User $user, Coupon $model)
     {
-        return true;
+        return $model->canBeDeleted();
     }
 
     public function restore(User $user, Coupon $model)
@@ -42,6 +42,11 @@ class CouponPolicy
 
     public function forceDelete(User $user, Coupon $model)
     {
-        return true;
+        return $model->trashed();
+    }
+
+    public function replicate(User $user, Coupon $model)
+    {
+        return false;
     }
 }

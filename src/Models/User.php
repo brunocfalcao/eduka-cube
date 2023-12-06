@@ -9,7 +9,9 @@ use LemonSqueezy\Laravel\Billable;
 
 class User extends Authenticatable
 {
-    use Billable, Notifiable, SoftDeletes;
+    use Billable;
+    use Notifiable;
+    use SoftDeletes;
 
     protected $guarded = [];
 
@@ -28,6 +30,11 @@ class User extends Authenticatable
         return $query->where('old_id', $id);
     }
 
+    public function videos()
+    {
+        return $this->hasMany(Video::class, 'created_by');
+    }
+
     public function variants()
     {
         return $this->belongsToMany(Variant::class)
@@ -40,8 +47,14 @@ class User extends Authenticatable
                     ->withTimestamps();
     }
 
-    public function videosCompleted()
+    public function getCoursesAttribute()
     {
-        return $this->belongsToMany(VideoCompleted::class);
+        $courses = $this->variants->map(function (Variant $variant) {
+            return $variant->course;
+        });
+
+        $uniqueCourses = $courses->unique()->values();
+
+        return $uniqueCourses;
     }
 }
