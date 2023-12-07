@@ -4,11 +4,10 @@ namespace Eduka\Cube\Models;
 
 use Eduka\Cube\Abstracts\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 
 class Order extends EdukaModel
 {
-    use Notifiable, SoftDeletes;
+    use SoftDeletes;
 
     protected $casts = [
         'response_body' => 'array',

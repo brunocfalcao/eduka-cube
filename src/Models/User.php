@@ -9,9 +9,7 @@ use LemonSqueezy\Laravel\Billable;
 
 class User extends Authenticatable
 {
-    use Billable;
-    use Notifiable;
-    use SoftDeletes;
+    use Billable, Notifiable, SoftDeletes;
 
     protected $guarded = [];
 
@@ -56,5 +54,10 @@ class User extends Authenticatable
         $uniqueCourses = $courses->unique()->values();
 
         return $uniqueCourses;
+    }
+
+    public function canBeDeleted()
+    {
+        return true;
     }
 }

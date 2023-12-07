@@ -6,16 +6,20 @@ use Eduka\Cube\Abstracts\EdukaModel;
 use Eduka\Services\Concerns\CourseFeatures;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 
 class Course extends EdukaModel
 {
-    use CourseFeatures, Notifiable, SoftDeletes;
+    use CourseFeatures, SoftDeletes;
 
     protected $casts = [
         'is_decommissioned' => 'boolean',
         'launched_at' => 'datetime',
     ];
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
 
     public function domains()
     {

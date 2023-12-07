@@ -22,12 +22,12 @@ class VideoStoragePolicy
 
     public function create(User $user)
     {
-        return true;
+        return false;
     }
 
     public function update(User $user, VideoStorage $model)
     {
-        return true;
+        return false;
     }
 
     public function delete(User $user, VideoStorage $model)
@@ -37,7 +37,7 @@ class VideoStoragePolicy
 
     public function restore(User $user, VideoStorage $model)
     {
-        return true;
+        return $model->trashed();
     }
 
     public function forceDelete(User $user, VideoStorage $model)

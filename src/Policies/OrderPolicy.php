@@ -37,7 +37,7 @@ class OrderPolicy
 
     public function restore(User $user, Order $model)
     {
-        return true;
+        return $model->trashed();
     }
 
     public function forceDelete(User $user, Order $model)

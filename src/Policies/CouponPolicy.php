@@ -37,7 +37,7 @@ class CouponPolicy
 
     public function restore(User $user, Coupon $model)
     {
-        return true;
+        return $model->trashed();
     }
 
     public function forceDelete(User $user, Coupon $model)

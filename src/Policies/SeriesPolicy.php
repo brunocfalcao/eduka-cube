@@ -37,7 +37,7 @@ class SeriesPolicy
 
     public function restore(User $user, Series $model)
     {
-        return true;
+        return $model->trashed();
     }
 
     public function forceDelete(User $user, Series $model)

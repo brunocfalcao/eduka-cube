@@ -37,7 +37,7 @@ class LinkPolicy
 
     public function restore(User $user, Link $model)
     {
-        return true;
+        return $model->trashed();
     }
 
     public function forceDelete(User $user, Link $model)

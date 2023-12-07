@@ -37,7 +37,7 @@ class VariantPolicy
 
     public function restore(User $user, Variant $model)
     {
-        return true;
+        return $model->trashed();
     }
 
     public function forceDelete(User $user, Variant $model)

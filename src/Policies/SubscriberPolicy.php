@@ -37,7 +37,7 @@ class SubscriberPolicy
 
     public function restore(User $user, Subscriber $model)
     {
-        return true;
+        return $model->trashed();
     }
 
     public function forceDelete(User $user, Subscriber $model)

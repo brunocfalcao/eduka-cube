@@ -37,7 +37,7 @@ class CoursePolicy
 
     public function restore(User $user, Course $model)
     {
-        return true;
+        return $model->trashed();
     }
 
     public function forceDelete(User $user, Course $model)

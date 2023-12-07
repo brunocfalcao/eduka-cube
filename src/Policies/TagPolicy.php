@@ -37,7 +37,7 @@ class TagPolicy
 
     public function restore(User $user, Tag $model)
     {
-        return true;
+        return $model->trashed();
     }
 
     public function forceDelete(User $user, Tag $model)

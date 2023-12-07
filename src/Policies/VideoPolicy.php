@@ -37,7 +37,7 @@ class VideoPolicy
 
     public function restore(User $user, Video $model)
     {
-        return true;
+        return $model->trashed();
     }
 
     public function forceDelete(User $user, Video $model)
