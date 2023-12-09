@@ -16,6 +16,12 @@ class Course extends EdukaModel
         'launched_at' => 'datetime',
     ];
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+                    ->withTimestamps();
+    }
+
     public function tags()
     {
         return $this->hasMany(Tag::class);

@@ -2,14 +2,16 @@
 
 namespace Eduka\Cube\Models;
 
+use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use LemonSqueezy\Laravel\Billable;
 
 class User extends Authenticatable
 {
-    use Billable, Notifiable, SoftDeletes;
+    use Billable, Notifiable, SoftDeletes, HasCustomQueryBuilder;
 
     protected $guarded = [];
 
@@ -45,16 +47,13 @@ class User extends Authenticatable
                     ->withTimestamps();
     }
 
-    public function getCoursesAttribute()
+    public function courses()
     {
-        $courses = $this->variants->map(function (Variant $variant) {
-            return $variant->course;
-        });
-
-        $uniqueCourses = $courses->unique()->values();
-
-        return $uniqueCourses;
+        return $this->belongsToMany(Course::class)
+                    ->withTimestamps();
     }
+
+    // *** Business methods / custom attributes ***
 
     public function canBeDeleted()
     {
