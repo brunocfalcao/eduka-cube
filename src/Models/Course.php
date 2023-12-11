@@ -51,7 +51,7 @@ class Course extends EdukaModel
         return (int) ($this->course_price * 100);
     }
 
-    public function getVariantOrDefault(string $variantUuid = null)
+    public function getVariantOrDefault(?string $variantUuid = null)
     {
         if (! $variantUuid) {
             return $this->getDefaultVariant();

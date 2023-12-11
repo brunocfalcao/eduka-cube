@@ -2,23 +2,18 @@
 
 namespace Eduka\Cube\Events\Courses;
 
-use Eduka\Cube\Models\Course;
-use Eduka\Cube\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class CoursePurchased
+class OrderCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public Course $course;
+    public Order $order;
 
-    public User $user;
-
-    public function __construct(Course $course, User $user)
+    public function __construct(Order $order)
     {
-        $this->user = $user;
-        $this->course = $course;
+        $this->order = $order;
     }
 }

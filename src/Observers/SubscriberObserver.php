@@ -3,6 +3,7 @@
 namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
+use Eduka\Cube\Events\Subscribers\SubscriberCreated;
 use Eduka\Cube\Models\Subscriber;
 
 class SubscriberObserver
@@ -15,5 +16,10 @@ class SubscriberObserver
             'course_id' => 'required',
             'email' => 'required|email',
         ]);
+    }
+
+    public function created(Subscriber $subscriber)
+    {
+        event(new SubscriberCreated($subscriber));
     }
 }
