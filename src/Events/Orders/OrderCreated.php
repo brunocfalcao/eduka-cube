@@ -1,7 +1,8 @@
 <?php
 
-namespace Eduka\Cube\Events\Courses;
+namespace Eduka\Cube\Events\Orders;
 
+use Eduka\Cube\Models\Order;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;

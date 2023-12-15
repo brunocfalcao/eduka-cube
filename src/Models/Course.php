@@ -3,7 +3,7 @@
 namespace Eduka\Cube\Models;
 
 use Eduka\Cube\Abstracts\EdukaModel;
-use Eduka\Services\Concerns\CourseFeatures;
+use Eduka\Cube\Concerns\CourseFeatures;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

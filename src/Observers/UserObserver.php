@@ -17,12 +17,12 @@ class UserObserver
         }
 
         $this->validate($user, [
-            'old_id' => ['nullable', 'integer', 'min:0', 'max:4294967295'],
-            'name' => ['nullable', 'string', 'min:1', 'max:255'],
-            'email' => ['required', 'string', 'min:1', 'max:255'],
-            'password' => ['nullable', 'string', 'min:1', 'max:255'],
-            'remember_token' => ['nullable', 'string', 'min:1', 'max:100'],
-            'uuid' => ['required', 'string', 'min:1', 'max:36'],
+            'old_id' => ['nullable', 'integer'],
+            'name' => ['nullable', 'string'],
+            'email' => ['required', 'string'],
+            'password' => ['nullable', 'string'],
+            'remember_token' => ['nullable', 'string'],
+            'uuid' => ['required', 'string'],
         ]);
     }
 }

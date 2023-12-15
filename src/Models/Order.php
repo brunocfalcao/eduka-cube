@@ -11,6 +11,7 @@ class Order extends EdukaModel
 
     protected $casts = [
         'response_body' => 'array',
+        'custom_data' => 'array'
     ];
 
     public function user()
