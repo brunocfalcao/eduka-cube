@@ -11,7 +11,7 @@ class Order extends EdukaModel
 
     protected $casts = [
         'response_body' => 'array',
-        'custom_data' => 'array'
+        'custom_data' => 'array',
     ];
 
     public function user()
@@ -21,6 +21,6 @@ class Order extends EdukaModel
 
     public function variant()
     {
-        return $this->belongsTo(Variant::class);
+        return $this->belongsTo(Variant::class, 'variant_id', 'lemon_squeezy_variant_id');
     }
 }

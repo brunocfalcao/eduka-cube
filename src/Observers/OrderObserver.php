@@ -15,7 +15,7 @@ class OrderObserver
         $this->validate($order, [
             'variant_id' => ['required', 'exists:variants,lemon_squeezy_variant_id'],
             'response_body' => ['required'],
-            'event_name' => ['required']
+            'event_name' => ['required'],
         ]);
     }
 
@@ -24,12 +24,10 @@ class OrderObserver
         /**
          * Verify the event name.
          */
-
         switch ($order->event_name) {
             case 'order_created':
                 event(new OrderCreated($order));
                 break;
-
 
             case 'order_refunded':
                 // TODO
