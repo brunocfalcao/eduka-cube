@@ -67,7 +67,11 @@ class Course extends EdukaModel
 
     public function getDefaultVariant()
     {
-        return $this->variants->firstWhere('is_default', true);
+        if ($this->variants->count() > 1) {
+            return $this->variants->firstWhere('is_default', true);
+        } else {
+            return $this->variants->first();
+        }
     }
 
     public function isPPPEnabled()
