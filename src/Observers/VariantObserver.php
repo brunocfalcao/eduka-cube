@@ -17,14 +17,14 @@ class VariantObserver
         }
 
         // If the incoming variant is not marked as default, check the default status for the course
-        if (!$variant->is_default) {
+        if (! $variant->is_default) {
             // Check if there's already a default variant for this course
             $hasDefault = Variant::where('course_id', $variant->course_id)
                              ->where('is_default', true)
                              ->exists();
 
             // If no default variant exists, make the oldest variant the default
-            if (!$hasDefault) {
+            if (! $hasDefault) {
                 $oldestVariant = Variant::where('course_id', $variant->course_id)
                                     ->oldest()
                                     ->first();
