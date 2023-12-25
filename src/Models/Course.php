@@ -4,6 +4,7 @@ namespace Eduka\Cube\Models;
 
 use Eduka\Cube\Abstracts\EdukaModel;
 use Eduka\Cube\Concerns\CourseFeatures;
+use Eduka\Cube\Models\Variant;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -51,13 +52,9 @@ class Course extends EdukaModel
         return (int) ($this->course_price * 100);
     }
 
-    public function getVariantOrDefault(?string $variantUuid = null)
+    public function getVariantOrDefault(Variant $variant = null)
     {
-        if (! $variantUuid) {
-            return $this->getDefaultVariant();
-        }
-
-        return $this->variants->firstWhere('uuid', $variantUuid);
+        return $variant ?? $this->variants()->firstWhere('is_default', true);
     }
 
     public function paymentProviderStoreId()

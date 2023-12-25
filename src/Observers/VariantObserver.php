@@ -16,24 +16,17 @@ class VariantObserver
             $variant->uuid = (string) Str::uuid();
         }
 
-        // If the incoming variant is not marked as default, check the default status for the course
-        if (! $variant->is_default) {
-            // Check if there's already a default variant for this course
-            $hasDefault = Variant::where('course_id', $variant->course_id)
-                             ->where('is_default', true)
-                             ->exists();
+        $variants = Variant::where('course_id', $variant->course_id);
 
-            // If no default variant exists, make the oldest variant the default
-            if (! $hasDefault) {
-                $oldestVariant = Variant::where('course_id', $variant->course_id)
-                                    ->oldest()
-                                    ->first();
+        // First one? Then is default must be true.
+        if (! $variants->exists()) {
+            $variant->is_default = true;
+        }
 
-                if ($oldestVariant) {
-                    $oldestVariant->is_default = true;
-                    $oldestVariant->save();
-                }
-            }
+        // Is default? Then assure all other variants will be false.
+        elseif ($variant->is_default) {
+            $variants = Variant::where('course_id', $variant->course_id);
+            $variants->update(['is_default' => true]);
         }
 
         $this->validate($variant, [
