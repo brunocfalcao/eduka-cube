@@ -4,7 +4,6 @@ namespace Eduka\Cube\Models;
 
 use Eduka\Cube\Abstracts\EdukaModel;
 use Eduka\Cube\Concerns\CourseFeatures;
-use Eduka\Cube\Models\Variant;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -52,7 +51,7 @@ class Course extends EdukaModel
         return (int) ($this->course_price * 100);
     }
 
-    public function getVariantOrDefault(Variant $variant = null)
+    public function getVariantOrDefault(?Variant $variant = null)
     {
         return $variant ?? $this->variants()->firstWhere('is_default', true);
     }
