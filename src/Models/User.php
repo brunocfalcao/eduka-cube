@@ -21,7 +21,9 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+
         'receives_notifications' => 'boolean',
+        'is_admin' => 'boolean',
     ];
 
     public function scopeWithOldId($query, $id)
