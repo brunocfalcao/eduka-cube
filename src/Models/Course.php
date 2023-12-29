@@ -37,6 +37,11 @@ class Course extends EdukaModel
         return $this->hasMany(Variant::class);
     }
 
+    public function chapters()
+    {
+        return $this->hasMany(Chapter::class);
+    }
+
     public function coupons()
     {
         return $this->hasMany(Coupon::class);

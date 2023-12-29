@@ -5,6 +5,7 @@ namespace Eduka\Cube\Observers;
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Eduka\Cube\Models\Variant;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class VariantObserver
 {
@@ -31,7 +32,7 @@ class VariantObserver
 
         $this->validate($variant, [
             'uuid' => ['required', 'string', 'min:1', 'max:36'],
-            'canonical' => ['required', 'string', 'min:1', 'max:255'],
+            'canonical' => ['required', Rule::unique('variants')->ignore($variant->id)],
             'course_id' => ['required', 'exists:courses,id'],
             'description' => ['nullable'],
             'lemon_squeezy_variant_id' => ['nullable', 'numeric'],

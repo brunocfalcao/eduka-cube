@@ -4,6 +4,7 @@ namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Eduka\Cube\Models\Chapter;
+use Eduka\Cube\Models\Course;
 
 class ChapterObserver
 {
@@ -12,8 +13,24 @@ class ChapterObserver
     public function saving(Chapter $chapter)
     {
         $this->validate($chapter, [
-            'name' => ['required', 'string', 'min:1', 'max:255'],
+            'name' => ['required', 'string'],
             'description' => ['nullable'],
+            'course_id' => ['required'],
         ]);
+    }
+
+    public function created(Chapter $chapter)
+    {
+        /**
+         * If the course id exists/changed, add the chapter to all variants
+         * ONLY if there are no variants already attached.
+         */
+        if ($chapter->isDirty('course_id')) {
+            if (! $chapter->variants()->exists()) {
+                foreach (Course::find($chapter->course_id)->variants as $variant) {
+                    $chapter->variants()->attach($variant->id);
+                }
+            }
+        }
     }
 }

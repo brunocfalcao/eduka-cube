@@ -3,16 +3,20 @@
 namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
+use Eduka\Cube\Concerns\UsesCanonicals;
 use Eduka\Cube\Models\Video;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class VideoObserver
 {
-    use CanValidateObserverAttributes;
+    use CanValidateObserverAttributes, UsesCanonicals;
 
     public function saving(Video $video)
     {
+        $this->checkCanonical($video);
+
         if (empty($video->uuid)) {
             $video->uuid = (string) Str::uuid();
         }
@@ -24,15 +28,15 @@ class VideoObserver
         }
 
         $this->validate($video, [
-            'name' => ['required', 'string', 'min:1', 'max:255'],
+            'name' => ['required', 'string'],
             'description' => ['nullable'],
-            'vimeo_id' => ['nullable', 'string', 'min:1', 'max:255'],
-            'duration' => ['nullable', 'integer', 'min:0', 'max:4294967295'],
-            'uuid' => ['required', 'string', 'min:1', 'max:36'],
+            'canonical' => ['required', Rule::unique('videos')->ignore($video->id)],
+            'vimeo_id' => ['nullable', 'string'],
+            'duration' => ['nullable', 'integer'],
+            'uuid' => ['required', 'string'],
             'created_by' => ['required', 'exists:users,id'],
-            'meta_title' => ['nullable', 'string', 'min:1', 'max:255'],
-            'meta_description' => ['nullable', 'string', 'min:1', 'max:255'],
-            'meta_canonical_url' => ['nullable', 'string', 'min:1', 'max:255'],
+            'meta_title' => ['nullable', 'string'],
+            'meta_description' => ['nullable', 'string'],
         ]);
     }
 }

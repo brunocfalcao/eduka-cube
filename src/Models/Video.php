@@ -76,22 +76,14 @@ class Video extends EdukaModel
 
     public function vimeoMetadata(): array
     {
-        $domains = [];
-
-        if ($this->meta_canonical_url) {
-            $parsedUrl = parse_url($this->meta_canonical_url);
-            $domain = Str::of($parsedUrl['host'] ?? '')->trim('www.')->toString();
-            $domains = [$domain];
-        }
-
         return [
             'name' => $this->name,
-            'description' => $this->details,
+            'description' => $this->description,
             'embed.title.name' => 'show',
             'hide_from_vimeo' => true,
             'privacy.view' => 'unlisted',
             'privacy.embed' => 'whitelist',
-            'embed_domains' => $domains,
+            'embed_domains' => $this->domains->pluck('name'),
         ];
     }
 

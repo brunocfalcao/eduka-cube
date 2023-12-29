@@ -18,4 +18,9 @@ class Chapter extends EdukaModel
     {
         return $this->belongsToMany(Variant::class);
     }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }
