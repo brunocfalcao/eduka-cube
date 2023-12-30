@@ -89,4 +89,12 @@ class Course extends EdukaModel
     {
         return $this->backblaze_bucket_name;
     }
+
+    /**
+     * @return int
+     */
+    public function getCurrentProgress(): int
+    {
+        return mt_rand(55, 85);
+    }
 }
