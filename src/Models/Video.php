@@ -4,7 +4,6 @@ namespace Eduka\Cube\Models;
 
 use Eduka\Cube\Abstracts\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
 
 class Video extends EdukaModel
 {
@@ -74,17 +73,18 @@ class Video extends EdukaModel
         return route('video.watch', $this->id);
     }
 
-    public function vimeoMetadata(): array
+    public function vimeoMetadata(array $extraData = []): array
     {
-        return [
+        return array_merge($extraData, [
             'name' => $this->name,
             'description' => $this->description,
             'embed.title.name' => 'show',
             'hide_from_vimeo' => true,
             'privacy.view' => 'unlisted',
             'privacy.embed' => 'whitelist',
-            'embed_domains' => $this->domains->pluck('name'),
-        ];
+            // The embed domains are all domains part of the user admin course.
+            'embed_domains' => $this->createdBy->courses->first()->domains->pluck('name'),
+        ]);
     }
 
     public function videoStorage()
