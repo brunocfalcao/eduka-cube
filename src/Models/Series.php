@@ -2,7 +2,7 @@
 
 namespace Eduka\Cube\Models;
 
-use Eduka\Cube\Abstracts\EdukaModel;
+use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Series extends EdukaModel

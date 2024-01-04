@@ -2,7 +2,7 @@
 
 namespace Eduka\Cube\Models;
 
-use Eduka\Cube\Abstracts\EdukaModel;
+use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends EdukaModel
@@ -14,6 +14,7 @@ class Order extends EdukaModel
         'custom_data' => 'array',
     ];
 
+    // Relationship registered.
     public function user()
     {
         return $this->belongsTo(User::class);

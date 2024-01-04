@@ -12,17 +12,16 @@ class UserObserver
 
     public function saving(User $user)
     {
-        if (blank($user->uuid)) {
-            $user->uuid = (string) Str::uuid();
-        }
+        set_default($user, 'uuid', (string) Str::uuid());
 
-        $this->validate($user, [
-            'old_id' => ['nullable', 'integer'],
+        $validationRules = [
             'name' => ['nullable', 'string'],
-            'email' => ['required', 'string'],
+            'email' => ['required', 'email'],
             'password' => ['nullable', 'string'],
+            'course_id_as_admin' => ['nullable', 'exists:courses,id'],
             'remember_token' => ['nullable', 'string'],
-            'uuid' => ['required', 'string'],
-        ]);
+        ];
+
+        $this->validate($user, $validationRules);
     }
 }

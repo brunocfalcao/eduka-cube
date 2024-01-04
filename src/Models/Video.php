@@ -2,7 +2,7 @@
 
 namespace Eduka\Cube\Models;
 
-use Eduka\Cube\Abstracts\EdukaModel;
+use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Video extends EdukaModel
@@ -26,6 +26,7 @@ class Video extends EdukaModel
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    // Relationship verified.
     public function tags()
     {
         return $this->belongsToMany(Tag::class)

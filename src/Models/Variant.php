@@ -2,7 +2,7 @@
 
 namespace Eduka\Cube\Models;
 
-use Eduka\Cube\Abstracts\EdukaModel;
+use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Variant extends EdukaModel
@@ -11,26 +11,32 @@ class Variant extends EdukaModel
 
     protected $casts = [
         'is_default' => 'boolean',
+
+        'lemon_squeezy_price_override' => 'numeric',
     ];
 
+    // Relationship registered.
     public function users()
     {
         return $this->belongsToMany(User::class)
                     ->withTimestamps();
     }
 
+    // Relationship registered.
     public function course()
     {
         return $this->belongsTo(Course::class);
     }
 
+    // Relationship registered.
     public function chapters()
     {
         return $this->belongsToMany(Chapter::class);
     }
 
-    public function priceOverrideInCents()
+    // Relationship registered.
+    public function orders()
     {
-        return (int) $this->lemon_squeezy_price_override * 100;
+        return $this->hasMany(Order::class);
     }
 }

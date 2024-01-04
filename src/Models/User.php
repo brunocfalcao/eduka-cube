@@ -19,45 +19,30 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-
-        'receives_notifications' => 'boolean',
-        'is_admin' => 'boolean',
-    ];
-
-    public function scopeWithOldId($query, $id)
-    {
-        return $query->where('old_id', $id);
-    }
-
-    public function videos()
-    {
-        return $this->hasMany(Video::class, 'created_by');
-    }
-
+    // Relationship registered.
     public function variants()
     {
         return $this->belongsToMany(Variant::class)
                     ->withTimestamps();
     }
 
+    // Relationship registered.
     public function orders()
     {
         return $this->belongsToMany(Order::class)
                     ->withTimestamps();
     }
 
+    // Relationship registered.
     public function courses()
     {
         return $this->belongsToMany(Course::class)
                     ->withTimestamps();
     }
 
-    // *** Business methods / custom attributes ***
-
-    public function canBeDeleted()
+    // Relationship registered.
+    public function courseAsAdmin()
     {
-        return true;
+        return $this->belongsTo(Course::class, 'course_id_as_admin');
     }
 }

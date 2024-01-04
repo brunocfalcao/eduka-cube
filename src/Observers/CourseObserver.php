@@ -3,27 +3,42 @@
 namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
-use Eduka\Cube\Concerns\UsesCanonicals;
+use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
 use Eduka\Cube\Models\Course;
 use Illuminate\Validation\Rule;
 
 class CourseObserver
 {
-    use CanValidateObserverAttributes, UsesCanonicals;
+    use CanValidateObserverAttributes, HasCanonicals;
 
     public function saving(Course $course)
     {
-        $this->checkCanonical($course);
+        $this->upsertCanonical($course, 'name');
 
-        $this->validate($course, [
-            'name' => 'required',
+        $validationRules = [
+            'name' => ['required', 'string'],
             'canonical' => ['required', Rule::unique('courses')->ignore($course->id)],
-            'admin_name' => 'required',
-            'admin_email' => 'required',
-            'provider_namespace' => 'required',
-            'launched_at' => 'date',
-            'enable_purchase_power_parity' => 'boolean',
-            'is_decommissioned' => 'boolean',
-        ]);
+            'domain' => ['required', 'string', Rule::unique('courses')->ignore($course->id)],
+            'provider_namespace' => ['nullable', 'string'],
+            'prelaunched_at' => ['nullable'],
+            'launched_at' => ['nullable'],
+            'retired_at' => ['nullable'],
+            'is_active' => ['nullable', 'boolean'],
+            'is_ppp_enabled' => ['nullable', 'boolean'],
+            'lemon_squeezy_store_id' => ['nullable', 'string'],
+            'vimeo_uri_key' => ['nullable', 'string'],
+            'backblaze_bucket_name' => ['nullable', 'string'],
+        ];
+
+        $this->validate($course, $validationRules);
+    }
+
+    public function created(Course $course)
+    {
+        /**
+         * 1. Create a new Vimeo top-level folder.
+         * 2. Create a new Backblaze bucket.
+         * 3. Create a new YoutTube playlist.
+         */
     }
 }

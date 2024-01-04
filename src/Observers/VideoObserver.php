@@ -3,7 +3,7 @@
 namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
-use Eduka\Cube\Concerns\UsesCanonicals;
+use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
 use Eduka\Cube\Events\Videos\VideoNameChanged;
 use Eduka\Cube\Models\Video;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 
 class VideoObserver
 {
-    use CanValidateObserverAttributes, UsesCanonicals;
+    use CanValidateObserverAttributes, HasCanonicals;
 
     public function saving(Video $video)
     {
