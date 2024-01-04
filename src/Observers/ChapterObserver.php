@@ -5,6 +5,7 @@ namespace Eduka\Cube\Observers;
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Eduka\Cube\Models\Chapter;
 use Eduka\Cube\Models\Course;
+use Illuminate\Validation\Rule;
 
 class ChapterObserver
 {
@@ -12,11 +13,14 @@ class ChapterObserver
 
     public function saving(Chapter $chapter)
     {
-        $this->validate($chapter, [
+        $validationRules = [
+            'course_id' => ['required', Rule::unique('chapters')->ignore($chapter->id)],
             'name' => ['required', 'string'],
             'description' => ['nullable'],
-            'course_id' => ['required'],
-        ]);
+            'vimeo_uri_key' => ['nullable', 'string'],
+        ];
+
+        $this->validate($chapter, $validationRules);
     }
 
     public function created(Chapter $chapter)

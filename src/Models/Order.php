@@ -20,6 +20,7 @@ class Order extends EdukaModel
         return $this->belongsTo(User::class);
     }
 
+    // Relationship registered.
     public function variant()
     {
         return $this->belongsTo(Variant::class, 'variant_id', 'lemon_squeezy_variant_id');

@@ -51,13 +51,14 @@ class Course extends EdukaModel
         return $this->hasMany(Variant::class);
     }
 
+    // Relationship registered.
     public function chapters()
     {
         return $this->hasMany(Chapter::class);
     }
 
-    public function coupons()
+    public function videos()
     {
-        return $this->hasMany(Coupon::class);
+        return $this->hasMany(Video::class);
     }
 }

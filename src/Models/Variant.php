@@ -2,12 +2,13 @@
 
 namespace Eduka\Cube\Models;
 
+use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Variant extends EdukaModel
 {
-    use SoftDeletes;
+    use HasCustomQueryBuilder, SoftDeletes;
 
     protected $casts = [
         'is_default' => 'boolean',
@@ -31,7 +32,8 @@ class Variant extends EdukaModel
     // Relationship registered.
     public function chapters()
     {
-        return $this->belongsToMany(Chapter::class);
+        return $this->belongsToMany(Chapter::class)
+                    ->withTimestamps();
     }
 
     // Relationship registered.

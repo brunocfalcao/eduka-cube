@@ -20,6 +20,20 @@ class User extends Authenticatable
     ];
 
     // Relationship registered.
+    public function videosThatWereBookmarked()
+    {
+        return $this->belongsToMany(Video::class, 'user_video_bookmarked')
+                    ->withTimestamps();
+    }
+
+    // Relationship registered.
+    public function videosThatWereCompleted()
+    {
+        return $this->belongsToMany(Video::class, 'user_video_completed')
+                    ->withTimestamps();
+    }
+
+    // Relationship registered.
     public function variants()
     {
         return $this->belongsToMany(Variant::class)
