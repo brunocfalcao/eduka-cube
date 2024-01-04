@@ -52,13 +52,33 @@ trait CourseFeatures
         }
     }
 
-    public function getCurrentProgress()
-    {
-        return mt_rand(55, 85);
-    }
-
     public function registerSelfProvider()
     {
         app()->register($this->provider_namespace);
+    }
+
+    public function paymentProviderStoreId()
+    {
+        return $this->lemon_squeezy_store_id;
+    }
+
+    public function isPPPEnabled()
+    {
+        return $this->enable_purchase_power_parity == true;
+    }
+
+    public function createBucketNameUsing()
+    {
+        return $this->canonical;
+    }
+
+    public function getBucketName()
+    {
+        return $this->backblaze_bucket_name;
+    }
+
+    public function getCurrentProgress(): int
+    {
+        return $this->course_completion;
     }
 }
