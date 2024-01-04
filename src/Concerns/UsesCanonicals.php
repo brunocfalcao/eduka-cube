@@ -6,11 +6,11 @@ use Illuminate\Support\Str;
 
 trait UsesCanonicals
 {
-    public function checkCanonical($model, string $attribute = null)
+    public function checkCanonical($model, ?string $attribute = null)
     {
-        $attribute = $attribute ?? 'canonical';
+        $attribute ??= 'canonical';
 
-        if (!blank($model->{$attribute})) {
+        if (! blank($model->{$attribute})) {
             return;
         }
 

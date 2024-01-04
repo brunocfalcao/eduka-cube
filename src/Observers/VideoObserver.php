@@ -4,6 +4,7 @@ namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Eduka\Cube\Concerns\UsesCanonicals;
+use Eduka\Cube\Events\Videos\VideoNameChanged;
 use Eduka\Cube\Models\Video;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -38,5 +39,12 @@ class VideoObserver
             'meta_title' => ['nullable', 'string'],
             'meta_description' => ['nullable', 'string'],
         ]);
+    }
+
+    public function saved(Video $video)
+    {
+        if ($video->wasChanged('name') && $video->vimeo_id) {
+            event(new VideoNameChanged($video));
+        }
     }
 }
