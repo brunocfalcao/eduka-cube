@@ -14,7 +14,7 @@ class VariantObserver
 
     public function saving(Variant $variant)
     {
-        $this->upsertCanonical($variant, 'name');
+        $this->upsertCanonical($variant, $variant->name);
         $this->ensureCorrectDefaultVariant($variant);
 
         $validationRules = [

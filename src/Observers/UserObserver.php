@@ -12,12 +12,11 @@ class UserObserver
 
     public function saving(User $user)
     {
-        set_default($user, 'uuid', (string) Str::uuid());
-
         $validationRules = [
             'name' => ['nullable', 'string'],
             'email' => ['required', 'email'],
             'password' => ['nullable', 'string'],
+            'twitter_handle' => ['nullable', 'string'],
             'course_id_as_admin' => ['nullable', 'exists:courses,id'],
             'remember_token' => ['nullable', 'string'],
         ];

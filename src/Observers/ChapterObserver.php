@@ -14,7 +14,7 @@ class ChapterObserver
     public function saving(Chapter $chapter)
     {
         $validationRules = [
-            'course_id' => ['required', Rule::unique('chapters')->ignore($chapter->id)],
+            'course_id' => ['required', 'exists:courses,id'],
             'name' => ['required', 'string'],
             'description' => ['nullable'],
             'vimeo_uri_key' => ['nullable', 'string'],

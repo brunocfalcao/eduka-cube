@@ -4,17 +4,18 @@ namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
+use Brunocfalcao\LaravelHelpers\Traits\HasUuids;
 use Eduka\Cube\Events\Videos\VideoNameChanged;
 use Eduka\Cube\Models\Video;
 use Illuminate\Validation\Rule;
 
 class VideoObserver
 {
-    use CanValidateObserverAttributes, HasCanonicals;
+    use CanValidateObserverAttributes, HasCanonicals, HasUuids;
 
     public function saving(Video $video)
     {
-        $this->upsertCanonical($video, 'name');
+        $this->upsertCanonical($video, $video->name);
         $this->upsertUuid($video);
 
         $validationRules = [
