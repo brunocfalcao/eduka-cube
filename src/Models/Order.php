@@ -2,12 +2,13 @@
 
 namespace Eduka\Cube\Models;
 
+use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends EdukaModel
 {
-    use SoftDeletes;
+    use HasCustomQueryBuilder, SoftDeletes;
 
     protected $casts = [
         'response_body' => 'array',
@@ -23,6 +24,6 @@ class Order extends EdukaModel
     // Relationship registered.
     public function variant()
     {
-        return $this->belongsTo(Variant::class, 'variant_id', 'lemon_squeezy_variant_id');
+        return $this->belongsTo(Variant::class);
     }
 }

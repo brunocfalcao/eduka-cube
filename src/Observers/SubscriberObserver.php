@@ -12,10 +12,12 @@ class SubscriberObserver
 
     public function saving(Subscriber $subscriber)
     {
-        $this->validate($subscriber, [
-            'course_id' => 'required',
-            'email' => 'required|email',
-        ]);
+        $validationRules = [
+            'course_id' => ['required', 'exists:courses,id'],
+            'email' => ['required', 'string'],
+        ];
+
+        $this->validate($subscriber, $validationRules);
     }
 
     public function created(Subscriber $subscriber)

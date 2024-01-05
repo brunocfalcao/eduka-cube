@@ -6,8 +6,6 @@ use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
 use Eduka\Cube\Events\Videos\VideoNameChanged;
 use Eduka\Cube\Models\Video;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class VideoObserver
@@ -16,29 +14,24 @@ class VideoObserver
 
     public function saving(Video $video)
     {
-        $this->checkCanonical($video);
+        $this->upsertCanonical($video, 'name');
+        $this->upsertUuid($video);
 
-        if (empty($video->uuid)) {
-            $video->uuid = (string) Str::uuid();
-        }
-
-        if (empty($video->created_by)) {
-            if (Auth::id()) {
-                $video->created_by = Auth::id();
-            }
-        }
-
-        $this->validate($video, [
+        $validationRules = [
             'name' => ['required', 'string'],
             'description' => ['nullable'],
+            'course_id' => ['required', 'exists:courses,id'],
+            'uuid' => ['required', Rule::unique('videos')->ignore($video->id)],
             'canonical' => ['required', Rule::unique('videos')->ignore($video->id)],
-            'vimeo_id' => ['nullable', 'string'],
             'duration' => ['nullable', 'integer'],
-            'uuid' => ['required', 'string'],
-            'created_by' => ['required', 'exists:users,id'],
-            'meta_title' => ['nullable', 'string'],
-            'meta_description' => ['nullable', 'string'],
-        ]);
+            'is_visible' => ['nullable', 'boolean'],
+            'is_active' => ['nullable', 'boolean'],
+            'is_free' => ['nullable', 'boolean'],
+            'vimeo_id' => ['nullable', 'string'],
+            'filename' => ['nullable', 'string'],
+        ];
+
+        $this->validate($video, $validationRules);
     }
 
     public function saved(Video $video)

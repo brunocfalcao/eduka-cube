@@ -57,6 +57,13 @@ class Course extends EdukaModel
         return $this->hasMany(Chapter::class);
     }
 
+    // Relationship registered.
+    public function series()
+    {
+        return $this->hasMany(Series::class);
+    }
+
+    // Relationship registered.
     public function videos()
     {
         return $this->hasMany(Video::class);

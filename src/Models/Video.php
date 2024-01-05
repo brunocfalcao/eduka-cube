@@ -14,6 +14,7 @@ class Video extends EdukaModel
         'is_visible' => 'boolean',
         'is_active' => 'boolean',
         'is_free' => 'boolean',
+
         'duration' => 'integer',
     ];
 
@@ -48,6 +49,7 @@ class Video extends EdukaModel
                     ->withTimestamps();
     }
 
+    // Relationship registered.
     public function series()
     {
         return $this->belongsToMany(Series::class)

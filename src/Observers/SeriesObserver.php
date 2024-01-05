@@ -11,9 +11,12 @@ class SeriesObserver
 
     public function saving(Series $series)
     {
-        $this->validate($series, [
-            'name' => ['required', 'string', 'min:1', 'max:255'],
+        $validationRules = [
+            'name' => ['required', 'string'],
             'description' => ['nullable'],
-        ]);
+            'course_id' => ['required', 'exists:courses,id'],
+        ];
+
+        $this->validate($series, $validationRules);
     }
 }

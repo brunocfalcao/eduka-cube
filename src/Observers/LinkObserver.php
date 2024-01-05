@@ -11,10 +11,12 @@ class LinkObserver
 
     public function saving(Link $link)
     {
-        $this->validate($link, [
-            'name' => ['required', 'string', 'min:1', 'max:255'],
-            'url' => ['required', 'string', 'min:1', 'max:255'],
+        $validationRules = [
+            'name' => ['required', 'string'],
+            'url' => ['required', 'string'],
             'video_id' => ['required', 'exists:videos,id'],
-        ]);
+        ];
+
+        $this->validate($link, $validationRules);
     }
 }

@@ -12,11 +12,35 @@ class OrderObserver
 
     public function saving(Order $order)
     {
-        $this->validate($order, [
-            'variant_id' => ['required', 'exists:variants,lemon_squeezy_variant_id'],
+        $validationRules = [
+            'user_id' => ['nullable', 'exists:users,id'],
+            'variant_id' => ['required', 'exists:variants,id'],
             'response_body' => ['required'],
-            'event_name' => ['required'],
-        ]);
+            'custom_data' => ['nullable'],
+            'event_name' => ['nullable', 'string'],
+            'store_id' => ['nullable', 'string'],
+            'customer_id' => ['nullable', 'string'],
+            'order_number' => ['nullable', 'string'],
+            'user_name' => ['nullable', 'string'],
+            'user_email' => ['nullable', 'string'],
+            'subtotal_usd' => ['nullable', 'string'],
+            'discount_total_usd' => ['nullable', 'string'],
+            'tax_usd' => ['nullable', 'string'],
+            'total_usd' => ['nullable', 'string'],
+            'tax_name' => ['nullable', 'string'],
+            'status' => ['nullable', 'string'],
+            'refunded' => ['nullable', 'boolean'],
+            'refunded_at' => ['nullable', 'string'],
+            'order_id' => ['nullable', 'string'],
+            'lemon_squeezy_product_id' => ['required', 'string'],
+            'lemon_squeezy_variant_id' => ['required', 'string'],
+            'lemon_squeezy_product_name' => ['required', 'string'],
+            'lemon_squeezy_variant_name' => ['required', 'string'],
+            'price' => ['required', 'string'],
+            'receipt' => ['nullable', 'string'],
+        ];
+
+        $this->validate($order, $validationRules);
     }
 
     public function created(Order $order)

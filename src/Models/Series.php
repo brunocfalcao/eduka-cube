@@ -9,11 +9,13 @@ class Series extends EdukaModel
 {
     use SoftDeletes;
 
+    // Relationship registered.
     public function courses()
     {
         return $this->belongsTo(Course::class);
     }
 
+    // Relationship registered.
     public function videos()
     {
         return $this->belongsToMany(Video::class)

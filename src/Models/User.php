@@ -20,16 +20,16 @@ class User extends Authenticatable
     ];
 
     // Relationship registered.
-    public function videosThatWereBookmarked()
+    public function videosThatWereCompleted()
     {
-        return $this->belongsToMany(Video::class, 'user_video_bookmarked')
+        return $this->belongsToMany(Video::class, 'user_video_completed')
                     ->withTimestamps();
     }
 
     // Relationship registered.
-    public function videosThatWereCompleted()
+    public function videosThatWereBookmarked()
     {
-        return $this->belongsToMany(Video::class, 'user_video_completed')
+        return $this->belongsToMany(Video::class, 'user_video_bookmarked')
                     ->withTimestamps();
     }
 
@@ -43,8 +43,7 @@ class User extends Authenticatable
     // Relationship registered.
     public function orders()
     {
-        return $this->belongsToMany(Order::class)
-                    ->withTimestamps();
+        return $this->hasMany(Order::class);
     }
 
     // Relationship registered.

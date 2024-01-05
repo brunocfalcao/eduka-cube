@@ -18,7 +18,7 @@ class CourseObserver
         $validationRules = [
             'name' => ['required', 'string'],
             'canonical' => ['required', Rule::unique('courses')->ignore($course->id)],
-            'domain' => ['required', 'string', Rule::unique('courses')->ignore($course->id)],
+            'domain' => ['required', 'string', Rule::unique('domains')->ignore($course->id)],
             'provider_namespace' => ['nullable', 'string'],
             'prelaunched_at' => ['nullable'],
             'launched_at' => ['nullable'],
