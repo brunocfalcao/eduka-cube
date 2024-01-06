@@ -16,24 +16,24 @@ trait CourseFeatures
          * Everyting is overriden by the is_active state.
          * -> active, inactive.
          */
-        if (! $this->is_active || now() < $this->prelaunched_date ||
-            (empty($this->prelaunched_date) &&
-             empty($this->launched_date) &&
-             empty($this->retired_date))
+        if (! $this->is_active || now() < $this->prelaunched_at ||
+            (empty($this->prelaunched_at) &&
+             empty($this->launched_at) &&
+             empty($this->retired_at))
         ) {
             return 'inactive';
         }
 
-        if (now()->between($this->prelaunched_date, $this->launched_date)) {
+        if (now()->between($this->prelaunched_at, $this->launched_at)) {
             return 'prelaunched';
         }
 
-        if (now() > $this->launched_date && empty($this->retired_date) ||
-            now()->between($this->launched_date, $this->retired_date)) {
+        if (now() > $this->launched_at && empty($this->retired_at) ||
+            now()->between($this->launched_at, $this->retired_at)) {
             return 'launched';
         }
 
-        if (now() > $this->retired_date) {
+        if (now() > $this->retired_at) {
             return 'retired';
         }
     }

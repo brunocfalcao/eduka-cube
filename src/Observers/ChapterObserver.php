@@ -5,7 +5,6 @@ namespace Eduka\Cube\Observers;
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Eduka\Cube\Models\Chapter;
 use Eduka\Cube\Models\Course;
-use Illuminate\Validation\Rule;
 
 class ChapterObserver
 {

@@ -4,7 +4,6 @@ namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Eduka\Cube\Models\User;
-use Illuminate\Support\Str;
 
 class UserObserver
 {
