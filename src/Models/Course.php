@@ -19,7 +19,7 @@ class Course extends EdukaModel
         'is_active' => 'boolean',
         'is_ppp_enabled' => 'boolean',
 
-        'meta' => 'array'
+        'meta' => 'array',
     ];
 
     // Relationship registered.

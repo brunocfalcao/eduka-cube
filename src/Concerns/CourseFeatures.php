@@ -79,6 +79,6 @@ trait CourseFeatures
 
     public function getCurrentProgress(): int
     {
-        return $this->course_completion;
+        return $this->progress;
     }
 }
