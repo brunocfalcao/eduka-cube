@@ -22,6 +22,7 @@ class VideoObserver
             'name' => ['required', 'string'],
             'description' => ['nullable'],
             'course_id' => ['required', 'exists:courses,id'],
+            'meta' => ['nullable'],
             'uuid' => ['required', Rule::unique('videos')->ignore($video->id)],
             'canonical' => ['required', Rule::unique('videos')->ignore($video->id)],
             'duration' => ['nullable', 'integer'],
