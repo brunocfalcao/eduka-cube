@@ -3,7 +3,7 @@
 namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
-use Eduka\Cube\Events\Subscribers\SubscriberCreated;
+use Eduka\Cube\Events\Subscribers\SubscriberCreatedEvent;
 use Eduka\Cube\Models\Subscriber;
 
 class SubscriberObserver
@@ -22,6 +22,6 @@ class SubscriberObserver
 
     public function created(Subscriber $subscriber)
     {
-        event(new SubscriberCreated($subscriber));
+        event(new SubscriberCreatedEvent($subscriber));
     }
 }

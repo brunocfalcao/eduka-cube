@@ -17,7 +17,7 @@ class Video extends EdukaModel
 
         'duration' => 'integer',
 
-        'meta' => 'array'
+        'meta' => 'array',
     ];
 
     // Relationship registered.

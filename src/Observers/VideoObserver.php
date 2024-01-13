@@ -39,7 +39,7 @@ class VideoObserver
     public function saved(Video $video)
     {
         if ($video->wasChanged('name') && $video->vimeo_id) {
-            event(new VideoNameChanged($video));
+            //event(new VideoNameChanged($video));
         }
     }
 }

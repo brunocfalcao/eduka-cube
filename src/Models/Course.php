@@ -38,7 +38,7 @@ class Course extends EdukaModel
     // Relationship registered.
     public function adminUser()
     {
-        return $this->hasOne(Course::class, 'course_id_as_admin');
+        return $this->hasOne(User::class, 'course_id_as_admin');
     }
 
     // Relationship registered.

@@ -4,6 +4,9 @@ namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
+use Eduka\Cube\Events\Courses\CourseCreatedEvent;
+use Eduka\Cube\Events\Courses\CourseRenamedEvent;
+use Eduka\Cube\Events\Courses\CourseUpdatedEvent;
 use Eduka\Cube\Models\Course;
 use Illuminate\Validation\Rule;
 
@@ -36,10 +39,15 @@ class CourseObserver
 
     public function created(Course $course)
     {
-        /**
-         * 1. Create a new Vimeo top-level folder.
-         * 2. Create a new Backblaze bucket.
-         * 3. Create a new YoutTube playlist.
-         */
+        event(new CourseCreatedEvent($course));
+    }
+
+    public function updated(Course $course)
+    {
+        if ($course->wasChanged('name')) {
+            event(new CourseRenamedEvent($course));
+        }
+
+        event(new CourseUpdatedEvent($course));
     }
 }

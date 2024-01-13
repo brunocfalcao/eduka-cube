@@ -1,20 +1,20 @@
 <?php
 
-namespace Eduka\Cube\Events\Videos;
+namespace Eduka\Cube\Events\Orders;
 
-use Eduka\Cube\Models\Video;
+use Eduka\Cube\Models\Order;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class VideoNameChanged
+class OrderCreatedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public Video $video;
+    public Order $order;
 
-    public function __construct(Video $video)
+    public function __construct(Order $order)
     {
-        $this->video = $video;
+        $this->order = $order;
     }
 }

@@ -3,8 +3,8 @@
 namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
-use Eduka\Cube\Events\Orders\OrderCreated;
 use Eduka\Cube\Models\Order;
+use Eduka\Services\OrderCreatedEvent;
 
 class OrderObserver
 {
@@ -50,7 +50,7 @@ class OrderObserver
          */
         switch ($order->event_name) {
             case 'order_created':
-                event(new OrderCreated($order));
+                event(new OrderCreatedEvent($order));
                 break;
 
             case 'order_refunded':
