@@ -2,13 +2,14 @@
 
 namespace Eduka\Cube\Models;
 
+use Brunocfalcao\LaravelHelpers\Traits\HasAutoIncrementsByGroup;
 use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Video extends EdukaModel
 {
-    use HasCustomQueryBuilder, SoftDeletes;
+    use HasCustomQueryBuilder, SoftDeletes, HasAutoIncrementsByGroup;
 
     protected $casts = [
         'is_visible' => 'boolean',
@@ -59,9 +60,8 @@ class Video extends EdukaModel
     }
 
     // Relationship registered.
-    public function chapters()
+    public function chapter()
     {
-        return $this->belongsToMany(Chapter::class)
-                    ->withTimestamps();
+        return $this->belongsTo(Chapter::class);
     }
 }

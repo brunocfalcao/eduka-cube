@@ -17,6 +17,7 @@ class VideoObserver
     {
         $this->upsertCanonical($video, $video->name);
         $this->upsertUuid($video);
+        $video->index = $video->incrementByGroup('chapter_id');
 
         $validationRules = [
             'name' => ['required', 'string'],

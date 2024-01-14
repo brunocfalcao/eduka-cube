@@ -13,8 +13,7 @@ class Chapter extends EdukaModel
     // Relationship registered.
     public function videos()
     {
-        return $this->belongsToMany(Video::class)
-                    ->withTimestamps();
+        return $this->hasMany(Video::class);
     }
 
     // Relationship registered.

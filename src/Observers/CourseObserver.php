@@ -39,7 +39,7 @@ class CourseObserver
 
     public function created(Course $course)
     {
-        event(new CourseCreatedEvent($course));
+        //event(new CourseCreatedEvent($course));
     }
 
     public function updated(Course $course)

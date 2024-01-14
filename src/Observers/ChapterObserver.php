@@ -57,6 +57,6 @@ class ChapterObserver
             }
         }
 
-        event(new ChapterCreatedEvent($chapter));
+        //event(new ChapterCreatedEvent($chapter));
     }
 }
