@@ -3,13 +3,22 @@
 namespace Eduka\Cube\Models;
 
 use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
 class Subscriber extends EdukaModel
 {
-    use HasCustomQueryBuilder, Notifiable, SoftDeletes;
+    use HasCustomQueryBuilder,
+        HasValidations,
+        Notifiable,
+        SoftDeletes;
+
+    public $rules = [
+        'course_id' => ['required', 'exists:courses,id'],
+        'email' => ['required', 'string'],
+    ];
 
     // Relationship registered.
     public function course()

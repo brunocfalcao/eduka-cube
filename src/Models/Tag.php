@@ -3,12 +3,21 @@
 namespace Eduka\Cube\Models;
 
 use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tag extends EdukaModel
 {
-    use HasCustomQueryBuilder, SoftDeletes;
+    use HasCustomQueryBuilder,
+        HasValidations,
+        SoftDeletes;
+
+    public $rules = [
+        'name' => ['required', 'string'],
+        'description' => ['nullable'],
+        'course_id' => ['required', 'exists:courses,id'],
+    ];
 
     // Relationship registered.
     public function course()
@@ -20,6 +29,6 @@ class Tag extends EdukaModel
     public function videos()
     {
         return $this->belongsToMany(Video::class)
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 }

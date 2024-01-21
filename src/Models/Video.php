@@ -4,12 +4,16 @@ namespace Eduka\Cube\Models;
 
 use Brunocfalcao\LaravelHelpers\Traits\HasAutoIncrementsByGroup;
 use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Video extends EdukaModel
 {
-    use HasCustomQueryBuilder, SoftDeletes, HasAutoIncrementsByGroup;
+    use HasAutoIncrementsByGroup,
+        HasCustomQueryBuilder,
+        HasValidations,
+        SoftDeletes;
 
     protected $casts = [
         'is_visible' => 'boolean',
@@ -19,6 +23,20 @@ class Video extends EdukaModel
         'duration' => 'integer',
 
         'meta' => 'array',
+    ];
+
+    public $rules = [
+        'name' => ['required', 'string'],
+        'description' => ['nullable'],
+        'index' => ['required'],
+        'course_id' => ['required', 'exists:courses,id'],
+        'meta' => ['nullable'],
+        'duration' => ['nullable', 'integer'],
+        'is_visible' => ['nullable', 'boolean'],
+        'is_active' => ['nullable', 'boolean'],
+        'is_free' => ['nullable', 'boolean'],
+        'vimeo_id' => ['nullable', 'string'],
+        'filename' => ['nullable', 'string'],
     ];
 
     // Relationship registered.
@@ -49,14 +67,14 @@ class Video extends EdukaModel
     public function tags()
     {
         return $this->belongsToMany(Tag::class)
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     // Relationship registered.
     public function series()
     {
         return $this->belongsToMany(Series::class)
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     // Relationship registered.

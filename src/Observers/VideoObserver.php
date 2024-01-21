@@ -2,7 +2,6 @@
 
 namespace Eduka\Cube\Observers;
 
-use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
 use Brunocfalcao\LaravelHelpers\Traits\HasUuids;
 use Eduka\Cube\Events\Videos\VideoNameChanged;
@@ -11,36 +10,28 @@ use Illuminate\Validation\Rule;
 
 class VideoObserver
 {
-    use CanValidateObserverAttributes, HasCanonicals, HasUuids;
+    use HasCanonicals, HasUuids;
 
     public function saving(Video $video)
     {
         $this->upsertCanonical($video, $video->name);
         $this->upsertUuid($video);
-        $video->index = $video->incrementByGroup('chapter_id');
+        $video->incrementByGroup('chapter_id');
 
-        $validationRules = [
-            'name' => ['required', 'string'],
-            'description' => ['nullable'],
-            'course_id' => ['required', 'exists:courses,id'],
-            'meta' => ['nullable'],
+        $extraValidationRules = [
             'uuid' => ['required', Rule::unique('videos')->ignore($video->id)],
             'canonical' => ['required', Rule::unique('videos')->ignore($video->id)],
-            'duration' => ['nullable', 'integer'],
-            'is_visible' => ['nullable', 'boolean'],
-            'is_active' => ['nullable', 'boolean'],
-            'is_free' => ['nullable', 'boolean'],
-            'vimeo_id' => ['nullable', 'string'],
-            'filename' => ['nullable', 'string'],
         ];
 
-        $this->validate($video, $validationRules);
+        $video->validate($extraValidationRules);
     }
 
     public function saved(Video $video)
     {
         if ($video->wasChanged('name') && $video->vimeo_id) {
-            //event(new VideoNameChanged($video));
+            if (config('eduka.events.observers') === true) {
+                event(new VideoNameChanged($video));
+            }
         }
     }
 }

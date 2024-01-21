@@ -2,28 +2,27 @@
 
 namespace Eduka\Cube\Observers;
 
-use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Eduka\Cube\Events\Chapters\ChapterCreatedEvent;
 use Eduka\Cube\Events\Chapters\ChapterDeletedEvent;
 use Eduka\Cube\Events\Chapters\ChapterRenamedEvent;
 use Eduka\Cube\Events\Chapters\ChapterUpdatedEvent;
 use Eduka\Cube\Models\Chapter;
 use Eduka\Cube\Models\Course;
+use Illuminate\Support\Facades\Auth;
 
 class ChapterObserver
 {
-    use CanValidateObserverAttributes;
-
     public function saving(Chapter $chapter)
     {
-        $validationRules = [
-            'course_id' => ['required', 'exists:courses,id'],
-            'name' => ['required', 'string'],
-            'description' => ['nullable'],
-            'vimeo_uri_key' => ['nullable', 'string'],
-        ];
+        if (Auth::id()) {
+            // Associate this course with the logged admin user.
+            // It's not the best practise, but it only happens on Nova.
+            $chapter->course_id = Auth::user()->course_id_as_admin;
+        }
 
-        $this->validate($chapter, $validationRules);
+        $chapter->incrementByGroup('course_id');
+
+        $chapter->validate();
     }
 
     public function updated(Chapter $chapter)
@@ -57,6 +56,8 @@ class ChapterObserver
             }
         }
 
-        //event(new ChapterCreatedEvent($chapter));
+        if (config('eduka.events.observers') === true) {
+            event(new ChapterCreatedEvent($chapter));
+        }
     }
 }

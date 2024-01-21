@@ -26,12 +26,12 @@ class UserPolicy
 
     public function update(User $user, User $model)
     {
-        return true;
+        return true && ! via_resource();
     }
 
     public function delete(User $user, User $model)
     {
-        return $model->canBeDeleted();
+        return $model->canBeDeleted() && ! via_resource();
     }
 
     public function restore(User $user, User $model)

@@ -2,7 +2,6 @@
 
 namespace Eduka\Cube\Observers;
 
-use Brunocfalcao\LaravelHelpers\Traits\CanValidateObserverAttributes;
 use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
 use Brunocfalcao\LaravelHelpers\Traits\HasUuids;
 use Eduka\Cube\Models\Variant;
@@ -10,22 +9,18 @@ use Illuminate\Validation\Rule;
 
 class VariantObserver
 {
-    use CanValidateObserverAttributes, HasCanonicals, HasUuids;
+    use HasCanonicals, HasUuids;
 
     public function saving(Variant $variant)
     {
         $this->upsertCanonical($variant, $variant->name);
         $this->ensureCorrectDefaultVariant($variant);
 
-        $validationRules = [
+        $extraValidationRules = [
             'canonical' => ['required', Rule::unique('variants')->ignore($variant->id)],
-            'description' => ['nullable'],
-            'lemon_squeezy_variant_id' => ['nullable', 'string'],
-            'lemon_squeezy_price_override' => ['nullable', 'numeric'],
-            'is_default' => ['boolean'],
         ];
 
-        $this->validate($variant, $validationRules);
+        $variant->validate($extraValidationRules);
     }
 
     protected function ensureCorrectDefaultVariant($variant)

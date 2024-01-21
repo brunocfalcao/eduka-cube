@@ -3,13 +3,17 @@
 namespace Eduka\Cube\Models;
 
 use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\CourseFeatures;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends EdukaModel
 {
-    use CourseFeatures, HasCustomQueryBuilder, SoftDeletes;
+    use CourseFeatures,
+        HasCustomQueryBuilder,
+        HasValidations,
+        SoftDeletes;
 
     protected $casts = [
         'prelaunched_at' => 'datetime',
@@ -22,11 +26,27 @@ class Course extends EdukaModel
         'meta' => 'array',
     ];
 
+    public $rules = [
+        'name' => ['required', 'string'],
+        'canonical' => ['required'],
+        'meta' => ['nullable'],
+        'domain' => ['required', 'string'],
+        'provider_namespace' => ['nullable', 'string'],
+        'prelaunched_at' => ['nullable'],
+        'launched_at' => ['nullable'],
+        'retired_at' => ['nullable'],
+        'is_active' => ['nullable', 'boolean'],
+        'is_ppp_enabled' => ['nullable', 'boolean'],
+        'lemon_squeezy_store_id' => ['nullable', 'string'],
+        'vimeo_uri_key' => ['nullable', 'string'],
+        'backblaze_bucket_name' => ['nullable', 'string'],
+    ];
+
     // Relationship registered.
     public function users()
     {
         return $this->belongsToMany(User::class)
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     // Relationship registered.
@@ -69,5 +89,11 @@ class Course extends EdukaModel
     public function videos()
     {
         return $this->hasMany(Video::class);
+    }
+
+    public function canBeDeleted()
+    {
+        // No active videos part of this chapter.
+        return ! $this->videos()->withTrashed()->exists();
     }
 }

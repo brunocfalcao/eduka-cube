@@ -3,6 +3,7 @@
 namespace Eduka\Cube\Models;
 
 use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +11,11 @@ use LemonSqueezy\Laravel\Billable;
 
 class User extends Authenticatable
 {
-    use Billable, HasCustomQueryBuilder, Notifiable, SoftDeletes;
+    use Billable,
+        HasCustomQueryBuilder,
+        HasValidations,
+        Notifiable,
+        SoftDeletes;
 
     protected $guarded = [];
 
@@ -19,25 +24,39 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public $rules = [
+        'name' => ['nullable', 'string'],
+        'email' => ['required', 'email'],
+        'password' => ['nullable', 'string'],
+        'twitter_handle' => ['nullable', 'string'],
+        'course_id_as_admin' => ['nullable', 'exists:courses,id'],
+        'remember_token' => ['nullable', 'string'],
+    ];
+
+    public function canBeDeleted()
+    {
+        return true;
+    }
+
     // Relationship registered.
     public function videosThatWereCompleted()
     {
         return $this->belongsToMany(Video::class, 'user_video_completed')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     // Relationship registered.
     public function videosThatWereBookmarked()
     {
         return $this->belongsToMany(Video::class, 'user_video_bookmarked')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     // Relationship registered.
     public function variants()
     {
         return $this->belongsToMany(Variant::class)
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     // Relationship registered.
@@ -50,7 +69,7 @@ class User extends Authenticatable
     public function courses()
     {
         return $this->belongsToMany(Course::class)
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     // Relationship registered.
