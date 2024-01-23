@@ -47,6 +47,12 @@ class Order extends EdukaModel
     ];
 
     // Relationship registered.
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+    // Relationship registered.
     public function user()
     {
         return $this->belongsTo(User::class);
