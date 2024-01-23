@@ -13,7 +13,7 @@ class Link extends EdukaModel
 
     public $rules = [
         'name' => ['required', 'string'],
-        'url' => ['required', 'string'],
+        'url' => ['required', 'url'],
         'video_id' => ['required', 'exists:videos,id'],
     ];
 

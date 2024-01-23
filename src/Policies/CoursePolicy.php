@@ -17,7 +17,7 @@ class CoursePolicy
 
     public function view(User $user, Course $model)
     {
-        return true;
+        return $user->course_id_as_admin == $model->id;
     }
 
     public function create(User $user)

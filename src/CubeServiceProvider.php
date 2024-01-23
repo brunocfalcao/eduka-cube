@@ -3,7 +3,6 @@
 namespace Eduka\Cube;
 
 use Eduka\Abstracts\Classes\EdukaServiceProvider;
-use Eduka\Cube\Commands\CreateCoupons;
 use Eduka\Nereus\Facades\Nereus;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Database\Eloquent\Model;
@@ -39,9 +38,7 @@ class CubeServiceProvider extends EdukaServiceProvider
 
     protected function registerCommands()
     {
-        $this->commands([
-            CreateCoupons::class,
-        ]);
+        $this->commands([]);
     }
 
     protected function registerPolicies()

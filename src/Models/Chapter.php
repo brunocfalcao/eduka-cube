@@ -53,7 +53,7 @@ class Chapter extends EdukaModel
 
     public function canBeDeleted()
     {
-        // No active videos part of this chapter.
+        // No active videos (including trashed) part of this chapter.
         return ! $this->videos()->withTrashed()->exists();
     }
 }
