@@ -20,6 +20,18 @@ class CourseObserver
         $extraValidationRules = [
             'canonical' => ['required', Rule::unique('courses')->ignore($course->id)],
             'domain' => ['required', 'string', Rule::unique('courses')->ignore($course->id)],
+            'prelaunched_at' => [
+                'nullable',
+                Rule::when($course->launched_at !== null, 'before:launched_at'),
+            ],
+            'launched_at' => [
+                'nullable',
+                Rule::when($course->prelaunched_at !== null, 'after:prelaunched_at'),
+            ],
+            'retired_at' => [
+                'nullable',
+                Rule::when($course->launched_at !== null, 'after:launched_at'),
+            ],
         ];
 
         $course->validate($extraValidationRules);
