@@ -3,10 +3,7 @@
 namespace Eduka\Cube;
 
 use Eduka\Abstracts\Classes\EdukaServiceProvider;
-use Eduka\Nereus\Facades\Nereus;
-use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 
 class CubeServiceProvider extends EdukaServiceProvider
@@ -15,13 +12,6 @@ class CubeServiceProvider extends EdukaServiceProvider
     {
         $this->registerPolicies();
         $this->registerObservers();
-
-        // Global scopes are loaded except if on frontend.
-        if (! Nereus::course()) {
-            Event::listen(Authenticated::class, function ($event) {
-                $this->registerGlobalScopes();
-            });
-        }
 
         // Eloquent strict behavior except production.
         Model::shouldBeStrict(! $this->app->isProduction());
