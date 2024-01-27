@@ -14,7 +14,6 @@ class SubscriberObserver
 
     public function created(Subscriber $subscriber)
     {
-        // This needs to be tested later with attention not to send emails.
-        // event(new SubscriberCreatedEvent($subscriber));
+        event(new SubscriberCreatedEvent($subscriber));
     }
 }
