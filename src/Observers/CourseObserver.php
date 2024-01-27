@@ -39,21 +39,15 @@ class CourseObserver
 
     public function created(Course $course)
     {
-        if (config('eduka.events.observers') === true) {
-            event(new CourseCreatedEvent($course));
-        }
+        event(new CourseCreatedEvent($course));
     }
 
     public function updated(Course $course)
     {
         if ($course->wasChanged('name')) {
-            if (config('eduka.events.observers') === true) {
-                event(new CourseRenamedEvent($course));
-            }
+            event(new CourseRenamedEvent($course));
         }
 
-        if (config('eduka.events.observers') === true) {
-            event(new CourseUpdatedEvent($course));
-        }
+        event(new CourseUpdatedEvent($course));
     }
 }

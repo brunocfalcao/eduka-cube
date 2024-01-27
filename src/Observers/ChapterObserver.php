@@ -56,8 +56,6 @@ class ChapterObserver
             }
         }
 
-        if (config('eduka.events.observers') === true) {
-            event(new ChapterCreatedEvent($chapter));
-        }
+        event(new ChapterCreatedEvent($chapter));
     }
 }
