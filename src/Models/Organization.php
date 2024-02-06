@@ -17,6 +17,9 @@ class Organization extends EdukaModel
     ];
 
     public $rules = [
+        'name' => ['required'],
+        'domain' => ['required'],
+        'provider_namespace' => ['required'],
     ];
 
     // Relationship registered.
