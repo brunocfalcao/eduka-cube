@@ -15,9 +15,13 @@ class Subscriber extends EdukaModel
         Notifiable,
         SoftDeletes;
 
+    protected $casts = [
+        'email' => 'encrypted',
+    ];
+
     public $rules = [
         'course_id' => ['required', 'exists:courses,id'],
-        'email' => ['required', 'string'],
+        'email' => ['required'],
     ];
 
     // Relationship registered.

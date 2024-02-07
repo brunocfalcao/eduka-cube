@@ -24,9 +24,13 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $casts = [
+        'email' => 'encrypted',
+    ];
+
     public $rules = [
         'name' => ['nullable', 'string'],
-        'email' => ['required', 'email'],
+        'email' => ['required'],
         'password' => ['nullable', 'string'],
         'twitter_handle' => ['nullable', 'string'],
         'course_id_as_admin' => ['nullable', 'exists:courses,id'],
