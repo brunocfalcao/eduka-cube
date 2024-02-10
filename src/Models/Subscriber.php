@@ -16,7 +16,6 @@ class Subscriber extends EdukaModel
         SoftDeletes;
 
     protected $casts = [
-        'email' => 'encrypted',
     ];
 
     public $rules = [

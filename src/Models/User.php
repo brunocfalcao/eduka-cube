@@ -25,7 +25,6 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        'email' => 'encrypted',
     ];
 
     public $rules = [

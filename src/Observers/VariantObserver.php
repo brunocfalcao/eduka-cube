@@ -5,7 +5,6 @@ namespace Eduka\Cube\Observers;
 use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
 use Brunocfalcao\LaravelHelpers\Traits\HasUuids;
 use Eduka\Cube\Models\Variant;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class VariantObserver
@@ -16,10 +15,7 @@ class VariantObserver
     {
         $this->upsertCanonical($variant, $variant->name);
         $this->ensureCorrectDefaultVariant($variant);
-
-        if (blank($variant->uuid)) {
-            $variant->uuid = (string) Str::uuid();
-        }
+        $this->upsertUuid($variant);
 
         $extraValidationRules = [
             'canonical' => ['required', Rule::unique('variants')->ignore($variant->id)],

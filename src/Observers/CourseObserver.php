@@ -3,6 +3,7 @@
 namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
+use Brunocfalcao\LaravelHelpers\Traits\HasUuids;
 use Eduka\Cube\Events\Courses\CourseCreatedEvent;
 use Eduka\Cube\Events\Courses\CourseRenamedEvent;
 use Eduka\Cube\Events\Courses\CourseUpdatedEvent;
@@ -11,11 +12,12 @@ use Illuminate\Validation\Rule;
 
 class CourseObserver
 {
-    use HasCanonicals;
+    use HasCanonicals, HasUuids;
 
     public function saving(Course $course)
     {
         $this->upsertCanonical($course, $course->name);
+        $this->upsertUuid($course);
 
         $extraValidationRules = [
             'canonical' => ['required', Rule::unique('courses')->ignore($course->id)],
