@@ -4,12 +4,18 @@ namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
 use Brunocfalcao\LaravelHelpers\Traits\HasUuids;
+use Eduka\Cube\Events\Variants\VariantSavedEvent;
 use Eduka\Cube\Models\Variant;
 use Illuminate\Validation\Rule;
 
 class VariantObserver
 {
     use HasCanonicals, HasUuids;
+
+    public function saved(Variant $variant)
+    {
+        event(new VariantSavedEvent($variant));
+    }
 
     public function saving(Variant $variant)
     {
@@ -18,7 +24,7 @@ class VariantObserver
         $this->upsertUuid($variant);
 
         $extraValidationRules = [
-            'canonical' => ['required', Rule::unique('variants')->ignore($variant->id)],
+            'canonical' => [Rule::unique('variants')->ignore($variant->id)],
         ];
 
         $variant->validate($extraValidationRules);

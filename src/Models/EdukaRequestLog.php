@@ -4,24 +4,36 @@ namespace Eduka\Cube\Models;
 
 use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
 use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
+use Brunocfalcao\LaravelNovaHelpers\Traits\DefaultAscPKSorting;
 use Eduka\Abstracts\Classes\EdukaModel;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EdukaRequestLog extends EdukaModel
 {
-    use HasCustomQueryBuilder,
-        HasValidations,
-        SoftDeletes;
+    use DefaultAscPKSorting,
+        HasCustomQueryBuilder, HasValidations;
 
     protected $casts = [
-        'request_payload' => 'array',
-        'request_headers' => 'array',
+        'payload' => 'array',
+        'headers' => 'array',
+        'parameters' => 'array',
+        'middleware' => 'array',
+        'payload' => 'array',
     ];
 
     public $rules = [
         'referer' => ['nullable', 'string'],
         'url' => ['required', 'string'],
-        'request_payload' => ['required', 'string'],
-        'request_headers' => ['required', 'string'],
+        'payload' => ['required', 'string'],
+        'headers' => ['required', 'string'],
     ];
+
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }
