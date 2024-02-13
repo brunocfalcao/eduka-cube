@@ -28,6 +28,12 @@ class Organization extends EdukaModel
         return $this->hasMany(Course::class);
     }
 
+    // Relationship registered.
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
     public function canBeDeleted()
     {
         // For now, an organization cannot be deleted.

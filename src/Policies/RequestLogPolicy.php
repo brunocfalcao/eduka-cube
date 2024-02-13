@@ -2,11 +2,11 @@
 
 namespace Eduka\Cube\Policies;
 
-use Eduka\Cube\Models\EdukaRequestLog;
+use Eduka\Cube\Models\RequestLog;
 use Eduka\Cube\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class EdukaRequestLogPolicy
+class RequestLogPolicy
 {
     use HandlesAuthorization;
 
@@ -15,7 +15,7 @@ class EdukaRequestLogPolicy
         return true;
     }
 
-    public function view(User $user, EdukaRequestLog $model)
+    public function view(User $user, RequestLog $model)
     {
         return true;
     }
@@ -25,27 +25,27 @@ class EdukaRequestLogPolicy
         return false;
     }
 
-    public function update(User $user, EdukaRequestLog $model)
+    public function update(User $user, RequestLog $model)
     {
         return false;
     }
 
-    public function delete(User $user, EdukaRequestLog $model)
+    public function delete(User $user, RequestLog $model)
     {
         return false;
     }
 
-    public function restore(User $user, EdukaRequestLog $model)
+    public function restore(User $user, RequestLog $model)
     {
         return false;
     }
 
-    public function forceDelete(User $user, EdukaRequestLog $model)
+    public function forceDelete(User $user, RequestLog $model)
     {
         return false;
     }
 
-    public function replicate(User $user, EdukaRequestLog $model)
+    public function replicate(User $user, RequestLog $model)
     {
         return false;
     }

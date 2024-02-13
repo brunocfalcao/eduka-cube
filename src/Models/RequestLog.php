@@ -7,7 +7,7 @@ use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Brunocfalcao\LaravelNovaHelpers\Traits\DefaultAscPKSorting;
 use Eduka\Abstracts\Classes\EdukaModel;
 
-class EdukaRequestLog extends EdukaModel
+class RequestLog extends EdukaModel
 {
     use DefaultAscPKSorting,
         HasCustomQueryBuilder, HasValidations;
@@ -30,6 +30,11 @@ class EdukaRequestLog extends EdukaModel
     public function organization()
     {
         return $this->belongsTo(Organization::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function course()

@@ -80,4 +80,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Course::class, 'course_id_as_admin');
     }
+
+    // Relationship registered.
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
 }
