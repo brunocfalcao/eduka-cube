@@ -24,6 +24,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $appends = [
+        'organizations',
+    ];
+
     protected $casts = [
     ];
 
@@ -81,9 +85,17 @@ class User extends Authenticatable
         return $this->belongsTo(Course::class, 'course_id_as_admin');
     }
 
-    // Relationship registered.
-    public function organization()
+    // Computed attribute to obtain the user organizations (ids in array).
+    public function getOrganizationsAttribute()
     {
-        return $this->belongsTo(Organization::class);
+        $organizations = [];
+
+        if ($this->variants) {
+            foreach ($this->courses as $course) {
+                $organizations[] = $course->organization->id;
+            }
+        }
+
+        return array_unique($organizations);
     }
 }

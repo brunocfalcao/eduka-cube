@@ -40,15 +40,15 @@ class Video extends EdukaModel
     ];
 
     // Relationship registered.
-    public function usersThatCompleted()
-    {
-        return $this->belongsToMany(User::class, 'user_video_completed');
-    }
-
-    // Relationship registered.
     public function usersThatBookmarked()
     {
         return $this->belongsToMany(User::class, 'user_video_bookmarked');
+    }
+
+    // Relationship registered.
+    public function usersThatSaw()
+    {
+        return $this->belongsToMany(User::class, 'user_video_seen');
     }
 
     // Relationship registered.

@@ -16,6 +16,8 @@ class Order extends EdukaModel
     protected $casts = [
         'response_body' => 'array',
         'custom_data' => 'array',
+
+        'refunded' => 'boolean',
     ];
 
     public $rules = [
@@ -25,20 +27,10 @@ class Order extends EdukaModel
         'custom_data' => ['required'],
         'event_name' => ['required'],
         'store_id' => ['required'],
-        'customer_id' => ['required'],
-        'order_number' => ['required'],
-        'user_name' => ['required'],
         'user_email' => ['required'],
-        'subtotal_usd' => ['required'],
-        'tax_usd' => ['required'],
         'total_usd' => ['required'],
-        'status' => ['required'],
         'refunded' => ['nullable', 'boolean'],
         'order_id' => ['required'],
-        'lemon_squeezy_product_id' => ['required'],
-        'lemon_squeezy_variant_id' => ['required'],
-        'lemon_squeezy_product_name' => ['required'],
-        'lemon_squeezy_variant_name' => ['required'],
         'price' => ['required'],
         'receipt' => ['required'],
     ];
