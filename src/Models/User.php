@@ -46,9 +46,9 @@ class User extends Authenticatable
     }
 
     // Relationship registered.
-    public function videosThatWereCompleted()
+    public function videosThatWereSeen()
     {
-        return $this->belongsToMany(Video::class, 'user_video_completed')
+        return $this->belongsToMany(Video::class, 'user_video_seen')
             ->withTimestamps();
     }
 
@@ -56,6 +56,13 @@ class User extends Authenticatable
     public function videosThatWereBookmarked()
     {
         return $this->belongsToMany(Video::class, 'user_video_bookmarked')
+            ->withTimestamps();
+    }
+
+    // Relationship registered.
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class)
             ->withTimestamps();
     }
 
@@ -73,29 +80,28 @@ class User extends Authenticatable
     }
 
     // Relationship registered.
-    public function courses()
-    {
-        return $this->belongsToMany(Course::class)
-            ->withTimestamps();
-    }
-
-    // Relationship registered.
     public function courseAsAdmin()
     {
         return $this->belongsTo(Course::class, 'course_id_as_admin');
     }
 
-    // Computed attribute to obtain the user organizations (ids in array).
+    /**
+     * Although an user just have one single entry on the users table, it
+     * can belong to multiple organizations. This allows eduka to understand
+     * from what organization should an email be sent. The only tradeoff is
+     * the password is the same for different organizations, and this needs
+     * to be changed later.
+     */
     public function getOrganizationsAttribute()
     {
         $organizations = [];
 
         if ($this->variants) {
-            foreach ($this->courses as $course) {
-                $organizations[] = $course->organization->id;
+            foreach ($this->variants as $variant) {
+                $organizations[] = $variant->course->organization;
             }
         }
 
-        return array_unique($organizations);
+        return $organizations;
     }
 }
