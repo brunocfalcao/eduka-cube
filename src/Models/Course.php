@@ -23,13 +23,15 @@ class Course extends EdukaModel
         'is_active' => 'boolean',
         'is_ppp_enabled' => 'boolean',
 
-        'meta' => 'array',
+        'meta_names' => 'array',
+        'meta_properties' => 'array',
     ];
 
     public $rules = [
         'name' => ['required', 'string'],
         'canonical' => ['required'],
-        'meta' => ['nullable'],
+        'meta_names' => ['nullable'],
+        'meta_properties' => ['nullable'],
         'domain' => ['required', 'string'],
         'provider_namespace' => ['nullable', 'string'],
         'is_active' => ['nullable', 'boolean'],

@@ -48,4 +48,26 @@ class UserPolicy
     {
         return false;
     }
+
+    public function attachAnyVideo(User $user, User $model)
+    {
+        return false;
+    }
+
+    public function attachAnyVariant(User $user, User $model)
+    {
+        return false;
+    }
+
+    public function attachAnyOrder(User $user, User $model)
+    {
+        info('verifying from user policy');
+
+        return false;
+    }
+
+    public function attachAnyCourse(User $user, User $model)
+    {
+        return false;
+    }
 }

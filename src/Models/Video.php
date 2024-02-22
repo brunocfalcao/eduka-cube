@@ -22,7 +22,8 @@ class Video extends EdukaModel
 
         'duration' => 'integer',
 
-        'meta' => 'array',
+        'meta_names' => 'array',
+        'meta_properties' => 'array',
     ];
 
     public $rules = [
@@ -30,7 +31,8 @@ class Video extends EdukaModel
         'description' => ['nullable'],
         'index' => ['required'],
         'course_id' => ['required', 'exists:courses,id'],
-        'meta' => ['nullable'],
+        'meta_names' => ['nullable'],
+        'meta_properties' => ['nullable'],
         'duration' => ['nullable', 'integer'],
         'is_visible' => ['nullable', 'boolean'],
         'is_active' => ['nullable', 'boolean'],

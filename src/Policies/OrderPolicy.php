@@ -49,4 +49,11 @@ class OrderPolicy
     {
         return false;
     }
+
+    public function attachAnyUser(User $user, Order $model)
+    {
+        info('verifying from order policy');
+
+        return false;
+    }
 }

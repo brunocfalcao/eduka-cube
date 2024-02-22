@@ -49,4 +49,9 @@ class VariantPolicy
     {
         return false;
     }
+
+    public function attachAnyUser(User $user, Variant $model)
+    {
+        return false;
+    }
 }

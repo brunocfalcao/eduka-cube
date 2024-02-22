@@ -16,7 +16,8 @@ class Chapter extends EdukaModel
         SoftDeletes;
 
     protected $casts = [
-        'meta' => 'array',
+        'meta_names' => 'array',
+        'meta_properties' => 'array',
 
         'prelaunched_at' => 'datetime',
         'launched_at' => 'datetime',

@@ -49,4 +49,9 @@ class CoursePolicy
     {
         return false;
     }
+
+    public function attachAnyUser(User $user, Course $model)
+    {
+        return false;
+    }
 }

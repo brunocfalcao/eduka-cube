@@ -38,11 +38,16 @@ trait CourseFeatures
         }
     }
 
+    /**
+     * Retrieves the specified variant model, and if not found returns
+     * the default one.
+     */
     public function getVariantOrDefault(?Variant $variant = null)
     {
         return $variant ?? $this->getDefaultVariant();
     }
 
+    // Returns the default variant for the current course.
     public function getDefaultVariant()
     {
         if ($this->variants->count() > 1) {
@@ -52,19 +57,10 @@ trait CourseFeatures
         }
     }
 
+    // Registers its service provider. Used in Nereus, mostly.
     public function registerSelfProvider()
     {
         app()->register($this->provider_namespace);
-    }
-
-    public function paymentProviderStoreId()
-    {
-        return $this->lemon_squeezy_store_id;
-    }
-
-    public function isPPPEnabled()
-    {
-        return $this->enable_purchase_power_parity == true;
     }
 
     public function createBucketNameUsing()

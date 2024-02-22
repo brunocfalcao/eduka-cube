@@ -49,4 +49,9 @@ class VideoPolicy
     {
         return false;
     }
+
+    public function attachAnyUser(User $user, Video $model)
+    {
+        return false;
+    }
 }
