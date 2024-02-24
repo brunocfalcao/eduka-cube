@@ -36,7 +36,6 @@ class User extends Authenticatable
         'email' => ['required'],
         'password' => ['nullable', 'string'],
         'twitter_handle' => ['nullable', 'string'],
-        'course_id_as_admin' => ['nullable', 'exists:courses,id'],
         'remember_token' => ['nullable', 'string'],
     ];
 
@@ -77,12 +76,6 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
-    }
-
-    // Relationship registered.
-    public function courseAsAdmin()
-    {
-        return $this->belongsTo(Course::class, 'course_id_as_admin');
     }
 
     /**

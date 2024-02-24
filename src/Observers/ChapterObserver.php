@@ -8,18 +8,11 @@ use Eduka\Cube\Events\Chapters\ChapterRenamedEvent;
 use Eduka\Cube\Events\Chapters\ChapterUpdatedEvent;
 use Eduka\Cube\Models\Chapter;
 use Eduka\Cube\Models\Course;
-use Illuminate\Support\Facades\Auth;
 
 class ChapterObserver
 {
     public function saving(Chapter $chapter)
     {
-        if (Auth::id()) {
-            // Associate this course with the logged admin user.
-            // It's not the best practise, but it only happens on Nova.
-            $chapter->course_id = Auth::user()->course_id_as_admin;
-        }
-
         $chapter->incrementByGroup('course_id');
 
         $chapter->validate();

@@ -4,7 +4,8 @@ namespace Eduka\Cube\Observers;
 
 use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
 use Brunocfalcao\LaravelHelpers\Traits\HasUuids;
-use Eduka\Cube\Events\Videos\VideoNameChanged;
+use Eduka\Cube\Events\Videos\VideoRenamedEvent;
+use Eduka\Cube\Events\Videos\VideoUplsertEvent;
 use Eduka\Cube\Models\Video;
 use Illuminate\Validation\Rule;
 
@@ -29,7 +30,11 @@ class VideoObserver
     public function saved(Video $video)
     {
         if ($video->wasChanged('name') && $video->vimeo_id) {
-            event(new VideoNameChanged($video));
+            event(new VideoRenamedEvent($video));
+        }
+
+        if ($video->wasChanged('temp_filename_path')) {
+            event(new VideoUplsertEvent($video));
         }
     }
 }

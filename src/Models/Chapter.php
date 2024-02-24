@@ -30,7 +30,6 @@ class Chapter extends EdukaModel
         'name' => ['required', 'string'],
         'description' => ['nullable'],
         'vimeo_uri' => ['nullable', 'string'],
-        'vimeo_folder_id' => ['nullable', 'string'],
     ];
 
     // Relationship registered.

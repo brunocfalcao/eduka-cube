@@ -17,7 +17,6 @@
     "require": {
         "php": "^8.2",
         "brunocfalcao/eduka-abstracts": "dev-master",
-        "brunocfalcao/eduka-helpers": "dev-master",
         "brunocfalcao/laravel-helpers": "dev-master",
         "illuminate/contracts": "^10.0",
         "lemonsqueezy/laravel": "^0.2.1",

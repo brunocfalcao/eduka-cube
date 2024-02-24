@@ -64,26 +64,6 @@ class VimeoUploaderValidator
         return $this;
     }
 
-    public function getVideoMetadata(): array
-    {
-        return $this->video->vimeoMetadata();
-    }
-
-    public function videoExistsOnDisk(): bool
-    {
-        return Storage::exists($this->storage->path_on_disk);
-    }
-
-    public function getCourseName(): string
-    {
-        return $this->getCourse()->name;
-    }
-
-    public function getCourse(): Course
-    {
-        return $this->course;
-    }
-
     public function getVideoStorage(): VideoStorage
     {
         return $this->storage;

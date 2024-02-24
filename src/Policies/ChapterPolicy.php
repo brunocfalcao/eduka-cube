@@ -17,7 +17,7 @@ class ChapterPolicy
 
     public function view(User $user, Chapter $model)
     {
-        return $user->course_id_as_admin == $model->course_id;
+        return true;
     }
 
     public function create(User $user)

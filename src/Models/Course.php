@@ -61,12 +61,6 @@ class Course extends EdukaModel
     }
 
     // Relationship registered.
-    public function adminUser()
-    {
-        return $this->hasOne(User::class, 'course_id_as_admin');
-    }
-
-    // Relationship registered.
     public function tags()
     {
         return $this->hasMany(Tag::class);
@@ -106,5 +100,10 @@ class Course extends EdukaModel
     {
         // No active videos part of this chapter.
         return ! $this->videos()->withTrashed()->exists();
+    }
+
+    public function getAdminAttribute()
+    {
+        return User::firstWhere('email', $this->admin_email);
     }
 }
