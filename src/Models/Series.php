@@ -18,7 +18,7 @@ class Series extends EdukaModel
     ];
 
     // Relationship registered.
-    public function courses()
+    public function course()
     {
         return $this->belongsTo(Course::class);
     }

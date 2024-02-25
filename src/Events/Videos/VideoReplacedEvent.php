@@ -4,7 +4,7 @@ namespace Eduka\Cube\Events\Videos;
 
 use Eduka\Cube\Models\Video;
 
-class VideoUplsertEvent
+class VideoReplacedEvent
 {
     public Video $video;
 

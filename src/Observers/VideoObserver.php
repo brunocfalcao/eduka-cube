@@ -5,7 +5,7 @@ namespace Eduka\Cube\Observers;
 use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
 use Brunocfalcao\LaravelHelpers\Traits\HasUuids;
 use Eduka\Cube\Events\Videos\VideoRenamedEvent;
-use Eduka\Cube\Events\Videos\VideoUplsertEvent;
+use Eduka\Cube\Events\Videos\VideoReplacedEvent;
 use Eduka\Cube\Models\Video;
 use Illuminate\Validation\Rule;
 
@@ -34,7 +34,7 @@ class VideoObserver
         }
 
         if ($video->wasChanged('temp_filename_path')) {
-            event(new VideoUplsertEvent($video));
+            event(new VideoReplacedEvent($video));
         }
     }
 }

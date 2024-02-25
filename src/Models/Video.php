@@ -6,6 +6,7 @@ use Brunocfalcao\LaravelHelpers\Traits\HasAutoIncrementsByGroup;
 use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
 use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
+use Eduka\Cube\Concerns\VideoFeatures;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Video extends EdukaModel
@@ -13,7 +14,8 @@ class Video extends EdukaModel
     use HasAutoIncrementsByGroup,
         HasCustomQueryBuilder,
         HasValidations,
-        SoftDeletes;
+        SoftDeletes,
+        VideoFeatures;
 
     protected $casts = [
         'is_visible' => 'boolean',

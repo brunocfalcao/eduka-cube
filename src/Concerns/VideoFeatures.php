@@ -26,9 +26,9 @@ trait VideoFeatures
             'embed.title.name' => 'show',
             'hide_from_vimeo' => true,
             'privacy.view' => 'unlisted',
+            'privacy.download' => true,
             'privacy.embed' => 'whitelist',
-            // The embed domains are all domains part of the user admin course.
-            'embed_domains' => $this->createdBy->courses->first()->domains->pluck('name'),
+            'embed_domains' => $this->course->domain,
         ]);
     }
 }
