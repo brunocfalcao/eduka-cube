@@ -62,19 +62,4 @@ trait CourseFeatures
     {
         app()->register($this->provider_namespace);
     }
-
-    public function createBucketNameUsing()
-    {
-        return $this->canonical;
-    }
-
-    public function getBucketName()
-    {
-        return $this->backblaze_bucket_name;
-    }
-
-    public function getCurrentProgress(): int
-    {
-        return $this->progress;
-    }
 }
