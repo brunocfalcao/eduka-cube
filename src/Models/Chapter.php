@@ -6,14 +6,12 @@ use Brunocfalcao\LaravelHelpers\Traits\HasAutoIncrementsByGroup;
 use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
 use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Chapter extends EdukaModel
 {
     use HasAutoIncrementsByGroup,
         HasCustomQueryBuilder,
-        HasValidations,
-        SoftDeletes;
+        HasValidations;
 
     protected $casts = [
         'meta_names' => 'array',
