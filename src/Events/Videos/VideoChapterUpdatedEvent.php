@@ -8,11 +8,8 @@ class VideoChapterUpdatedEvent
 {
     public Video $video;
 
-    public $previousChapterId;
-
     public function __construct(Video $video)
     {
         $this->video = $video;
-        $this->previousChapterId = $video->getOriginal('chapter_id');
     }
 }

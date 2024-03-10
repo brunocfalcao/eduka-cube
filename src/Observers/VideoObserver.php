@@ -44,7 +44,7 @@ class VideoObserver
         }
 
         // We nede to replace/remove from the current chapter and add to the new one.
-        if ($video->wasChanged('chapter_id')) {
+        if ($video->wasChanged('chapter_id') && $video->vimeo_uri) {
             event(new VideoChapterUpdatedEvent($video));
         }
     }

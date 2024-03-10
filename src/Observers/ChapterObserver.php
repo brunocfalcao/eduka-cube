@@ -33,11 +33,15 @@ class ChapterObserver
          * We can't pass a chapter object because it doesn't exist anymore.
          * So, we need to pass all the reference data we need.
          */
+        /*
         event(new ChapterDeletedEvent([
             'vimeo_folder_id' => $chapter->vimeo_folder_id,
             'name' => $chapter->name,
             'admin' => $chapter->course->admin,
         ]));
+        */
+
+        event(new ChapterDeletedEvent($chapter));
     }
 
     public function created(Chapter $chapter)

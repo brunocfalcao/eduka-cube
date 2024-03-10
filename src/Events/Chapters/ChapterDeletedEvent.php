@@ -2,12 +2,14 @@
 
 namespace Eduka\Cube\Events\Chapters;
 
+use Eduka\Cube\Models\Chapter;
+
 class ChapterDeletedEvent
 {
-    public $payload;
+    public $chapter;
 
-    public function __construct(array $payload)
+    public function __construct(Chapter $chapter)
     {
-        $this->payload = $payload;
+        $this->chapter = $chapter;
     }
 }

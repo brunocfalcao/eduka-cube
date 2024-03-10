@@ -2,6 +2,8 @@
 
 namespace Eduka\Cube\Concerns;
 
+use Illuminate\Support\Facades\Storage;
+
 trait CourseFeatures
 {
     public function state()
@@ -61,5 +63,26 @@ trait CourseFeatures
     public function registerSelfProvider()
     {
         app()->register($this->provider_namespace);
+    }
+
+    // Generates the meta-name and meta-property tags based on the course data.
+    public function setMetas()
+    {
+        $this->meta_names = [
+            'twitter:description' => $this->description,
+            'twitter:card' => 'summary_large_image',
+            'twitter:site' => $this->twitter_handle,
+            'twitter:image' => Storage::url($this->filename),
+            'twitter:creator' => $this->twitter_handle,
+            'twitter:title' => $this->name,
+        ];
+
+        $this->meta_properties = [
+            'og:description' => $this->description,
+            'og:url' => 'https://'.$this->domain,
+            'og:type' => 'article',
+            'og:image' => Storage::url($this->filename),
+            'og:title' => $this->name,
+        ];
     }
 }
