@@ -3,6 +3,7 @@
 namespace Eduka\Cube\Concerns;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait CourseFeatures
 {
@@ -65,24 +66,25 @@ trait CourseFeatures
         app()->register($this->provider_namespace);
     }
 
-    // Generates the meta-name and meta-property tags based on the course data.
-    public function setMetas()
+    /**
+     * Returns computed attribute 'metas', with all the meta tags
+     * to be rendered in an HTML page.
+     */
+    public function metas()
     {
-        $this->meta_names = [
-            'twitter:description' => $this->description,
-            'twitter:card' => 'summary_large_image',
-            'twitter:site' => $this->twitter_handle,
-            'twitter:image' => Storage::url($this->filename),
-            'twitter:creator' => $this->twitter_handle,
-            'twitter:title' => $this->name,
-        ];
+        return [
+            'name|twitter:description' => $this->description,
+            'name|twitter:card' => 'summary_large_image',
+            'name|twitter:site' => $this->twitter_handle,
+            'name|twitter:image' => Storage::url($this->filename),
+            'name|twitter:creator' => $this->twitter_handle,
+            'name|twitter:title' => $this->name,
 
-        $this->meta_properties = [
-            'og:description' => $this->description,
-            'og:url' => 'https://'.$this->domain,
-            'og:type' => 'article',
-            'og:image' => Storage::url($this->filename),
-            'og:title' => $this->name,
+            'property|og:description' => $this->description,
+            'property|og:url' => 'https://'.$this->domain,
+            'property|og:type' => 'article',
+            'property|og:image' => Storage::url($this->filename),
+            'property|og:title' => $this->name,
         ];
     }
 }

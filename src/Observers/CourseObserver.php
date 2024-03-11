@@ -19,9 +19,6 @@ class CourseObserver
         $this->upsertCanonical($course, $course->name);
         $this->upsertUuid($course);
 
-        // Generate meta tags, in case they don't exist.
-        $course->setMetas();
-
         $extraValidationRules = [
             'canonical' => ['required', Rule::unique('courses')->ignore($course->id)],
             'domain' => ['required', 'string', Rule::unique('courses')->ignore($course->id)],

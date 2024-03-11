@@ -19,19 +19,15 @@ class Course extends EdukaModel
         'prelaunched_at' => 'datetime',
         'launched_at' => 'datetime',
         'retired_at' => 'datetime',
+        'metas' => 'array',
 
         'is_active' => 'boolean',
         'is_ppp_enabled' => 'boolean',
-
-        'meta_names' => 'array',
-        'meta_properties' => 'array',
     ];
 
     public $rules = [
         'name' => ['required', 'string'],
         'canonical' => ['required'],
-        'meta_names' => ['nullable'],
-        'meta_properties' => ['nullable'],
         'domain' => ['required', 'string'],
         'provider_namespace' => ['nullable', 'string'],
         'is_active' => ['nullable', 'boolean'],
@@ -40,6 +36,9 @@ class Course extends EdukaModel
         'vimeo_uri_key' => ['nullable', 'string'],
         'backblaze_bucket_name' => ['nullable', 'string'],
     ];
+
+    // Computed attributes.
+    public $appends = ['metas'];
 
     // Relationship registered.
     public function organization()

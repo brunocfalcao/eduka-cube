@@ -14,9 +14,6 @@ class Chapter extends EdukaModel
         HasValidations;
 
     protected $casts = [
-        'meta_names' => 'array',
-        'meta_properties' => 'array',
-
         'prelaunched_at' => 'datetime',
         'launched_at' => 'datetime',
         'retired_at' => 'datetime',
