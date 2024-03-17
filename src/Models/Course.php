@@ -91,15 +91,15 @@ class Course extends EdukaModel
     }
 
     // Relationship registered.
-    public function videos()
+    public function episodes()
     {
-        return $this->hasMany(Video::class);
+        return $this->hasMany(Episode::class);
     }
 
     public function canBeDeleted()
     {
-        // No active videos part of this chapter.
-        return ! $this->videos()->withTrashed()->exists();
+        // No active episodes part of this chapter.
+        return ! $this->episodes()->withTrashed()->exists();
     }
 
     public function getAdminAttribute()

@@ -49,7 +49,7 @@ class StudentPolicy
         return false;
     }
 
-    public function attachAnyVideo(Student $student, Student $model)
+    public function attachAnyEpisode(Student $student, Student $model)
     {
         return false;
     }

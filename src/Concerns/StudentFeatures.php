@@ -5,12 +5,12 @@ namespace Eduka\Cube\Concerns;
 trait StudentFeatures
 {
     /**
-     * Marks a student video as seen. Uses a special method that will sync
-     * this video id and remove any other entries where the student_id/video_id
+     * Marks a student episode as seen. Uses a special method that will sync
+     * this episode id and remove any other entries where the student_id/episode_id
      * is present (and keep the most updated one).
      */
-    public function markAsSeen(Video $video)
+    public function markAsSeen(Episode $episode)
     {
-        $this->videosThatWereSeen()->syncOnlyThese($video->id);
+        $this->episodesThatWereSeen()->syncOnlyThese($episode->id);
     }
 }

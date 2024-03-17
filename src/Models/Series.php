@@ -24,9 +24,9 @@ class Series extends EdukaModel
     }
 
     // Relationship registered.
-    public function videos()
+    public function episodes()
     {
-        return $this->belongsToMany(Video::class)
+        return $this->belongsToMany(Episode::class)
             ->withTimestamps();
     }
 }

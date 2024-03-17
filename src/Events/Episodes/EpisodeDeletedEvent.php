@@ -1,8 +1,8 @@
 <?php
 
-namespace Eduka\Cube\Events\Videos;
+namespace Eduka\Cube\Events\Episodes;
 
-class VideoDeletedEvent
+class EpisodeDeletedEvent
 {
     public $payload;
 

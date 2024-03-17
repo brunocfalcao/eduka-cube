@@ -2,11 +2,11 @@
 
 namespace Eduka\Cube\Policies;
 
+use Eduka\Cube\Models\Episode;
 use Eduka\Cube\Models\Student;
-use Eduka\Cube\Models\Video;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class VideoPolicy
+class EpisodePolicy
 {
     use HandlesAuthorization;
 
@@ -15,7 +15,7 @@ class VideoPolicy
         return true;
     }
 
-    public function view(Student $student, Video $model)
+    public function view(Student $student, Episode $model)
     {
         return true;
     }
@@ -25,32 +25,32 @@ class VideoPolicy
         return true;
     }
 
-    public function update(Student $student, Video $model)
+    public function update(Student $student, Episode $model)
     {
         return true;
     }
 
-    public function delete(Student $student, Video $model)
+    public function delete(Student $student, Episode $model)
     {
         return $model->canBeDeleted();
     }
 
-    public function restore(Student $student, Video $model)
+    public function restore(Student $student, Episode $model)
     {
         return $model->trashed();
     }
 
-    public function forceDelete(Student $student, Video $model)
+    public function forceDelete(Student $student, Episode $model)
     {
         return $model->trashed();
     }
 
-    public function replicate(Student $student, Video $model)
+    public function replicate(Student $student, Episode $model)
     {
         return false;
     }
 
-    public function attachAnyUser(Student $student, Video $model)
+    public function attachAnyUser(Student $student, Episode $model)
     {
         return false;
     }

@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="flex items-center justify-center mb-6 gap-12 text-lg">
-            <a id="silversurfer_link" href="#!" class="link-primary selected">Silver Surfer (4.x) videos</a>
-            <a id="orion_link" href="#!" class="link-primary">Orion (3.x) videos</a>
+            <a id="silversurfer_link" href="#!" class="link-primary selected">Silver Surfer (4.x) episodes</a>
+            <a id="orion_link" href="#!" class="link-primary">Orion (3.x) episodes</a>
         </div>
         <div class="flex items-center justify-center p-y-8">
             <div class="flex gap-12">

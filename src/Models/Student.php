@@ -41,16 +41,16 @@ class Student extends Authenticatable
     }
 
     // Relationship registered.
-    public function videosThatWereSeen()
+    public function episodesThatWereSeen()
     {
-        return $this->belongsToMany(Video::class, 'student_video_seen')
+        return $this->belongsToMany(Episode::class, 'student_episode_seen')
             ->withTimestamps();
     }
 
     // Relationship registered.
-    public function videosThatWereBookmarked()
+    public function episodesThatWereBookmarked()
     {
-        return $this->belongsToMany(Video::class, 'student_video_bookmarked')
+        return $this->belongsToMany(Episode::class, 'student_episode_bookmarked')
             ->withTimestamps();
     }
 

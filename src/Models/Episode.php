@@ -6,16 +6,16 @@ use Brunocfalcao\LaravelHelpers\Traits\HasAutoIncrementsByGroup;
 use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
 use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
-use Eduka\Cube\Concerns\VideoFeatures;
+use Eduka\Cube\Concerns\EpisodeFeatures;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Video extends EdukaModel
+class Episode extends EdukaModel
 {
-    use HasAutoIncrementsByGroup,
+    use EpisodeFeatures,
+        HasAutoIncrementsByGroup,
         HasCustomQueryBuilder,
         HasValidations,
-        SoftDeletes,
-        VideoFeatures;
+        SoftDeletes;
 
     protected $casts = [
         'is_visible' => 'boolean',
@@ -41,13 +41,13 @@ class Video extends EdukaModel
     // Relationship registered.
     public function studentsThatBookmarked()
     {
-        return $this->belongsToMany(Student::class, 'student_video_bookmarked');
+        return $this->belongsToMany(Student::class, 'student_episode_bookmarked');
     }
 
     // Relationship registered.
     public function studentsThatSaw()
     {
-        return $this->belongsToMany(Student::class, 'student_video_seen');
+        return $this->belongsToMany(Student::class, 'student_episode_seen');
     }
 
     // Relationship registered.

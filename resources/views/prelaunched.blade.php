@@ -101,7 +101,7 @@
                             <p class="text-xl text-bombay-300">Tons of fun learning the best admin panel for Laravel, made by the creators of the
                                 best PHP framework in the world
                             </p>
-                            <!-- Purchase / watch video buttons (hidden in responsive context) -->
+                            <!-- Purchase / watch episode buttons (hidden in responsive context) -->
                             <div class="hidden flex-stop-wrap-at-lg xl:block xl:space-x-5">
                                 <x-eduka::button-primary
                                     color="aquacyan"
@@ -126,7 +126,7 @@
                                           <path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" stroke-linecap="round"></path>
                                         </svg>
                                     </x-slot>
-                                    Watch free videos
+                                    Watch free episodes
                                 </x-eduka::button-primary>
                             </div>
                         </div>
@@ -222,12 +222,12 @@
 
             <section class="section-default">
                 <div class="section-title">
-                    <p>Tons of videos to answer your needs</p>
+                    <p>Tons of episodes to answer your needs</p>
                     <p>For both Orion and Silver Surfer versions</p>
                 </div>
                 <div class="flex items-center justify-center mb-6 gap-12 text-lg">
-                    <a id="silversurfer_link" href="#!" onclick="switchToPanel('orion')" class="link-primary selected">Silver Surfer (4.x) videos</a>
-                    <a id="orion_link" href="#!" onclick="switchToPanel('silversurfer')" class="link-primary">Orion (3.x) videos</a>
+                    <a id="silversurfer_link" href="#!" onclick="switchToPanel('orion')" class="link-primary selected">Silver Surfer (4.x) episodes</a>
+                    <a id="orion_link" href="#!" onclick="switchToPanel('silversurfer')" class="link-primary">Orion (3.x) episodes</a>
                 </div>
                 <div class="flex items-center justify-center p-y-8">
 

@@ -2,10 +2,10 @@
 
 namespace Eduka\Cube\Concerns;
 
-trait VideoFeatures
+trait EpisodeFeatures
 {
     /**
-     * Grabs the destination vimeo video folder URI. If the video is part
+     * Grabs the destination vimeo episode folder URI. If the episode is part
      * of a chapter, then returns that one, if not then returns the
      * course folder URI.
      */
@@ -17,7 +17,7 @@ trait VideoFeatures
     }
 
     /**
-     * Returns the default vimeo metadata for a video upload. Allows the
+     * Returns the default vimeo metadata for a episode upload. Allows the
      * extra data merging with the main data array.
      */
     public function getVimeoVideoDefaultMetadata(array $extraData = []): array

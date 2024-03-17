@@ -28,9 +28,9 @@ class Chapter extends EdukaModel
     ];
 
     // Relationship registered.
-    public function videos()
+    public function episodes()
     {
-        return $this->hasMany(Video::class);
+        return $this->hasMany(Episode::class);
     }
 
     // Relationship registered.
@@ -48,7 +48,7 @@ class Chapter extends EdukaModel
 
     public function canBeDeleted()
     {
-        // No active videos (including trashed) part of this chapter.
-        return ! $this->videos()->withTrashed()->exists();
+        // No active episodes (including trashed) part of this chapter.
+        return ! $this->episodes()->withTrashed()->exists();
     }
 }

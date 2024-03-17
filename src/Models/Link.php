@@ -14,12 +14,12 @@ class Link extends EdukaModel
     public $rules = [
         'name' => ['required', 'string'],
         'url' => ['required', 'url'],
-        'video_id' => ['required', 'exists:videos,id'],
+        'episode_id' => ['required', 'exists:episodes,id'],
     ];
 
     // Relationship registered.
-    public function video()
+    public function episode()
     {
-        return $this->belongsTo(Video::class);
+        return $this->belongsTo(Episode::class);
     }
 }
