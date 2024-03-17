@@ -3,54 +3,54 @@
 namespace Eduka\Cube\Policies;
 
 use Eduka\Cube\Models\Course;
-use Eduka\Cube\Models\User;
+use Eduka\Cube\Models\Student;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CoursePolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(Student $student)
     {
         return true;
     }
 
-    public function view(User $user, Course $model)
+    public function view(Student $student, Course $model)
     {
         return true;
     }
 
-    public function create(User $user)
+    public function create(Student $student)
     {
         return true;
     }
 
-    public function update(User $user, Course $model)
+    public function update(Student $student, Course $model)
     {
         return true;
     }
 
-    public function delete(User $user, Course $model)
+    public function delete(Student $student, Course $model)
     {
         return $model->canBeDeleted();
     }
 
-    public function restore(User $user, Course $model)
+    public function restore(Student $student, Course $model)
     {
         return $model->trashed();
     }
 
-    public function forceDelete(User $user, Course $model)
+    public function forceDelete(Student $student, Course $model)
     {
         return $model->trashed();
     }
 
-    public function replicate(User $user, Course $model)
+    public function replicate(Student $student, Course $model)
     {
         return false;
     }
 
-    public function attachAnyUser(User $user, Course $model)
+    public function attachAnyUser(Student $student, Course $model)
     {
         return false;
     }

@@ -27,14 +27,14 @@ class RequestLog extends EdukaModel
         'headers' => ['required', 'string'],
     ];
 
-    public function organization()
+    public function backend()
     {
-        return $this->belongsTo(Organization::class);
+        return $this->belongsTo(Backend::class);
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Student::class);
     }
 
     public function course()

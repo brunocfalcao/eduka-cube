@@ -3,49 +3,49 @@
 namespace Eduka\Cube\Policies;
 
 use Eduka\Cube\Models\Series;
-use Eduka\Cube\Models\User;
+use Eduka\Cube\Models\Student;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class SeriesPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(Student $student)
     {
         return true;
     }
 
-    public function view(User $user, Series $model)
+    public function view(Student $student, Series $model)
     {
         return true;
     }
 
-    public function create(User $user)
+    public function create(Student $student)
     {
         return true;
     }
 
-    public function update(User $user, Series $model)
+    public function update(Student $student, Series $model)
     {
         return true;
     }
 
-    public function delete(User $user, Series $model)
+    public function delete(Student $student, Series $model)
     {
         return $model->canBeDeleted();
     }
 
-    public function restore(User $user, Series $model)
+    public function restore(Student $student, Series $model)
     {
         return $model->trashed();
     }
 
-    public function forceDelete(User $user, Series $model)
+    public function forceDelete(Student $student, Series $model)
     {
         return $model->trashed();
     }
 
-    public function replicate(User $user, Series $model)
+    public function replicate(Student $student, Series $model)
     {
         return false;
     }

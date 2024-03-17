@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use LemonSqueezy\Laravel\Billable;
 
-class User extends Authenticatable
+class Student extends Authenticatable
 {
     use Billable,
         HasCustomQueryBuilder,
@@ -22,10 +22,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-    ];
-
-    protected $appends = [
-        'organizations',
     ];
 
     protected $casts = [
@@ -47,14 +43,14 @@ class User extends Authenticatable
     // Relationship registered.
     public function videosThatWereSeen()
     {
-        return $this->belongsToMany(Video::class, 'user_video_seen')
+        return $this->belongsToMany(Video::class, 'student_video_seen')
             ->withTimestamps();
     }
 
     // Relationship registered.
     public function videosThatWereBookmarked()
     {
-        return $this->belongsToMany(Video::class, 'user_video_bookmarked')
+        return $this->belongsToMany(Video::class, 'student_video_bookmarked')
             ->withTimestamps();
     }
 
@@ -76,25 +72,5 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
-    }
-
-    /**
-     * Although an user just have one single entry on the users table, it
-     * can belong to multiple organizations. This allows eduka to understand
-     * from what organization should an email be sent. The only tradeoff is
-     * the password is the same for different organizations, and this needs
-     * to be changed later.
-     */
-    public function getOrganizationsAttribute()
-    {
-        $organizations = [];
-
-        if ($this->variants) {
-            foreach ($this->variants as $variant) {
-                $organizations[] = $variant->course->organization;
-            }
-        }
-
-        return $organizations;
     }
 }

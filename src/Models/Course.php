@@ -27,6 +27,7 @@ class Course extends EdukaModel
 
     public $rules = [
         'name' => ['required', 'string'],
+        'description' => ['required'],
         'canonical' => ['required'],
         'domain' => ['required', 'string'],
         'provider_namespace' => ['nullable', 'string'],
@@ -41,15 +42,15 @@ class Course extends EdukaModel
     public $appends = ['metas'];
 
     // Relationship registered.
-    public function organization()
+    public function backend()
     {
-        return $this->belongsTo(Organization::class);
+        return $this->belongsTo(Backend::class);
     }
 
     // Relationship registered.
     public function users()
     {
-        return $this->belongsToMany(User::class)
+        return $this->belongsToMany(Student::class)
             ->withTimestamps();
     }
 
@@ -103,6 +104,6 @@ class Course extends EdukaModel
 
     public function getAdminAttribute()
     {
-        return User::firstWhere('email', $this->admin_email);
+        return Student::firstWhere('email', $this->admin_email);
     }
 }

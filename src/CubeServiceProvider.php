@@ -3,8 +3,10 @@
 namespace Eduka\Cube;
 
 use Eduka\Abstracts\Classes\EdukaServiceProvider;
+use Eduka\Cube\Rules\ClassExists;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
 
 class CubeServiceProvider extends EdukaServiceProvider
 {
@@ -18,12 +20,25 @@ class CubeServiceProvider extends EdukaServiceProvider
 
         $this->registerCommands();
 
+        $this->registerRuleAliases();
+
         parent::boot();
     }
 
     public function register()
     {
         //
+    }
+
+    protected function registerRuleAliases()
+    {
+        Validator::extend('class_exists', function ($attribute, $value, $parameters, $validator) {
+            $rule = new ClassExists();
+
+            return $rule($attribute, $value, function ($message) use ($validator, $attribute) {
+                $validator->errors()->add($attribute, $message);
+            });
+        });
     }
 
     protected function registerCommands()

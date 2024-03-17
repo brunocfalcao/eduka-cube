@@ -33,7 +33,7 @@ class Variant extends EdukaModel
     // Relationship registered.
     public function users()
     {
-        return $this->belongsToMany(User::class)
+        return $this->belongsToMany(Student::class)
             ->withTimestamps();
     }
 

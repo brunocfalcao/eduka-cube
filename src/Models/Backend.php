@@ -7,7 +7,7 @@ use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Organization extends EdukaModel
+class Backend extends EdukaModel
 {
     use HasCustomQueryBuilder,
         HasValidations,
@@ -19,7 +19,7 @@ class Organization extends EdukaModel
     public $rules = [
         'name' => ['required'],
         'domain' => ['required'],
-        'provider_namespace' => ['required'],
+        'provider_namespace' => ['required', 'class_exists'],
     ];
 
     // Relationship registered.
@@ -31,12 +31,12 @@ class Organization extends EdukaModel
     // Relationship registered.
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Student::class);
     }
 
     public function canBeDeleted()
     {
-        // For now, an organization cannot be deleted.
+        // For now, a backend cannot be deleted.
         return false;
     }
 }

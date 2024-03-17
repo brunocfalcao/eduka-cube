@@ -2,50 +2,50 @@
 
 namespace Eduka\Cube\Policies;
 
+use Eduka\Cube\Models\Student;
 use Eduka\Cube\Models\Tag;
-use Eduka\Cube\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TagPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(Student $student)
     {
         return true;
     }
 
-    public function view(User $user, Tag $model)
+    public function view(Student $student, Tag $model)
     {
         return true;
     }
 
-    public function create(User $user)
+    public function create(Student $student)
     {
         return true;
     }
 
-    public function update(User $user, Tag $model)
+    public function update(Student $student, Tag $model)
     {
         return true;
     }
 
-    public function delete(User $user, Tag $model)
+    public function delete(Student $student, Tag $model)
     {
         return $model->canBeDeleted();
     }
 
-    public function restore(User $user, Tag $model)
+    public function restore(Student $student, Tag $model)
     {
         return $model->trashed();
     }
 
-    public function forceDelete(User $user, Tag $model)
+    public function forceDelete(Student $student, Tag $model)
     {
         return $model->trashed();
     }
 
-    public function replicate(User $user, Tag $model)
+    public function replicate(Student $student, Tag $model)
     {
         return false;
     }

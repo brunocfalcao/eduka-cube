@@ -21,7 +21,7 @@ class Order extends EdukaModel
     ];
 
     public $rules = [
-        'user_id' => ['nullable', 'exists:users,id'],
+        'student_id' => ['nullable', 'exists:users,id'],
         'variant_id' => ['required', 'exists:variants,id'],
         'response_body' => ['required'],
         'custom_data' => ['required'],
@@ -44,7 +44,7 @@ class Order extends EdukaModel
     // Relationship registered.
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Student::class);
     }
 
     // Relationship registered.

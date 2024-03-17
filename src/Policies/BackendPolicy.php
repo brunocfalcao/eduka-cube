@@ -2,11 +2,11 @@
 
 namespace Eduka\Cube\Policies;
 
+use Eduka\Cube\Models\Backend;
 use Eduka\Cube\Models\Student;
-use Eduka\Cube\Models\Subscriber;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SubscriberPolicy
+class BackendPolicy
 {
     use HandlesAuthorization;
 
@@ -15,7 +15,7 @@ class SubscriberPolicy
         return true;
     }
 
-    public function view(Student $student, Subscriber $model)
+    public function view(Student $student, Backend $model)
     {
         return true;
     }
@@ -25,27 +25,27 @@ class SubscriberPolicy
         return true;
     }
 
-    public function update(Student $student, Subscriber $model)
+    public function update(Student $student, Backend $model)
     {
         return true;
     }
 
-    public function delete(Student $student, Subscriber $model)
+    public function delete(Student $student, Backend $model)
     {
         return $model->canBeDeleted();
     }
 
-    public function restore(Student $student, Subscriber $model)
+    public function restore(Student $student, Backend $model)
     {
         return $model->trashed();
     }
 
-    public function forceDelete(Student $student, Subscriber $model)
+    public function forceDelete(Student $student, Backend $model)
     {
         return $model->trashed();
     }
 
-    public function replicate(Student $student, Subscriber $model)
+    public function replicate(Student $student, Backend $model)
     {
         return false;
     }

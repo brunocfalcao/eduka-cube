@@ -3,49 +3,49 @@
 namespace Eduka\Cube\Policies;
 
 use Eduka\Cube\Models\Chapter;
-use Eduka\Cube\Models\User;
+use Eduka\Cube\Models\Student;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ChapterPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(Student $student)
     {
         return true;
     }
 
-    public function view(User $user, Chapter $model)
+    public function view(Student $student, Chapter $model)
     {
         return true;
     }
 
-    public function create(User $user)
+    public function create(Student $student)
     {
         return true;
     }
 
-    public function update(User $user, Chapter $model)
+    public function update(Student $student, Chapter $model)
     {
         return true;
     }
 
-    public function delete(User $user, Chapter $model)
+    public function delete(Student $student, Chapter $model)
     {
         return $model->canBeDeleted();
     }
 
-    public function restore(User $user, Chapter $model)
+    public function restore(Student $student, Chapter $model)
     {
         return $model->trashed();
     }
 
-    public function forceDelete(User $user, Chapter $model)
+    public function forceDelete(Student $student, Chapter $model)
     {
         return $model->trashed();
     }
 
-    public function replicate(User $user, Chapter $model)
+    public function replicate(Student $student, Chapter $model)
     {
         return false;
     }

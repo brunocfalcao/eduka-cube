@@ -3,54 +3,55 @@
 namespace Eduka\Cube\Policies;
 
 use Eduka\Cube\Models\Order;
-use Eduka\Cube\Models\User;
+use Eduka\Cube\Models\Student;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class OrderPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(Student $student)
     {
         return true;
     }
 
-    public function view(User $user, Order $model)
+    public function view(Student $student, Order $model)
     {
         return true;
     }
 
-    public function create(User $user)
+    public function create(Student $student)
+    {
+        // Orders are created only via the payment gateway.
+        return false;
+    }
+
+    public function update(Student $student, Order $model)
     {
         return true;
     }
 
-    public function update(User $user, Order $model)
-    {
-        return true;
-    }
-
-    public function delete(User $user, Order $model)
+    public function delete(Student $student, Order $model)
     {
         return $model->canBeDeleted();
     }
 
-    public function restore(User $user, Order $model)
+    public function restore(Student $student, Order $model)
     {
         return $model->trashed();
     }
 
-    public function forceDelete(User $user, Order $model)
+    public function forceDelete(Student $student, Order $model)
     {
         return $model->trashed();
     }
 
-    public function replicate(User $user, Order $model)
+    public function replicate(Student $student, Order $model)
     {
         return false;
     }
 
-    public function attachAnyUser(User $user, Order $model)
+    public function attachAnyUser(Student $student, Order $model)
     {
         info('verifying from order policy');
 

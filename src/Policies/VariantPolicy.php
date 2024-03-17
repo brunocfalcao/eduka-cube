@@ -2,7 +2,7 @@
 
 namespace Eduka\Cube\Policies;
 
-use Eduka\Cube\Models\User;
+use Eduka\Cube\Models\Student;
 use Eduka\Cube\Models\Variant;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -10,47 +10,47 @@ class VariantPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(Student $student)
     {
         return true;
     }
 
-    public function view(User $user, Variant $model)
+    public function view(Student $student, Variant $model)
     {
         return true;
     }
 
-    public function create(User $user)
+    public function create(Student $student)
     {
         return true;
     }
 
-    public function update(User $user, Variant $model)
+    public function update(Student $student, Variant $model)
     {
         return true;
     }
 
-    public function delete(User $user, Variant $model)
+    public function delete(Student $student, Variant $model)
     {
         return $model->canBeDeleted();
     }
 
-    public function restore(User $user, Variant $model)
+    public function restore(Student $student, Variant $model)
     {
         return $model->trashed();
     }
 
-    public function forceDelete(User $user, Variant $model)
+    public function forceDelete(Student $student, Variant $model)
     {
         return $model->trashed();
     }
 
-    public function replicate(User $user, Variant $model)
+    public function replicate(Student $student, Variant $model)
     {
         return false;
     }
 
-    public function attachAnyUser(User $user, Variant $model)
+    public function attachAnyUser(Student $student, Variant $model)
     {
         return false;
     }

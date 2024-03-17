@@ -3,49 +3,49 @@
 namespace Eduka\Cube\Policies;
 
 use Eduka\Cube\Models\RequestLog;
-use Eduka\Cube\Models\User;
+use Eduka\Cube\Models\Student;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RequestLogPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(Student $student)
     {
         return true;
     }
 
-    public function view(User $user, RequestLog $model)
+    public function view(Student $student, RequestLog $model)
     {
         return true;
     }
 
-    public function create(User $user)
+    public function create(Student $student)
     {
         return false;
     }
 
-    public function update(User $user, RequestLog $model)
+    public function update(Student $student, RequestLog $model)
     {
         return false;
     }
 
-    public function delete(User $user, RequestLog $model)
+    public function delete(Student $student, RequestLog $model)
     {
         return false;
     }
 
-    public function restore(User $user, RequestLog $model)
+    public function restore(Student $student, RequestLog $model)
     {
         return false;
     }
 
-    public function forceDelete(User $user, RequestLog $model)
+    public function forceDelete(Student $student, RequestLog $model)
     {
         return false;
     }
 
-    public function replicate(User $user, RequestLog $model)
+    public function replicate(Student $student, RequestLog $model)
     {
         return false;
     }
