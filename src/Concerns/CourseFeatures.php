@@ -70,7 +70,7 @@ trait CourseFeatures
      * Returns computed attribute 'metas', with all the meta tags
      * to be rendered in an HTML page.
      */
-    public function metas()
+    public function getMetasAttribute()
     {
         return [
             'name|twitter:description' => $this->description,

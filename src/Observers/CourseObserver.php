@@ -8,7 +8,6 @@ use Eduka\Cube\Events\Courses\CourseCreatedEvent;
 use Eduka\Cube\Events\Courses\CourseRenamedEvent;
 use Eduka\Cube\Events\Courses\CourseUpdatedEvent;
 use Eduka\Cube\Models\Course;
-use Illuminate\Validation\Rule;
 
 class CourseObserver
 {
@@ -16,27 +15,10 @@ class CourseObserver
 
     public function saving(Course $course)
     {
-        $this->upsertCanonical($course, $course->name);
+        $this->upsertCanonical($course);
         $this->upsertUuid($course);
 
-        $extraValidationRules = [
-            'canonical' => ['required', Rule::unique('courses')->ignore($course->id)],
-            'domain' => ['required', 'string', Rule::unique('courses')->ignore($course->id)],
-            'prelaunched_at' => [
-                'nullable',
-                Rule::when($course->launched_at !== null, 'before:launched_at'),
-            ],
-            'launched_at' => [
-                'nullable',
-                Rule::when($course->prelaunched_at !== null, 'after:prelaunched_at'),
-            ],
-            'retired_at' => [
-                'nullable',
-                Rule::when($course->launched_at !== null, 'after:launched_at'),
-            ],
-        ];
-
-        $course->validate($extraValidationRules);
+        $course->validate();
     }
 
     public function created(Course $course)
@@ -46,9 +28,8 @@ class CourseObserver
 
     public function updated(Course $course)
     {
-        if ($course->wasChanged('name')) {
-            event(new CourseRenamedEvent($course));
-        }
+        $course->wasChanged('name') &&
+        event(new CourseRenamedEvent($course));
 
         event(new CourseUpdatedEvent($course));
     }

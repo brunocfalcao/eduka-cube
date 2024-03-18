@@ -35,6 +35,12 @@ class Student extends Authenticatable
         'remember_token' => ['nullable', 'string'],
     ];
 
+    // Relationship registered.
+    public function asCourseAdmin()
+    {
+        return $this->hasOne(Course::class);
+    }
+
     public function canBeDeleted()
     {
         return true;

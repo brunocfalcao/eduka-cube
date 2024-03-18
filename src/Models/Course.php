@@ -7,6 +7,7 @@ use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\CourseFeatures;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Validation\Rule;
 
 class Course extends EdukaModel
 {
@@ -19,27 +20,55 @@ class Course extends EdukaModel
         'prelaunched_at' => 'datetime',
         'launched_at' => 'datetime',
         'retired_at' => 'datetime',
+
         'metas' => 'array',
 
         'is_active' => 'boolean',
         'is_ppp_enabled' => 'boolean',
     ];
 
+    // Fields that have a static validation.
     public $rules = [
-        'name' => ['required', 'string'],
+        'name' => ['required'],
         'description' => ['required'],
         'canonical' => ['required'],
-        'domain' => ['required', 'string'],
-        'provider_namespace' => ['nullable', 'string'],
+        'uuid' => ['required'],
+        'domain' => ['required'],
+        'provider_namespace' => ['required', 'class_exists'],
         'is_active' => ['nullable', 'boolean'],
         'is_ppp_enabled' => ['nullable', 'boolean'],
-        'lemon_squeezy_store_id' => ['nullable', 'string'],
-        'vimeo_uri_key' => ['nullable', 'string'],
-        'backblaze_bucket_name' => ['nullable', 'string'],
     ];
 
     // Computed attributes.
     public $appends = ['metas'];
+
+    // Fields that have a computed validation.
+    public function getRules()
+    {
+        return [
+            'canonical' => ['required', Rule::unique('courses')->ignore($this->id)],
+            'provider_namespace' => ['required', 'string', Rule::unique('courses')->ignore($this->id)],
+            'domain' => ['required', 'string', Rule::unique('courses')->ignore($this->id)],
+            'prelaunched_at' => [
+                'nullable',
+                Rule::when($this->launched_at !== null, 'before:launched_at'),
+            ],
+            'launched_at' => [
+                'nullable',
+                Rule::when($this->prelaunched_at !== null, 'after:prelaunched_at'),
+            ],
+            'retired_at' => [
+                'nullable',
+                Rule::when($this->launched_at !== null, 'after:launched_at'),
+            ],
+        ];
+    }
+
+    // Relationship registered.
+    public function admin()
+    {
+        return $this->belongsTo(Student::class, 'student_admin_id');
+    }
 
     // Relationship registered.
     public function backend()
@@ -48,7 +77,7 @@ class Course extends EdukaModel
     }
 
     // Relationship registered.
-    public function users()
+    public function students()
     {
         return $this->belongsToMany(Student::class)
             ->withTimestamps();
@@ -100,10 +129,5 @@ class Course extends EdukaModel
     {
         // No active episodes part of this chapter.
         return ! $this->episodes()->withTrashed()->exists();
-    }
-
-    public function getAdminAttribute()
-    {
-        return Student::firstWhere('email', $this->admin_email);
     }
 }
