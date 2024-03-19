@@ -73,7 +73,7 @@ trait CourseFeatures
     public function getMetasAttribute()
     {
         return [
-            'name|twitter:description' => $this->description,
+            'name|twitter:description' => '$this->description',
             'name|twitter:card' => 'summary_large_image',
             'name|twitter:site' => $this->twitter_handle,
             'name|twitter:image' => Storage::url($this->filename),
