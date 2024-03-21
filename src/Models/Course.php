@@ -6,15 +6,13 @@ use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
 use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\CourseFeatures;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Validation\Rule;
 
 class Course extends EdukaModel
 {
     use CourseFeatures,
         HasCustomQueryBuilder,
-        HasValidations,
-        SoftDeletes;
+        HasValidations;
 
     protected $casts = [
         'prelaunched_at' => 'datetime',

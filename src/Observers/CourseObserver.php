@@ -5,6 +5,7 @@ namespace Eduka\Cube\Observers;
 use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
 use Brunocfalcao\LaravelHelpers\Traits\HasUuids;
 use Eduka\Cube\Events\Courses\CourseCreatedEvent;
+use Eduka\Cube\Events\Courses\CourseDeletedEvent;
 use Eduka\Cube\Events\Courses\CourseRenamedEvent;
 use Eduka\Cube\Events\Courses\CourseUpdatedEvent;
 use Eduka\Cube\Models\Course;
@@ -34,7 +35,8 @@ class CourseObserver
         event(new CourseUpdatedEvent($course));
     }
 
-    protected function generateMetas()
+    public function deleted(Course $course)
     {
+        event(new CourseDeletedEvent($course));
     }
 }
