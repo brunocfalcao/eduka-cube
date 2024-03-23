@@ -2,8 +2,8 @@
 
 namespace Eduka\Cube\Models;
 
-use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
-use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -29,9 +29,9 @@ class Backend extends EdukaModel
     }
 
     // Relationship registered.
-    public function users()
+    public function requestLogs()
     {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(RequestLog::class);
     }
 
     public function canBeDeleted()

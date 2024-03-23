@@ -2,32 +2,22 @@
 
 namespace Eduka\Cube\Observers;
 
-use Brunocfalcao\LaravelHelpers\Traits\HasCanonicals;
-use Brunocfalcao\LaravelHelpers\Traits\HasUuids;
 use Eduka\Cube\Events\Episodes\EpisodeChapterUpdatedEvent;
 use Eduka\Cube\Events\Episodes\EpisodeDeletedEvent;
 use Eduka\Cube\Events\Episodes\EpisodeReplacedEvent;
 use Eduka\Cube\Events\Episodes\EpisodeUpdatedEvent;
 use Eduka\Cube\Models\Chapter;
 use Eduka\Cube\Models\Episode;
-use Illuminate\Validation\Rule;
 
 class EpisodeObserver
 {
-    use HasCanonicals, HasUuids;
-
     public function saving(Episode $episode)
     {
-        $this->upsertCanonical($episode, $episode->name);
-        $this->upsertUuid($episode);
+        info('Saving Episode "'.$episode->name.'"');
+        $episode->upsertCanonical();
+        $episode->upsertUuid();
         $episode->incrementByGroup('chapter_id');
-
-        $extraValidationRules = [
-            'uuid' => ['required', Rule::unique('episodes')->ignore($episode->id)],
-            'canonical' => ['required', Rule::unique('episodes')->ignore($episode->id)],
-        ];
-
-        $episode->validate($extraValidationRules);
+        $episode->validate();
     }
 
     public function saved(Episode $episode)

@@ -2,18 +2,23 @@
 
 namespace Eduka\Cube\Models;
 
-use Brunocfalcao\LaravelHelpers\Traits\HasAutoIncrementsByGroup;
-use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
-use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasAutoIncrementsByGroup;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCanonicals;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\EpisodeFeatures;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Validation\Rule;
 
 class Episode extends EdukaModel
 {
     use EpisodeFeatures,
         HasAutoIncrementsByGroup,
+        HasCanonicals,
         HasCustomQueryBuilder,
+        HasUuids,
         HasValidations,
         SoftDeletes;
 
@@ -37,6 +42,14 @@ class Episode extends EdukaModel
         'vimeo_id' => ['nullable', 'string'],
         'filename' => ['nullable', 'string'],
     ];
+
+    public function getRules()
+    {
+        return [
+            'uuid' => ['required', Rule::unique('episodes')->ignore($this->id)],
+            'canonical' => ['required', Rule::unique('episodes')->ignore($this->id)],
+        ];
+    }
 
     // Relationship registered.
     public function studentsThatBookmarked()

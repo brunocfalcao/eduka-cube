@@ -2,9 +2,9 @@
 
 namespace Eduka\Cube\Models;
 
-use Brunocfalcao\LaravelHelpers\Traits\HasAutoIncrementsByGroup;
-use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
-use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasAutoIncrementsByGroup;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 
 class Chapter extends EdukaModel

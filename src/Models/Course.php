@@ -2,8 +2,10 @@
 
 namespace Eduka\Cube\Models;
 
-use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
-use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCanonicals;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\CourseFeatures;
 use Illuminate\Validation\Rule;
@@ -11,7 +13,9 @@ use Illuminate\Validation\Rule;
 class Course extends EdukaModel
 {
     use CourseFeatures,
+        HasCanonicals,
         HasCustomQueryBuilder,
+        HasUuids,
         HasValidations;
 
     protected $casts = [

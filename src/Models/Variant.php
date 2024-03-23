@@ -2,16 +2,23 @@
 
 namespace Eduka\Cube\Models;
 
-use Brunocfalcao\LaravelHelpers\Traits\HasCustomQueryBuilder;
-use Brunocfalcao\LaravelHelpers\Traits\HasValidations;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCanonicals;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
+use Eduka\Cube\Concerns\VariantFeatures;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Validation\Rule;
 
 class Variant extends EdukaModel
 {
-    use HasCustomQueryBuilder,
+    use HasCanonicals,
+        HasCustomQueryBuilder,
+        HasUuids,
         HasValidations,
-        SoftDeletes;
+        SoftDeletes,
+        VariantFeatures;
 
     protected $casts = [
         'is_default' => 'boolean',
@@ -22,16 +29,22 @@ class Variant extends EdukaModel
     ];
 
     public $rules = [
-        'name' => ['required'],
-        'canonical' => ['required'],
         'description' => ['nullable'],
         'lemon_squeezy_variant_id' => ['required', 'string'],
         'lemon_squeezy_price_override' => ['nullable', 'numeric'],
         'is_default' => ['boolean'],
     ];
 
+    public function getRules()
+    {
+        return [
+            'name' => ['required', Rule::unique('variants')->ignore($this->id)],
+            'canonical' => ['required', Rule::unique('variants')->ignore($this->id)],
+        ];
+    }
+
     // Relationship registered.
-    public function users()
+    public function students()
     {
         return $this->belongsToMany(Student::class)
             ->withTimestamps();
