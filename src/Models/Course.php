@@ -23,8 +23,6 @@ class Course extends EdukaModel
         'launched_at' => 'datetime',
         'retired_at' => 'datetime',
 
-        'metas' => 'array',
-
         'is_active' => 'boolean',
         'is_ppp_enabled' => 'boolean',
     ];
@@ -40,9 +38,6 @@ class Course extends EdukaModel
         'is_active' => ['nullable', 'boolean'],
         'is_ppp_enabled' => ['nullable', 'boolean'],
     ];
-
-    // Computed attributes.
-    public $appends = ['metas'];
 
     // Fields that have a computed validation.
     public function getRules()
@@ -130,6 +125,6 @@ class Course extends EdukaModel
     public function canBeDeleted()
     {
         // No active episodes part of this chapter.
-        return ! $this->episodes()->withTrashed()->exists();
+        return ! $this->episodes()->exists();
     }
 }

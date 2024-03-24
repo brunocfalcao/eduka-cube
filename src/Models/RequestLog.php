@@ -10,7 +10,8 @@ use Eduka\Abstracts\Classes\EdukaModel;
 class RequestLog extends EdukaModel
 {
     use DefaultAscPKSorting,
-        HasCustomQueryBuilder, HasValidations;
+        HasCustomQueryBuilder,
+        HasValidations;
 
     protected $casts = [
         'payload' => 'array',

@@ -8,7 +8,6 @@ use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\VariantFeatures;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Validation\Rule;
 
 class Variant extends EdukaModel
@@ -17,7 +16,6 @@ class Variant extends EdukaModel
         HasCustomQueryBuilder,
         HasUuids,
         HasValidations,
-        SoftDeletes,
         VariantFeatures;
 
     protected $casts = [

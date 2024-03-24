@@ -33,4 +33,26 @@ trait EpisodeFeatures
             'embed_domains' => $this->course->domain,
         ]);
     }
+
+    /**
+     * Returns computed attribute 'metas', with all the meta tags
+     * to be rendered in an HTML page.
+     */
+    public function getMetasAttribute()
+    {
+        return [
+            'name|twitter:description' => $this->description,
+            'name|twitter:card' => 'summary_large_image',
+            'name|twitter:site' => $this->course->twitter_handle,
+            'name|twitter:image' => Storage::url($this->filename),
+            'name|twitter:creator' => $this->course->twitter_handle,
+            'name|twitter:title' => $this->name,
+
+            'property|og:description' => $this->description,
+            'property|og:url' => 'https://'.$this->course->domain,
+            'property|og:type' => 'article',
+            'property|og:image' => Storage::url($this->filename),
+            'property|og:title' => $this->name,
+        ];
+    }
 }

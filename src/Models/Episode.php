@@ -9,7 +9,6 @@ use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\EpisodeFeatures;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Validation\Rule;
 
 class Episode extends EdukaModel
@@ -19,8 +18,7 @@ class Episode extends EdukaModel
         HasCanonicals,
         HasCustomQueryBuilder,
         HasUuids,
-        HasValidations,
-        SoftDeletes;
+        HasValidations;
 
     protected $casts = [
         'is_visible' => 'boolean',

@@ -5,11 +5,10 @@ namespace Eduka\Cube\Models;
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Link extends EdukaModel
 {
-    use HasCustomQueryBuilder, HasValidations, SoftDeletes;
+    use HasCustomQueryBuilder, HasValidations;
 
     public $rules = [
         'name' => ['required', 'string'],

@@ -4,12 +4,10 @@ namespace Eduka\Cube\Models;
 
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Eduka\Abstracts\Classes\EdukaModel;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Series extends EdukaModel
 {
-    use HasValidations,
-        SoftDeletes;
+    use HasValidations;
 
     public $rules = [
         'name' => ['required', 'string'],

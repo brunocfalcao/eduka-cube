@@ -4,7 +4,6 @@ namespace Eduka\Cube\Models;
 
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use LemonSqueezy\Laravel\Billable;
@@ -14,8 +13,7 @@ class Student extends Authenticatable
     use Billable,
         HasCustomQueryBuilder,
         HasValidations,
-        Notifiable,
-        SoftDeletes;
+        Notifiable;
 
     protected $guarded = [];
 
