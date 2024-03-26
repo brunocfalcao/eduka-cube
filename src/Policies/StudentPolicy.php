@@ -61,8 +61,6 @@ class StudentPolicy
 
     public function attachAnyOrder(Student $student, Student $model)
     {
-        info('verifying from user policy');
-
         return false;
     }
 

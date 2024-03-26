@@ -29,7 +29,6 @@ class EpisodeObserver
 
         // We need to replace the current vimeo episode.
         if ($episode->wasChanged('temp_filename_path')) {
-            info('triggering file upload...');
             event(new EpisodeReplacedEvent($episode));
         }
 
