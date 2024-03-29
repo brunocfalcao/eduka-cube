@@ -11,7 +11,7 @@ class Order extends EdukaModel
     use HasCustomQueryBuilder,
         HasValidations;
 
-    protected $with = ['course', 'user', 'variant'];
+    protected $with = ['course', 'student', 'variant'];
 
     protected $casts = [
         'response_body' => 'array',
@@ -42,7 +42,7 @@ class Order extends EdukaModel
     }
 
     // Relationship registered.
-    public function user()
+    public function student()
     {
         return $this->belongsTo(Student::class);
     }

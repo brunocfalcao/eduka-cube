@@ -28,7 +28,7 @@ class OrderPolicy
 
     public function update(Student $student, Order $model)
     {
-        return true;
+        return false;
     }
 
     public function delete(Student $student, Order $model)
