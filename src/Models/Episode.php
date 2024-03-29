@@ -20,6 +20,8 @@ class Episode extends EdukaModel
         HasUuids,
         HasValidations;
 
+    protected $with = ['course', 'chapter'];
+
     protected $casts = [
         'is_visible' => 'boolean',
         'is_active' => 'boolean',

@@ -13,6 +13,8 @@ class RequestLog extends EdukaModel
         HasCustomQueryBuilder,
         HasValidations;
 
+    protected $with = ['backend', 'user', 'course'];
+
     protected $casts = [
         'payload' => 'array',
         'headers' => 'array',

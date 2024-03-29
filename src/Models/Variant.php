@@ -18,6 +18,8 @@ class Variant extends EdukaModel
         HasValidations,
         VariantFeatures;
 
+    protected $with = ['course'];
+
     protected $casts = [
         'is_default' => 'boolean',
 

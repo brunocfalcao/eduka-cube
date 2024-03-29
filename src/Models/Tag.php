@@ -11,6 +11,8 @@ class Tag extends EdukaModel
     use HasCustomQueryBuilder,
         HasValidations;
 
+    protected $with = ['course'];
+
     public $rules = [
         'name' => ['required', 'string'],
         'description' => ['nullable'],

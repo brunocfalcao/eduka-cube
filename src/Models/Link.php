@@ -10,6 +10,8 @@ class Link extends EdukaModel
 {
     use HasCustomQueryBuilder, HasValidations;
 
+    protected $with = ['episode'];
+
     public $rules = [
         'name' => ['required', 'string'],
         'url' => ['required', 'url'],

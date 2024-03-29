@@ -9,6 +9,8 @@ class Series extends EdukaModel
 {
     use HasValidations;
 
+    protected $with = ['course'];
+
     public $rules = [
         'name' => ['required', 'string'],
         'description' => ['nullable'],

@@ -39,11 +39,6 @@ class Student extends Authenticatable
         return $this->hasOne(Course::class);
     }
 
-    public function canBeDeleted()
-    {
-        return true;
-    }
-
     // Relationship registered.
     public function episodesThatWereSeen()
     {
@@ -76,5 +71,10 @@ class Student extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function canBeDeleted()
+    {
+        return true;
     }
 }

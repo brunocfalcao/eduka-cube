@@ -13,6 +13,8 @@ class Chapter extends EdukaModel
         HasCustomQueryBuilder,
         HasValidations;
 
+    protected $with = ['course'];
+
     protected $casts = [
         'prelaunched_at' => 'datetime',
         'launched_at' => 'datetime',

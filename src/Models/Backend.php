@@ -11,9 +11,6 @@ class Backend extends EdukaModel
     use HasCustomQueryBuilder,
         HasValidations;
 
-    protected $casts = [
-    ];
-
     public $rules = [
         'name' => ['required'],
         'domain' => ['required'],

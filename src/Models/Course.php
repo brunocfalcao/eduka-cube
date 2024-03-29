@@ -18,6 +18,8 @@ class Course extends EdukaModel
         HasUuids,
         HasValidations;
 
+    protected $with = ['admin', 'backend'];
+
     protected $casts = [
         'prelaunched_at' => 'datetime',
         'launched_at' => 'datetime',

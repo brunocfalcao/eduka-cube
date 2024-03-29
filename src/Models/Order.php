@@ -11,6 +11,8 @@ class Order extends EdukaModel
     use HasCustomQueryBuilder,
         HasValidations;
 
+    protected $with = ['course', 'user', 'variant'];
+
     protected $casts = [
         'response_body' => 'array',
         'custom_data' => 'array',

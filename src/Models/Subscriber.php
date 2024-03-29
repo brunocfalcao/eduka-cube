@@ -13,8 +13,7 @@ class Subscriber extends EdukaModel
         HasValidations,
         Notifiable;
 
-    protected $casts = [
-    ];
+    protected $with = ['course'];
 
     public $rules = [
         'course_id' => ['required', 'exists:courses,id'],
