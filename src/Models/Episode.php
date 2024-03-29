@@ -52,13 +52,13 @@ class Episode extends EdukaModel
     // Relationship registered.
     public function studentsThatBookmarked()
     {
-        return $this->belongsToMany(Student::class, 'student_episode_bookmarked');
+        return $this->belongsToMany(Student::class, 'episode_student_bookmarked');
     }
 
     // Relationship registered.
     public function studentsThatSaw()
     {
-        return $this->belongsToMany(Student::class, 'student_episode_seen');
+        return $this->belongsToMany(Student::class, 'episode_student_seen');
     }
 
     // Relationship registered.

@@ -2,6 +2,8 @@
 
 namespace Eduka\Cube\Concerns;
 
+use Illuminate\Support\Facades\Storage;
+
 trait EpisodeFeatures
 {
     /**
