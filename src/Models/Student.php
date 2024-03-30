@@ -42,14 +42,14 @@ class Student extends Authenticatable
     // Relationship registered.
     public function episodesThatWereSeen()
     {
-        return $this->belongsToMany(Episode::class, 'student_episode_seen')
+        return $this->belongsToMany(Episode::class, 'episode_student_seen')
             ->withTimestamps();
     }
 
     // Relationship registered.
     public function episodesThatWereBookmarked()
     {
-        return $this->belongsToMany(Episode::class, 'student_episode_bookmarked')
+        return $this->belongsToMany(Episode::class, 'episode_student_bookmarked')
             ->withTimestamps();
     }
 
