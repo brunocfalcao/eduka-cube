@@ -32,7 +32,7 @@ class EpisodeObserver
             event(new EpisodeReplacedEvent($episode));
         }
 
-        // We nede to replace/remove from the current chapter and add to the new one.
+        // We need to replace/remove from the current chapter and add to the new one.
         if ($episode->wasChanged('chapter_id') && $episode->vimeo_uri) {
             event(new EpisodeChapterUpdatedEvent($episode));
         }

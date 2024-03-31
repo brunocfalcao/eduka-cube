@@ -13,7 +13,7 @@ class RequestLog extends EdukaModel
         HasCustomQueryBuilder,
         HasValidations;
 
-    protected $with = ['backend', 'user', 'course'];
+    protected $with = ['backend', 'student', 'course'];
 
     protected $casts = [
         'payload' => 'array',
@@ -35,7 +35,7 @@ class RequestLog extends EdukaModel
         return $this->belongsTo(Backend::class);
     }
 
-    public function user()
+    public function student()
     {
         return $this->belongsTo(Student::class);
     }
