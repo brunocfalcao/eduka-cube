@@ -21,13 +21,13 @@ class Order extends EdukaModel
     ];
 
     public $rules = [
-        'student_id' => ['nullable', 'exists:users,id'],
+        'student_id' => ['nullable', 'exists:students,id'],
         'variant_id' => ['required', 'exists:variants,id'],
         'response_body' => ['required'],
         'custom_data' => ['required'],
         'event_name' => ['required'],
         'store_id' => ['required'],
-        'user_email' => ['required'],
+        'student_email' => ['required'],
         'total_usd' => ['required'],
         'refunded' => ['nullable', 'boolean'],
         'order_id' => ['required'],
