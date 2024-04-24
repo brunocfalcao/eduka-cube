@@ -39,6 +39,7 @@ class Course extends EdukaModel
         'provider_namespace' => ['required', 'class_exists'],
         'is_active' => ['nullable', 'boolean'],
         'is_ppp_enabled' => ['nullable', 'boolean'],
+        'clarity_code' => ['nullable', 'string'],
     ];
 
     // Fields that have a computed validation.
