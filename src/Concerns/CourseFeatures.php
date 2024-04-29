@@ -81,7 +81,7 @@ trait CourseFeatures
             'name|twitter:title' => $this->name,
 
             'property|og:description' => $this->description,
-            'property|og:url' => 'https://'.$this->domain,
+            'property|og:url' => eduka_url($this->domain),
             'property|og:type' => 'article',
             'property|og:image' => eduka_url($this->domain, Storage::url($this->filename_main_logo)),
             'property|og:title' => $this->name,
