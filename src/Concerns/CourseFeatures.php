@@ -76,14 +76,14 @@ trait CourseFeatures
             'name|twitter:description' => $this->description,
             'name|twitter:card' => 'summary_large_image',
             'name|twitter:site' => $this->twitter_handle,
-            'name|twitter:image' => eduka_url($this->domain, Storage::url($this->filename_logo)),
+            'name|twitter:image' => eduka_url($this->domain, Storage::url($this->filename_main_logo)),
             'name|twitter:creator' => $this->twitter_handle,
             'name|twitter:title' => $this->name,
 
             'property|og:description' => $this->description,
             'property|og:url' => 'https://'.$this->domain,
             'property|og:type' => 'article',
-            'property|og:image' => eduka_url($this->domain, Storage::url($this->filename_logo)),
+            'property|og:image' => eduka_url($this->domain, Storage::url($this->filename_main_logo)),
             'property|og:title' => $this->name,
         ];
     }
