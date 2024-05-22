@@ -36,7 +36,7 @@ class Student extends Authenticatable
     // Relationship registered.
     public function asCourseAdmin()
     {
-        return $this->hasOne(Course::class);
+        return $this->hasOne(Course::class, 'student_admin_id');
     }
 
     // Relationship registered.
