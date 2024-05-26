@@ -17,6 +17,10 @@ class Backend extends EdukaModel
         'provider_namespace' => ['required', 'class_exists'],
     ];
 
+    protected $casts = [
+        'theme' => 'array',
+    ];
+
     // Relationship registered.
     public function courses()
     {

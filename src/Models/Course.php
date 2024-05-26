@@ -27,6 +27,8 @@ class Course extends EdukaModel
 
         'is_active' => 'boolean',
         'is_ppp_enabled' => 'boolean',
+
+        'theme' => 'array',
     ];
 
     // Fields that have a static validation.
