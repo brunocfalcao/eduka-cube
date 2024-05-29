@@ -4,13 +4,11 @@ namespace Eduka\Cube\Models;
 
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
-use Brunocfalcao\LaravelNovaHelpers\Traits\DefaultAscPKSorting;
 use Eduka\Abstracts\Classes\EdukaModel;
 
 class RequestLog extends EdukaModel
 {
-    use DefaultAscPKSorting,
-        HasCustomQueryBuilder,
+    use HasCustomQueryBuilder,
         HasValidations;
 
     protected $with = ['backend', 'student', 'course'];
