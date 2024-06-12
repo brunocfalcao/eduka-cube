@@ -50,6 +50,11 @@ trait CourseFeatures
         return $variant ?? $this->getDefaultVariant();
     }
 
+    public function getVariantByCanonical(string $canonical)
+    {
+        return $this->variants->where('canonical', $canonical)->first();
+    }
+
     // Returns the default variant for the current course.
     public function getDefaultVariant()
     {
