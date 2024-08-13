@@ -33,7 +33,7 @@ class CubeServiceProvider extends EdukaServiceProvider
     protected function registerRuleAliases()
     {
         Validator::extend('class_exists', function ($attribute, $value, $parameters, $validator) {
-            $rule = new ClassExists();
+            $rule = new ClassExists;
 
             return $rule($attribute, $value, function ($message) use ($validator, $attribute) {
                 $validator->errors()->add($attribute, $message);
