@@ -68,7 +68,7 @@ trait CourseFeatures
     // Registers its service provider. Used in Nereus, mostly.
     public function registerSelfProvider()
     {
-        app()->register($this->provider_namespace);
+        app()->register($this->service_provider_class);
     }
 
     /**

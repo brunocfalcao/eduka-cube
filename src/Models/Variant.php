@@ -23,15 +23,15 @@ class Variant extends EdukaModel
     protected $casts = [
         'is_default' => 'boolean',
 
-        'lemon_squeezy_price_override' => 'integer',
+        'price_override' => 'integer',
 
         'lemon_squeezy_data' => 'array',
     ];
 
     public $rules = [
         'description' => ['nullable'],
-        'lemon_squeezy_variant_id' => ['required', 'string'],
-        'lemon_squeezy_price_override' => ['nullable', 'numeric'],
+        'product_id' => ['required', 'string'],
+        'price_override' => ['nullable', 'numeric'],
         'is_default' => ['boolean'],
     ];
 

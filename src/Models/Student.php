@@ -6,12 +6,10 @@ use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use LemonSqueezy\Laravel\Billable;
 
 class Student extends Authenticatable
 {
-    use Billable,
-        HasCustomQueryBuilder,
+    use HasCustomQueryBuilder,
         HasValidations,
         Notifiable;
 

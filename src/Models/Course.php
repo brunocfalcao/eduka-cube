@@ -38,7 +38,7 @@ class Course extends EdukaModel
         'canonical' => ['required'],
         'uuid' => ['required'],
         'domain' => ['required'],
-        'provider_namespace' => ['required', 'class_exists'],
+        'service_provider_class' => ['required', 'class_exists'],
         'is_active' => ['nullable', 'boolean'],
         'is_ppp_enabled' => ['nullable', 'boolean'],
         'clarity_code' => ['nullable', 'string'],
@@ -49,7 +49,7 @@ class Course extends EdukaModel
     {
         return [
             'canonical' => ['required', Rule::unique('courses')->ignore($this->id)],
-            'provider_namespace' => ['required', 'string', Rule::unique('courses')->ignore($this->id)],
+            'service_provider_class' => ['required', 'string', Rule::unique('courses')->ignore($this->id)],
             'domain' => ['required', 'string', Rule::unique('courses')->ignore($this->id)],
             'prelaunched_at' => [
                 'nullable',

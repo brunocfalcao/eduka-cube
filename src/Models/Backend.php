@@ -14,7 +14,7 @@ class Backend extends EdukaModel
     public $rules = [
         'name' => ['required'],
         'domain' => ['required'],
-        'provider_namespace' => ['required', 'class_exists'],
+        'service_provider_class' => ['required', 'class_exists'],
     ];
 
     protected $casts = [
