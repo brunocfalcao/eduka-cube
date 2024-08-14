@@ -2,14 +2,15 @@
 
 namespace Eduka\Cube\Models;
 
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasAutoIncrementsByGroup;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCanonicals;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
+use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\EpisodeFeatures;
-use Illuminate\Validation\Rule;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCanonicals;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasAutoIncrementsByGroup;
 
 class Episode extends EdukaModel
 {
@@ -22,7 +23,7 @@ class Episode extends EdukaModel
 
     protected $with = ['course', 'chapter'];
 
-    protected $appends = ['duration_for_humans'];
+    protected $appends = ['duration_for_humans', 'is_new'];
 
     protected $casts = [
         'is_visible' => 'boolean',
@@ -117,5 +118,11 @@ class Episode extends EdukaModel
         }
 
         return trim($humanDuration);
+    }
+
+    public function getIsNewAttribute()
+    {
+        $createdAt = new Carbon($this->created_at);
+        return $createdAt->greaterThanOrEqualTo(Carbon::now()->subDays(30));
     }
 }
