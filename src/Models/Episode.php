@@ -22,6 +22,8 @@ class Episode extends EdukaModel
 
     protected $with = ['course', 'chapter'];
 
+    protected $appends = ['duration_for_humans'];
+
     protected $casts = [
         'is_visible' => 'boolean',
         'is_active' => 'boolean',
@@ -93,5 +95,27 @@ class Episode extends EdukaModel
     public function chapter()
     {
         return $this->belongsTo(Chapter::class);
+    }
+
+    public function getDurationForHumansAttribute()
+    {
+        $seconds = $this->duration;
+        $hours = intdiv($seconds, 3600);
+        $seconds %= 3600;
+        $minutes = intdiv($seconds, 60);
+        $seconds %= 60;
+
+        $humanDuration = '';
+        if ($hours > 0) {
+            $humanDuration .= $hours . 'h ';
+        }
+        if ($minutes > 0) {
+            $humanDuration .= $minutes . 'm ';
+        }
+        if ($seconds > 0 || empty($humanDuration)) {
+            $humanDuration .= $seconds . 's';
+        }
+
+        return trim($humanDuration);
     }
 }
