@@ -2,15 +2,15 @@
 
 namespace Eduka\Cube\Models;
 
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasAutoIncrementsByGroup;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCanonicals;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Carbon\Carbon;
-use Illuminate\Validation\Rule;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\EpisodeFeatures;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCanonicals;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasAutoIncrementsByGroup;
+use Illuminate\Validation\Rule;
 
 class Episode extends EdukaModel
 {
@@ -108,13 +108,13 @@ class Episode extends EdukaModel
 
         $humanDuration = '';
         if ($hours > 0) {
-            $humanDuration .= $hours . 'h ';
+            $humanDuration .= $hours.'h ';
         }
         if ($minutes > 0) {
-            $humanDuration .= $minutes . 'm ';
+            $humanDuration .= $minutes.'m ';
         }
         if ($seconds > 0 || empty($humanDuration)) {
-            $humanDuration .= $seconds . 's';
+            $humanDuration .= $seconds.'s';
         }
 
         return trim($humanDuration);
@@ -123,6 +123,7 @@ class Episode extends EdukaModel
     public function getIsNewAttribute()
     {
         $createdAt = new Carbon($this->created_at);
+
         return $createdAt->greaterThanOrEqualTo(Carbon::now()->subDays(30));
     }
 }

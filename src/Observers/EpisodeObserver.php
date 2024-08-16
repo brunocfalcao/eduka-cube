@@ -17,6 +17,7 @@ class EpisodeObserver
         $episode->upsertUuid();
         $episode->incrementByGroup('chapter_id');
         $episode->validate();
+        $episode->processFilename();
     }
 
     public function saved(Episode $episode)

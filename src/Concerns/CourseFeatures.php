@@ -81,14 +81,14 @@ trait CourseFeatures
             'name|twitter:description' => $this->description,
             'name|twitter:card' => 'summary_large_image',
             'name|twitter:site' => $this->twitter_handle,
-            'name|twitter:image' => url_with_app_http_scheme($this->domain, Storage::url($this->filename_email_logo)),
+            'name|twitter:image' => url_with_app_http_scheme($this->domain, Storage::url($this->filename_logo)),
             'name|twitter:creator' => $this->twitter_handle,
             'name|twitter:title' => $this->name,
 
             'property|og:description' => $this->description,
             'property|og:url' => url_with_app_http_scheme($this->domain),
             'property|og:type' => 'article',
-            'property|og:image' => url_with_app_http_scheme($this->domain, Storage::url($this->filename_email_logo)),
+            'property|og:image' => url_with_app_http_scheme($this->domain, Storage::url($this->filename_logo)),
             'property|og:title' => $this->name,
         ];
     }

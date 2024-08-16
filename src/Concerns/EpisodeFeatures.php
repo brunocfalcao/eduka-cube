@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Storage;
 
 trait EpisodeFeatures
 {
+    public function processFilename()
+    {
+        info('inside process filename');
+    }
+
     /**
      * Grabs the destination vimeo episode folder URI. If the episode is part
      * of a chapter, then returns that one, if not then returns the
@@ -46,14 +51,14 @@ trait EpisodeFeatures
             'name|twitter:description' => $this->description,
             'name|twitter:card' => 'summary_large_image',
             'name|twitter:site' => $this->course->twitter_handle,
-            'name|twitter:image' => Storage::url($this->filename_email_logo),
+            'name|twitter:image' => Storage::url($this->filename_logo),
             'name|twitter:creator' => $this->course->twitter_handle,
             'name|twitter:title' => $this->name,
 
             'property|og:description' => $this->description,
             'property|og:url' => 'https://'.$this->course->domain,
             'property|og:type' => 'article',
-            'property|og:image' => Storage::url($this->filename_email_logo),
+            'property|og:image' => Storage::url($this->filename_logo),
             'property|og:title' => $this->name,
         ];
     }
