@@ -10,9 +10,11 @@ use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\CourseFeatures;
 use Illuminate\Validation\Rule;
 use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Course extends EdukaModel
+class Course extends EdukaModel implements HasMedia
 {
     use CourseFeatures,
         HasCanonicals,
@@ -67,13 +69,6 @@ class Course extends EdukaModel
                 Rule::when($this->launched_at !== null, 'after:launched_at'),
             ],
         ];
-    }
-
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('main', $this->canonical)
-            ->withResponsiveImages()
-            ->singleFile();
     }
 
     public function registerMediaConversions(?Media $media = null): void
