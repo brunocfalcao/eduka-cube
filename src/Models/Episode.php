@@ -2,24 +2,28 @@
 
 namespace Eduka\Cube\Models;
 
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasAutoIncrementsByGroup;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCanonicals;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Carbon\Carbon;
+use Spatie\Image\Enums\Fit;
+use Illuminate\Validation\Rule;
+use Spatie\MediaLibrary\HasMedia;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\EpisodeFeatures;
-use Illuminate\Validation\Rule;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCanonicals;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasAutoIncrementsByGroup;
 
-class Episode extends EdukaModel
+class Episode extends EdukaModel implements HasMedia
 {
     use EpisodeFeatures,
         HasAutoIncrementsByGroup,
         HasCanonicals,
         HasCustomQueryBuilder,
         HasUuids,
-        HasValidations;
+        HasValidations,
+        InteractsWithMedia;
 
     protected $with = ['course', 'chapter'];
 
@@ -45,6 +49,14 @@ class Episode extends EdukaModel
         'vimeo_id' => ['nullable', 'string'],
         'filename' => ['nullable', 'string'],
     ];
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('thumbnail')
+            ->fit(Fit::Contain, 300)
+            ->nonQueued();
+    }
 
     public function getRules()
     {
