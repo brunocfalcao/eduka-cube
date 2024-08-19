@@ -2,18 +2,19 @@
 
 namespace Eduka\Cube\Models;
 
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasAutoIncrementsByGroup;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCanonicals;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
 use Carbon\Carbon;
-use Spatie\Image\Enums\Fit;
-use Illuminate\Validation\Rule;
-use Spatie\MediaLibrary\HasMedia;
 use Eduka\Abstracts\Classes\EdukaModel;
 use Eduka\Cube\Concerns\EpisodeFeatures;
+use Illuminate\Validation\Rule;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCanonicals;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
-use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasAutoIncrementsByGroup;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Episode extends EdukaModel implements HasMedia
 {
