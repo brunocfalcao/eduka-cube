@@ -2,6 +2,7 @@
 
 namespace Eduka\Cube\Concerns;
 
+use Eduka\Cube\Models\Student;
 use Illuminate\Support\Facades\Storage;
 
 trait EpisodeFeatures
@@ -19,8 +20,8 @@ trait EpisodeFeatures
     public function getUploadVimeoFolderURI()
     {
         return $this?->chapter->vimeo_uri ?
-                $this->chapter->vimeo_uri :
-                $this->course->vimeo_uri;
+            $this->chapter->vimeo_uri :
+            $this->course->vimeo_uri;
     }
 
     /**
@@ -56,10 +57,29 @@ trait EpisodeFeatures
             'name|twitter:title' => $this->name,
 
             'property|og:description' => $this->description,
-            'property|og:url' => 'https://'.$this->course->domain,
+            'property|og:url' => 'https://' . $this->course->domain,
             'property|og:type' => 'article',
             'property|og:image' => Storage::url($this->filename_logo),
             'property|og:title' => $this->name,
         ];
+    }
+
+    public function wasSeenByStudent(Student $student)
+    {
+        return $student->isEpisodeSeen($this);
+    }
+
+    public function previousEpisode() {}
+
+    public function nextEpisode() {}
+
+    public function hasPreviousEpisode()
+    {
+        return $this->previousEpisode() !== null;
+    }
+
+    public function hasNextEpisode()
+    {
+        return $this->nextEpisode() !== null;
     }
 }

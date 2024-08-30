@@ -121,17 +121,19 @@ class Episode extends EdukaModel implements HasMedia
 
         $humanDuration = '';
         if ($hours > 0) {
-            $humanDuration .= $hours.'h ';
+            $humanDuration .= $hours . 'h ';
         }
         if ($minutes > 0) {
-            $humanDuration .= $minutes.'m ';
+            $humanDuration .= $minutes . 'm ';
         }
         if ($seconds > 0 || empty($humanDuration)) {
-            $humanDuration .= $seconds.'s';
+            $humanDuration .= $seconds . 's';
         }
 
         return trim($humanDuration);
     }
+
+    public function getThumbnailURL() {}
 
     public function getIsNewAttribute()
     {

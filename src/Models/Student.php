@@ -4,12 +4,14 @@ namespace Eduka\Cube\Models;
 
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
+use Eduka\Cube\Concerns\StudentFeatures;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Student extends Authenticatable
 {
-    use HasCustomQueryBuilder,
+    use StudentFeatures,
+        HasCustomQueryBuilder,
         HasValidations,
         Notifiable;
 
@@ -20,8 +22,7 @@ class Student extends Authenticatable
         'remember_token',
     ];
 
-    protected $casts = [
-    ];
+    protected $casts = [];
 
     public $rules = [
         'name' => ['nullable', 'string'],

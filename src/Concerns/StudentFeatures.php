@@ -2,6 +2,8 @@
 
 namespace Eduka\Cube\Concerns;
 
+use Eduka\Cube\Models\Episode;
+
 trait StudentFeatures
 {
     /**
@@ -12,5 +14,10 @@ trait StudentFeatures
     public function markAsSeen(Episode $episode)
     {
         $this->episodesThatWereSeen()->syncOnlyThese($episode->id);
+    }
+
+    public function isEpisodeSeen(Episode $episode)
+    {
+        return $this->episodesThatWereSeen()->where('episodes.id', $episode->id)->exists();
     }
 }
