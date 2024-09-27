@@ -35,6 +35,11 @@ class Chapter extends EdukaModel
         return $this->hasMany(Episode::class);
     }
 
+    public function activeEpisodes()
+    {
+        return $this->hasMany(Episode::class)->where('episodes.is_active', true)->orderBy('episodes.index');
+    }
+
     // Relationship registered.
     public function variants()
     {

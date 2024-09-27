@@ -11,9 +11,14 @@ trait StudentFeatures
      * this episode id and remove any other entries where the student_id/episode_id
      * is present (and keep the most updated one).
      */
-    public function markAsSeen(Episode $episode)
+    public function markEpisodeAsSeen(Episode $episode)
     {
-        $this->episodesThatWereSeen()->syncOnlyThese($episode->id);
+        $this->episodesThatWereSeen()->attach($episode->id);
+    }
+
+    public function unmarkEpisodeAsSeen(Episode $episode)
+    {
+        $this->episodesThatWereSeen()->detach($episode->id);
     }
 
     public function isEpisodeSeen(Episode $episode)

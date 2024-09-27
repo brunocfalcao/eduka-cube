@@ -59,6 +59,16 @@ class Episode extends EdukaModel implements HasMedia
             ->nonQueued();
     }
 
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     public function getRules()
     {
         return [
