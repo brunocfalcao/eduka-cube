@@ -14,7 +14,7 @@ class ChapterObserver
     public function saving(Chapter $chapter)
     {
         $chapter->incrementByGroup('course_id');
-
+        $chapter->upsertUuid();
         $chapter->validate();
     }
 

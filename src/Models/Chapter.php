@@ -5,12 +5,15 @@ namespace Eduka\Cube\Models;
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasAutoIncrementsByGroup;
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasCustomQueryBuilder;
 use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasValidations;
+use Brunocfalcao\LaravelHelpers\Traits\ForModels\HasUuids;
 use Eduka\Abstracts\Classes\EdukaModel;
+use Illuminate\Validation\Rule;
 
 class Chapter extends EdukaModel
 {
     use HasAutoIncrementsByGroup,
         HasCustomQueryBuilder,
+        HasUuids,
         HasValidations;
 
     protected $with = ['course'];
@@ -24,10 +27,21 @@ class Chapter extends EdukaModel
     public $rules = [
         'course_id' => ['required', 'exists:courses,id'],
         'index' => ['required'],
+        'uuid' => ['required'],
         'name' => ['required', 'string'],
         'description' => ['nullable'],
         'vimeo_uri' => ['nullable', 'string'],
     ];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 
     // Relationship registered.
     public function episodes()
