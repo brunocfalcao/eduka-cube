@@ -136,7 +136,7 @@ class Episode extends EdukaModel implements HasMedia
         if ($minutes > 0) {
             $humanDuration .= $minutes . 'm ';
         }
-        if ($seconds > 0 || empty($humanDuration)) {
+        if (($hours == 0 || $minutes == 0) && $seconds > 0 || empty($humanDuration)) {
             $humanDuration .= $seconds . 's';
         }
 

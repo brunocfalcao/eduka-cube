@@ -49,6 +49,45 @@ class Course extends EdukaModel implements HasMedia
         'clarity_code' => ['nullable', 'string'],
     ];
 
+    // Duration for humans append
+    protected $appends = ['duration', 'duration_for_humans'];
+
+    public function getDurationAttribute()
+    {
+        $chapters = $this->chapters()->with('episodes')->get();
+
+        $total_duration = 0;
+        foreach ($chapters as $chapter)
+            foreach ($chapter->episodes as $episode)
+                $total_duration += $episode->duration;
+
+        return $total_duration;
+    }
+
+    // Duration for humans function
+    public function getDurationForHumansAttribute()
+    {
+        $seconds = $this->duration;
+
+        $hours = intdiv($seconds, 3600);
+        $seconds %= 3600;
+        $minutes = intdiv($seconds, 60);
+        $seconds %= 60;
+
+        $humanDuration = '';
+        if ($hours > 0) {
+            $humanDuration .= $hours . 'h ';
+        }
+        if ($minutes > 0) {
+            $humanDuration .= $minutes . 'm ';
+        }
+        if (($hours == 0 || $minutes == 0) && $seconds > 0 || empty($humanDuration)) {
+            $humanDuration .= $seconds . 's';
+        }
+
+        return trim($humanDuration);
+    }
+
     // Fields that have a computed validation.
     public function getRules()
     {
