@@ -25,4 +25,19 @@ trait StudentFeatures
     {
         return $this->episodesThatWereSeen()->where('episodes.id', $episode->id)->exists();
     }
+
+    public function bookmarkEpisode(Episode $episode)
+    {
+        $this->episodesThatWereBookmarked()->attach($episode->id);
+    }
+
+    public function unbookmarkEpisode(Episode $episode)
+    {
+        $this->episodesThatWereBookmarked()->detach($episode->id);
+    }
+
+    public function isEpisodeBookmarked(Episode $episode)
+    {
+        return $this->episodesThatWereBookmarked()->where('episodes.id', $episode->id)->exists();
+    }
 }
